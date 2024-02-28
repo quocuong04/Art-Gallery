@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="theme-color" content="#feed01"/>
+<title>Art Gallery</title>
+<meta name="author" content="Group 3">
+
+
+<link href="ico/favicon.png" rel="shortcut icon">
+
+<!-- CSS FILES -->
+<link rel="stylesheet" href="./assets/css/fontawesome.min.css">
+<link rel="stylesheet" href="./assets/css/odometer.min.css">
+<link rel="stylesheet" href="./assets/css/fancybox.min.css">
+<link rel="stylesheet" href="./assets/css/swiper.min.css">
+<link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+<div class="preloader" id="preloader">
+  <svg viewBox="0 0 1920 1080" preserveAspectRatio="none" version="1.1">
+    <path d="M0,0 C305.333333,0 625.333333,0 960,0 C1294.66667,0 1614.66667,0 1920,0 L1920,1080 C1614.66667,1080 1294.66667,1080 960,1080 C625.333333,1080 305.333333,1080 0,1080 L0,0 Z"></path>
+  </svg>
+  <div class="inner">
+    <canvas class="progress-bar" id="progress-bar" width="200" height="200"></canvas>
+    <figure><img src="./assets/images/preloader.png" alt="Image"></figure>
+    <small>Loading</small> </div>
+  <!-- end inner -->
+</div>
+<!-- end preloder -->
+<div class="page-transition">
+  <svg viewBox="0 0 1920 1080" preserveAspectRatio="none" version="1.1">
+    <path d="M0,0 C305.333333,0 625.333333,0 960,0 C1294.66667,0 1614.66667,0 1920,0 L1920,1080 C1614.66667,980 1294.66667,930 960,930 C625.333333,930 305.333333,980 0,1080 L0,0 Z"></path>
+  </svg>
+</div>
+<!-- end page-transition -->
+<div class="smooth-scroll">
+  <div class="section-wrapper" data-scroll-section>
+    <div class="search-box">
+      <div class="container">
+        <div class="form">
+          <h3>SEARCH EVENT</h3>
+          <input type="search" placeholder="What are you looking for ?">
+          <input type="submit" value="SEARCH">
+        </div>
+        <!-- end form -->
+        
+        <!-- end search-events -->
+      </div>
+    </div>
+    <!-- end search-box -->
+    <aside class="side-widget">
+      <figure class="logo"> <img src="./assets/images/logo-light.png" alt="Image"> </figure>
+      <div class="display-mobile">
+        <!-- end custom-menu -->
+        <div class="site-menu">
+          <ul>
+            <li><a href="auctions.html">Auctions</a></li>
+          <li><a href="collections.html">Collections</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <!-- end site-menu -->
+      </div>
+      <!-- end display-mobile -->
+    </aside>
+    <aside class="side-widget">
+      <figure class="logo"> <img src="./assets/images/logo-light.png" alt="Image"> </figure>
+      <div class="display-mobile">
+        <!-- end custom-menu -->
+        <div class="site-menu">
+          <ul>
+            <li><a href="auctions.html">Auctions</a></li>
+          <li><a href="collections.html">Collections</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <!-- end site-menu -->
+      </div>
+      <!-- end display-mobile -->
+    </aside>
+    <nav class="navbar">
+      <div class="logo"> <a href="index.html"> <img src="./assets/images/logo.png" alt="Image"> </a> </div>
+      <!-- end logo -->
+      
+      <!-- end custom-menu -->
+      <div class="site-menu" style="padding-left: 50px;">
+        <ul>
+          <li><a href="auctions.html">Auctions</a></li>
+          <li><a href="collections.html">Collections</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <!-- end site-menu -->
+      <div class="search-button"> <i class="far fa-search"></i> </div>
+      <!-- end search-button -->
+      <div class="hamburger-menu">
+        <svg class="hamburger" width="30" height="30" viewBox="0 0 30 30">
+          <path class="line line-top" d="M0,9h30"/>
+          <path class="line line-center" d="M0,15h30"/>
+          <path class="line line-bottom" d="M0,21h30"/>
+        </svg>
+      </div>
+      <!-- end hamburger-menu -->
+      <!-- end search-button -->
+      
+      <!-- end hamburger-menu -->
+      <a href="login.html" class="login-text">Login</a>
+      <!-- end navbar-button -->
+    </nav>
+    <!-- end navbar -->
+    <header class="page-header" data-background="./assets/images/page-header.jpg">
+      <div class="inner">
+        <svg width="580" height="400" class="svg-morph">
+          <path id="svg_morph" d="m261,30.4375c0,0 114,6 151,75c37,69 37,174 6,206.5625c-31,32.5625 -138,11.4375 -196,-19.5625c-58,-31 -86,-62 -90,-134.4375c12,-136.5625 92,-126.5625 129,-127.5625z" />
+        </svg>
+        <h1>Collection</h1>
+        
+      </div>
+      <!-- end inner -->
+    </header>
+    <!-- end page-header -->
+    <section class="content-section" data-background="#fffbf7">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title text-center">
+              <figure><img src="./assets/images/title-shape.png" alt="Image"></figure>
+              <h2>Our collections are <br>
+                most important</h2>
+            </div>
+            <!-- end section-title -->
+          </div>
+          <!-- end col-12 -->
+        </div>
+        <!-- end row -->
+        <div class="row justify-content-center">
+          <div class="col-lg-4 col-md-6">
+            <div class="collection-box" data-scroll data-scroll-speed="1.5" >
+              <figure><img src="./assets/images/collection02.jpg" alt="Image"></figure>
+              <p class="category-label">Art paintings</p>
+              <h4><a href="collection-detail.html">Hammersmith: Kelmscott Press.</a></h4>
+              <p>The Works of Geoffrey Chaucer Now
+                Newly Imprinted, by William Morris & Sir
+                Edward Burne-Jones, 1896, Hammersmith:
+                Kelmscott Press.</p>
+            </div>
+            <!-- end collection-box -->
+          </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="collection-box" data-scroll data-scroll-speed="1" >
+              <figure><img src="./assets/images/collection02.jpg" alt="Image"></figure>
+              <p class="category-label">Art paintings</p>
+              <h4><a href="collection-detail.html">Inner coffin of Hornedjitef</a></h4>
+              <p>
+The mummy of the priest Hornedjitef was encased in a gilded mask and cover, and two human-shaped wooden coffins. </p>
+            </div>
+            <!-- end collection-box -->
+          </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="collection-box" data-scroll data-scroll-speed="0.5" >
+              <figure><img src="./assets/images/collection02.jpg" alt="Image"></figure>
+              <p class="category-label">Art paintings</p>
+              <h4><a href="collection-detail.html">Brass head of an Ooni</a></h4>
+              <p>
+This crowned head was discovered by accident in 1939 during digging close to the royal palace in Ife. </p>
+              <p class="price">£7,000 - £10,000</p>
+</div>
+            <!-- end collection-box -->
+          </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="collection-box" data-scroll data-scroll-speed="1.5" >
+              <figure><img src="./assets/images/collection02.jpg" alt="Image"></figure>
+              <p class="category-label">Art paintings</p>
+              <h4><a href="collection-detail.html">The goddess Tara</a></h4>
+              <p>Between 1100 and 1400 Ife was one of the great city-states in West Africa</p>
+              <p class="price">£7,000 - £10,000</p>
+            </div>
+            <!-- end collection-box -->
+          </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="collection-box" data-scroll data-scroll-speed="1" >
+              <figure><img src="./assets/images/collection02.jpg" alt="Image"></figure>
+              <p class="category-label">Art paintings</p>
+              <h4><a href="collection-detail.html">Raphael cartoon</a></h4>
+              <p>Lofe and flourished as a commercial centre within regional and long-distance trade networks. </p>
+              <p class="price">£7,000 - £10,000</p>
+            </div>
+            <!-- end collection-box -->
+          </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="collection-box" data-scroll data-scroll-speed="0.5" >
+              <figure><img src="./assets/images/collection02.jpg" alt="Image"></figure>
+              <p class="category-label">Art paintings</p>
+              <h4><a href="collection-detail.html">The Anglo-Saxon </a></h4>
+              <p>
+              The most impressive example of a medieval ship burial in Europe. But who was buried here? And what do their treasures reveal?
+
+          </p>
+          <p class="price">£7,000 - £10,000</p>
+            </div>
+            <!-- end collection-box -->
+          </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="collection-box" data-scroll data-scroll-speed="1.5" >
+              <figure><img src="./assets/images/collection02.jpg" alt="Image"></figure>
+              <p class="category-label">Art paintings</p>
+              <h4><a href="collection-detail.html">In Ancient Mesopotamia</a></h4>
+              <p>The Works of Geoffrey Chaucer Now
+                Newly Imprinted, by William Morris & Sir
+                Edward Burne-Jones, 1896, Hammersmith:
+                Kelmscott Press.</p>
+                <p class="price">£7,000 - £10,000</p>
+            </div>
+            <!-- end collection-box -->
+          </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="collection-box" data-scroll data-scroll-speed="1" >
+              <figure><img src="./assets/images/collection02.jpg" alt="Image"></figure>
+              <p class="category-label">Art paintings</p>
+              <h4><a href="collection-detail.html">Canopic jars</a></h4>
+              <p>The Works of Geoffrey Chaucer Now
+                Newly Imprinted, by William Morris & Sir
+                Edward Burne-Jones, 1896, Hammersmith:
+                Kelmscott Press.</p>
+                <p class="price">£7,000 - £10,000</p>
+            </div>
+            <!-- end collection-box -->
+          </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="collection-box" data-scroll data-scroll-speed="0.5" >
+              <figure><img src="./assets/images/collection02.jpg" alt="Image"></figure>
+              <p class="category-label">Art paintings</p>
+              <h4><a href="collection-detail.html">Red-figured loutrophoros</a></h4>
+              <p>The Works of Geoffrey Chaucer Now
+                Newly Imprinted, by William Morris & Sir
+                Edward Burne-Jones, 1896, Hammersmith:
+                Kelmscott Press.</p>
+                <p class="price">£7,000 - £10,000</p>
+            </div>
+            <!-- end collection-box -->
+          </div>
+          <!-- end col-4 -->
+        </div>
+        <!-- end row -->
+      </div>
+      <!-- end container -->
+    </section>
+    <!-- end content-section -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <h6 class="widget-title">About Art Gallery</h6>
+            <ul class="footer-menu">
+              <li><a href="./about.html">About us </a></li>
+              <li><a href="./contact.html">Contact us</a></li>
+              <li><a href="./auctions.html">Auctions</a></li>
+              <li><a href="./collections.html">Conllections</a></li>
+              <li><a href="./news.html">News</a></li>
+            </ul>
+          </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6">
+            <h6 class="widget-title">Connect Us</h6>
+            <ul class="social-media">
+              <li><a href="#"><i class="fab fa-facebook-f"></i> /art gallery</a></li>
+              <li><a href="#"><i class="fab fa-twitter"></i> /art gallery</a></li>
+              <li><a href="#"><i class="fab fa-youtube"></i> /art gallery</a></li>
+            </ul>
+          </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4">
+            <h6 class="widget-title">Visit Us Now</h6>
+            <address class="address">
+            19 Le Thanh Nghi, Hai Ba Trung<strong>Hanoi - Vietnam</strong> <i class="fas fa-info-circle"></i> 0123456789
+            </address>
+          </div>
+          <!-- end col-4 -->
+        </div>
+        <!-- end row -->
+      </div>
+      <!-- end container -->
+      <div class="footer-bottom">
+        <div class="container"> <span class="copyright">© 2023 Art Gallery</span> <span class="creation">Site created by <a href="#">Group 3</a></span> </div>
+        <!-- end container -->
+      </div>
+      <!-- end footer-bottom -->
+    </footer>
+    <!-- end footer -->
+  </div>
+</div>
+
+<!-- JS FILES -->
+<script src="./assets/js/jquery.min.js"></script>
+<script src="./assets/js/bootstrap.min.js"></script>
+<script src="./assets/js/gsap.min.js"></script>
+<script src="./assets/js/locomotive-scroll.min.js"></script>
+<script src="./assets/js/ScrollTrigger.min.js"></script>
+<script src="./assets/js/kinetic-slider.js"></script>
+<script src="./assets/js/fancybox.min.js"></script>
+<script src="./assets/js/odometer.min.js"></script>
+<script src="./assets/js/swiper.min.js"></script>
+<script src="./assets/js/scripts.js"></script>
+</body>
+</html>
