@@ -3942,7 +3942,10 @@ button[type="submit"] i {
 .art-list .swiper-pagination {
   bottom: -30px !important;
 }
-
+.art-list .swiper-wrapper {
+  display: flex;
+  align-items: center;
+}
 .swiper-pagination-bullet-active {
   background: #94ffc4;
 }
