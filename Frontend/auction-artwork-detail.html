@@ -84,7 +84,7 @@
         <svg width="580" height="400" class="svg-morph">
           <path id="svg_morph" d="m261,30.4375c0,0 114,6 151,75c37,69 37,174 6,206.5625c-31,32.5625 -138,11.4375 -196,-19.5625c-58,-31 -86,-62 -90,-134.4375c12,-136.5625 92,-126.5625 129,-127.5625z" />
         </svg>
-        <h1>Auctions Art</h1>
+        <h1>Auctions Artwork Detail</h1>
         
       </div>
       <!-- end inner -->
@@ -120,21 +120,37 @@ talk with Maria</h2>
                       </table>
 				</div>
 				<!-- end side-content -->
-
-            <div class="side-icon-list">
+        <!-- Hiển thị khi vào sản phẩm đang đấu giá -->
+            <div class="side-icon-list mb-3">
               <ul>
-                <li>
+                <li class="d-flex align-items-center">
                   <figure> <img src="./assets/images/icon01.png" alt="Image"> </figure>
                   <div class="content">
-                    <h5>Opening times</h5>
-                    <p>From 27 August<br>
-                      Thursday – Sunday: 11.00-19.00</p>
+                    <div id="countdown"></div>
                   </div>
-                  <!-- end content -->
                 </li>
               </ul>
             </div>
-            <!-- end side-icon-list -->
+            <div class="side-content left">
+              <table>
+                <tr>
+                  <td>Start Price</td>
+                  <td>: 100.000VND</td>
+                </tr>
+                <tr>
+                  <td>Current Price</td>
+                  <td>: 123.000VND</td>
+                </tr>
+                <tr>
+                  <td>Current Count</td>
+                  <td>: 4</td>
+                </tr>
+              </table>
+            </div>
+            <button id="auctionBtn" class="custom-button d-block border-0 mt-1" data-bs-toggle="modal" data-bs-target="#auctionForm">Auction</button>
+            <!-- Đóng hiển thị -->
+            <!-- Hiển thị khi chưa login -->
+            <a href="./login.html" class="custom-button mt-1">Login to bid</a>
 				</div>
 				<!-- end col-6 -->
 				<div class="col-lg-6">
@@ -327,7 +343,31 @@ talk with Maria</h2>
       </div>
       <!-- end footer-bottom -->
     </footer>
+    <!-- Button trigger modal -->
+
     <!-- end footer -->
+  </div>
+  <div class="modal fade" id="auctionForm" tabindex="-1" role="dialog" aria-labelledby="auctionFormLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="auctionFormLabel">Auction</h5>
+          <i class="fa fa-times close" aria-hidden="true"data-bs-dismiss="modal" aria-label="Close"></i>
+        </div>
+        <form>
+          <div class="modal-body">
+            <div class="form-group d-flex  align-items-center">
+              <label class="w-50">Your Price Auction</label>
+              <input type="number" class="form-control w-50" name="priceAuction" min="1" style="height: 50px;">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn bgr-primary">Ok</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -342,5 +382,36 @@ talk with Maria</h2>
 <script src="./assets/js/odometer.min.js"></script>
 <script src="./assets/js/swiper.min.js"></script>
 <script src="./assets/js/scripts.js"></script>
+<script>
+  $(document).ready(function() {
+    // Đặt thời gian bắt đầu và thời gian kết thúc
+    var startTime = new Date('2024-03-05 09:00:00').getTime();
+    var endTime = new Date('2024-03-05 23:59:00').getTime();
+
+    // Cập nhật đồng hồ đếm ngược mỗi giây
+    var countdownInterval = setInterval(function() {
+      // Lấy thời gian hiện tại
+      var currentTime = new Date().getTime();
+
+      // Tính thời gian còn lại
+      var timeLeft = endTime - currentTime;
+
+      // Tính toán giờ, phút, giây
+      var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      // Hiển thị đếm ngược trên trang web
+      $('#countdown').text(hours + ' hour ' + minutes + ' minus ' + seconds + ' second');
+
+      // Kiểm tra nếu thời gian đã hết
+      if (timeLeft < 0) {
+        clearInterval(countdownInterval);
+        $('#countdown').text('The countdown has ended');
+      }
+    }, 1000);
+  });
+  
+</script>
 </body>
 </html>

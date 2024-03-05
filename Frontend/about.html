@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#feed01"/>
 <title>Art Gallery</title>
 <meta name="author" content="Group 3">
+<link rel="icon" href="./assets/images/favicon.png" type="image/x-icon">
 
 
 <link href="./assets/images/favicon.png" rel="shortcut icon">
@@ -25,7 +26,7 @@
     <div class="search-box">
       <div class="container">
         <div class="form">
-          <h3>SEARCH EVENT</h3>
+          <h3>SEARCH ARTWORK</h3>
           <input type="search" placeholder="What are you looking for ?">
           <input type="submit" value="SEARCH">
         </div>
@@ -53,12 +54,9 @@
       <!-- end display-mobile -->
     </aside>
     
-    <nav class="navbar">
+    <nav class="navbar d-flex justify-content-between">
       <div class="logo"> <a href="index.html"> <img src="./assets/images/logo.png" alt="Image"> </a> </div>
-      <!-- end logo -->
-      
-      <!-- end custom-menu -->
-      <div class="site-menu" style="padding-left: 100px;">
+      <div class="site-menu">
         <ul>
           <li><a href="auctions.html">Auctions</a></li>
           <li><a href="artwork.html">Artwork</a></li>
@@ -67,24 +65,19 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
-      <!-- end site-menu -->
-      <div class="search-button"> <i class="far fa-search"></i> </div>
-      <!-- end search-button -->
-      <div class="hamburger-menu">
-        <svg class="hamburger" width="30" height="30" viewBox="0 0 30 30">
-          <path class="line line-top" d="M0,9h30"/>
-          <path class="line line-center" d="M0,15h30"/>
-          <path class="line line-bottom" d="M0,21h30"/>
-        </svg>
+      <div class="d-flex align-items-center">
+        <a href="./membership.html" class="custom-button text-indent-none" style="padding: 0 20px; height: 48px; line-height: 48px;">Register to member</a>
+        <div class="search-button"> <i class="far fa-search"></i> </div>
+        <div class="hamburger-menu">
+          <svg class="hamburger" width="30" height="30" viewBox="0 0 30 30">
+            <path class="line line-top" d="M0,9h30"/>
+            <path class="line line-center" d="M0,15h30"/>
+            <path class="line line-bottom" d="M0,21h30"/>
+          </svg>
+        </div>
+        <a href="login.html" class="login-text">Login</a>
       </div>
-      <!-- end hamburger-menu -->
-      <!-- end search-button -->
-      
-      <!-- end hamburger-menu -->
-      <a href="login.html" class="login-text">Login</a>
-      <!-- end navbar-button -->
     </nav>
-    <!-- end navbar -->
 	  <header class="page-header" data-background="./assets/images/page-header.jpg">
 	  	<div class="inner">
 			<svg width="580" height="400" class="svg-morph">

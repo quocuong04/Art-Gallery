@@ -797,7 +797,7 @@ button[type="submit"] i {
   height: 30px;
   line-height: 34px;
   display: inline-block;
-  margin-left: auto;
+  margin-left: 15px;
 }
 .navbar .search-button i {
   display: inline-block;
@@ -3866,11 +3866,29 @@ a, a:hover {
 .login-text {
   color: #000;
   height: auto;
-  padding: 20px 17px;
+  padding: 20px 0 20px 17px;
   text-decoration: none;
   margin-left: 10px;
   font-weight: 600;
 }
 .login-text:hover {
   color: #94ffc4;
+}
+.opacity-70 {
+  opacity: 0.7;
+}
+.fz-20{
+  font-size: 20px;
+}
+.fm-cinzel{
+  font-family: 'Cinzel', serif;
+}
+.fm-dm-sans{
+  font-family: 'DM Sans', sans-serif
+}
+.text-indent-none:hover {
+  text-indent: unset;
+}
+.bgr-primary {
+  background-color: #94ffc4;
 }

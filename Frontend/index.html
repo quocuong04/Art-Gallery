@@ -6,7 +6,8 @@
 <meta name="theme-color" content="#feed01"/>
 <title>Art Gallery</title>
 <meta name="author" content="Group 3">
-
+<link rel="icon" href="./assets/images/favicon.png" type="image/x-icon">
+<link rel="icon" href="./assets/images/favicon.png" type="image/x-icon">
 
 <!-- SOCIAL MEDIA META -->
 <meta property="og:description" content="Wandau | Art & History Museum">
@@ -33,13 +34,13 @@
     <div class="search-box">
       <div class="container">
         <div class="form">
-          <h3>SEARCH EVENT</h3>
+          <h3>SEARCH ARTWORK</h3>
           <input type="search" placeholder="What are you looking for ?">
           <input type="submit" value="SEARCH">
         </div>
         <!-- end form -->
         
-        <!-- end search-events -->
+        <!-- end search-artwork -->
       </div>
     </div>
     
@@ -60,10 +61,9 @@
       </div>
       <!-- end display-mobile -->
     </aside>
-    <nav class="navbar">
+    <nav class="navbar d-flex justify-content-between">
       <div class="logo"> <a href="index.html"> <img src="./assets/images/logo.png" alt="Image"> </a> </div>
-      
-      <div class="site-menu" style="padding-left: 100px;">
+      <div class="site-menu">
         <ul>
           <li><a href="auctions.html">Auctions</a></li>
           <li><a href="artwork.html">Artwork</a></li>
@@ -72,22 +72,19 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
-      <!-- end site-menu -->
-      <div class="search-button"> <i class="far fa-search"></i> </div>
-      <!-- end search-button -->
-      <div class="hamburger-menu">
-        <svg class="hamburger" width="30" height="30" viewBox="0 0 30 30">
-          <path class="line line-top" d="M0,9h30"/>
-          <path class="line line-center" d="M0,15h30"/>
-          <path class="line line-bottom" d="M0,21h30"/>
-        </svg>
+      <div class="d-flex align-items-center">
+        <a href="./membership.html" class="custom-button text-indent-none" style="padding: 0 20px; height: 48px; line-height: 48px;">Register to member</a>
+        <div class="search-button"> <i class="far fa-search"></i> </div>
+        <div class="hamburger-menu">
+          <svg class="hamburger" width="30" height="30" viewBox="0 0 30 30">
+            <path class="line line-top" d="M0,9h30"/>
+            <path class="line line-center" d="M0,15h30"/>
+            <path class="line line-bottom" d="M0,21h30"/>
+          </svg>
+        </div>
+        <a href="login.html" class="login-text">Login</a>
       </div>
-      <!-- end hamburger-menu -->
-      <!-- end search-button -->
-      <a href="login.html" class="login-text">Login</a>
-      <!-- end navbar-button -->
     </nav>
-    <!-- end navbar -->
     <header class="slider">
       <div class="swiper-container slider-images">
         <div class="swiper-wrapper">
@@ -176,15 +173,17 @@
             <div class="side-icon-list right-side">
               <ul>
                 <li>
-                  <figure> <img src="./assets/images/icon03.png" alt="Image"> </figure>
                   <div class="content">
                     <h5>Gentileschi talk with Maria</h5>
-                    <p>From 27 August<br>
-                      Thursday – Sunday: 11.00-19.00</p>
+                    <p>
+                      Start Date: 11.00-19.00 <br>
+                      End Date: 11.00-19.00 <br> 
+                      Quantity of Artwork: 7</p>
+                      
                   </div>
                   <!-- end content -->
                 </li>
-                <div class="col-lg-3"> <a href="#" class="circle-button">Live now</a> </div>
+                <div class="col-lg-3"> <a href="auction-artworks.html" class="circle-button">Live now</a> </div>
               </ul>
             </div>
             <!-- end side-icon-list -->
@@ -203,7 +202,7 @@
             <div class="section-title">
               <figure><img src="./assets/images/title-shape.png" alt="Image"></figure>
               <h6>DON’T MISS THE OPPORTUNITY</h6>
-              <h2>Recommended auctions</h2>
+              <h2>Proposed auction</h2>
             </div>
             <!-- end section-title -->
           </div>
@@ -212,55 +211,83 @@
           <!-- end col-3 -->
         </div>
         <!-- end row -->
-        <div class="row justify-content-center">
-          <div class="col-lg-4 col-md-6">
-            <div class="aution-box" data-scroll data-scroll-speed="-1" >
-              <figure> <a href="#"><img src="./assets/images/event01.jpg" alt="Image" class="img"></a>
-                
-              </figure>
-              <div class="content-box">
-                <h4><a href="#">Artemisia Gentileschi
-                  talk with Maria</a></h4>
-                <p> 15 August – 31 October 2020 </p>
-              </div>
-              <!-- end content-box -->
-            </div>
-            <!-- end aution-box -->
+        <div class="container pl-2 pr-2 border mb-5">
+          <div class="p-2">
+            <h4 class="fm-cinzel"><a href="auction-artworks.html">Antique Painting Auction</a></h4>
           </div>
-          <!-- end col-4 -->
-          <div class="col-lg-4 col-md-6">
-            <div class="aution-box" data-scroll data-scroll-speed="1">
-              <figure> <a href="#"><img src="./assets/images/event02.jpg" alt="Image" class="img"></a>
-                
-              </figure>
-              <div class="content-box">
-                <h4><a href="#">Arctic culture and
-                  climate aution</a></h4>
-                <p> 22 Oct 2020 - 21 Feb 2023</p>
+          <div class="d-flex justify-content-around p-2 border-top border-bottom">
+              <div class="text-center">
+                <p class="opacity-70">Start Date</p>
+                <p class="fz-20">22 Apr 2023, 11:00 PM</p>
               </div>
-              <!-- end content-box -->
-            </div>
-            <!-- end aution-box --> </div>
-          <!-- end col-4 -->
-          <div class="col-lg-4 col-md-6">
-            <div class="aution-box" data-scroll data-scroll-speed="-0.5" >
-              <figure> <a href="#"><img src="./assets/images/event03.jpg" alt="Image" class="img"></a>
-                
-              </figure>
-              <div class="content-box">
-                <h4><a href="#">Thomas Becket murder and
-                  the making of a saint</a></h4>
-                <p> 22 Apr 2023 - 22 Aug 2023</p>
+              <div class="text-center">
+                <p class="opacity-70">End Date</p>
+                <p class="fz-20">22 Aug 2023,10:00 PM</p>
               </div>
-              <!-- end content-box -->
-            </div>
-            <!-- end aution-box --></div>
-          <!-- end col-4 -->
-          <div class="col-12 text-center"> <a href="#" class="custom-button">VIEW ALL UPCOMING EVENTS</a> </div>
-          <!-- end col-12 -->
+              <div class="text-center">
+                <p class="opacity-70">Quantity of Artwork</p>
+                <p class="fz-20">7</p>
+              </div>
+          </div>
+          <div class="pl-2 pr-2 pt-5 pb-5">
+            <div class="container">
+              <div class="row justify-content-center">
+                  <div class="col-lg-4 col-md-6 d-flex align-items-center">
+                    <div class="aution-box"  >
+                      <figure> <a href="auction-artwork-detail.html"><img src="./assets/images/event01.jpg" alt="Image" class="img"></a>
+                        <div class="info">
+                          
+                          </div>
+                        <!-- end info -->
+                      </figure>
+                      <div class="content-box">
+                        <h4><a href="auction-artwork-detail.html">Artemisia Gentileschi
+                          talk with Maria</a></h4>
+                        <p> 15 August – 31 October 2020 </p>
+                      </div>
+                      <!-- end content-box -->
+                    </div>
+                    <!-- end aution-box -->
+                  </div>
+                  <!-- end col-4 -->
+                  <div class="col-lg-4 col-md-6 d-flex align-items-center">
+                    <div class="aution-box" >
+                      <figure> <a href="auction-artwork-detail.html"><img src="./assets/images/event02.jpg" alt="Image" class="img"></a>
+                        <div class="info">
+                          
+                          </div>
+                        <!-- end info -->
+                      </figure>
+                      <div class="content-box">
+                        <h4><a href="auction-artwork-detail.html">Arctic culture and
+                          climate aution</a></h4>
+                        <p> 22 Oct 2020 - 21 Feb 2023</p>
+                      </div>
+                      <!-- end content-box -->
+                    </div>
+                    <!-- end aution-box --> </div>
+                  <!-- end col-4 -->
+                  <div class="col-lg-4 col-md-6 d-flex align-items-center">
+                    <div class="aution-box"  >
+                      <figure> <a href="auction-artwork-detail.html"><img src="./assets/images/event02.jpg" alt="Image" class="img"></a>
+                        <div class="info">
+                          
+                          </div>
+                        <!-- end info -->
+                      </figure>
+                      <div class="content-box">
+                        <h4><a href="auction-artwork-detail.html">Thomas Becket murder and
+                          the making of a saint</a></h4>
+                        <p> 22 Apr 2023 - 22 Aug 2023</p>
+                      </div>
+                      <!-- end content-box -->
+                    </div>
+                    <!-- end aution-box --></div>
+                  <!-- end col-4 -->
+              </div>
+          </div>
         </div>
-        <!-- end row -->
-      </div>
+        </div>
       <!-- end container -->
     </section>
     <!-- end content-section -->
