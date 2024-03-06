@@ -23,5 +23,31 @@ const showHiddenPass = (registerPass, registerEye) =>{
     })
     }
     
-    showHiddenPass('register-pass','register-eye')
-    
+    showHiddenPass('register-pass','register-eye');
+
+
+document.getElementById('confirm-eye').addEventListener('click', function() {
+  var confirmPassInput = document.getElementById('register-confirm-pass');
+  var confirmPassEyeIcon = document.getElementById('confirm-eye');
+
+  if (confirmPassInput.type === 'password') {
+     confirmPassInput.type = 'text';
+     confirmPassEyeIcon.classList.remove('ri-eye-off-line');
+     confirmPassEyeIcon.classList.add('ri-eye-line');
+  } else {
+     confirmPassInput.type = 'password';
+     confirmPassEyeIcon.classList.remove('ri-eye-line');
+     confirmPassEyeIcon.classList.add('ri-eye-off-line');
+  }
+});
+
+
+document.querySelector('.register__form').addEventListener('submit', function(event) {
+  var pass1 = document.getElementById('register-pass').value;
+  var pass2 = document.getElementById('register-confirm-pass').value;
+  
+  if (pass1 !== pass2) {
+     alert('Password does not match');
+     event.preventDefault();
+  }
+});
