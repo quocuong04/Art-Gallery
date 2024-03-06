@@ -1,4 +1,4 @@
-/*=============== SHOW HIDDEN - PASSWORD ===============*/
+// Show password
 const showHiddenPass = (registerPass, registerEye) =>{
     const input = document.getElementById(registerPass),
           iconEye = document.getElementById(registerEye)
@@ -25,7 +25,7 @@ const showHiddenPass = (registerPass, registerEye) =>{
     
     showHiddenPass('register-pass','register-eye');
 
-
+//Show confirm password
 document.getElementById('confirm-eye').addEventListener('click', function() {
   var confirmPassInput = document.getElementById('register-confirm-pass');
   var confirmPassEyeIcon = document.getElementById('confirm-eye');
@@ -41,13 +41,13 @@ document.getElementById('confirm-eye').addEventListener('click', function() {
   }
 });
 
-
+//Check password and confirm password
 document.querySelector('.register__form').addEventListener('submit', function(event) {
   var pass1 = document.getElementById('register-pass').value;
   var pass2 = document.getElementById('register-confirm-pass').value;
   
   if (pass1 !== pass2) {
-     alert('Password does not match');
+     alert('Passwords do not match!');
      event.preventDefault();
   }
 });
