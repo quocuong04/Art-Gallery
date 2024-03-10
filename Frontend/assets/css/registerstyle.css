@@ -53,7 +53,7 @@ img {
 /*=============== register ===============*/
 .register {
     position: relative;
-    /* height: 100vh; */
+    height: 130vh;
     display: grid;
     align-items: center;
 }
@@ -229,5 +229,3 @@ img {
         font-size: 2rem;
     }
 }
-
-
