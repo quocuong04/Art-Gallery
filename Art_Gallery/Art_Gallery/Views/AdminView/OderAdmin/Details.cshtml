@@ -1,0 +1,51 @@
+﻿@model Art_Gallery.Models.Purcher_order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_ViewStart.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Purcher_order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArtworkId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArtworkId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

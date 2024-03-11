@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Art_GalleryModelStoreContainer" CdmEntityContainer="Art_GalleryEntities">
+    <EntitySetMapping Name="Artists">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Artist">
+        <MappingFragment StoreEntitySet="Artist">
+          <ScalarProperty Name="ArtistId" ColumnName="ArtistId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Artworks">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Artwork">
+        <MappingFragment StoreEntitySet="Artwork">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CountAuction" ColumnName="CountAuction" />
+          <ScalarProperty Name="AuctionPrice" ColumnName="AuctionPrice" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="ArtistId" ColumnName="ArtistId" />
+          <ScalarProperty Name="ArtworkId" ColumnName="ArtworkId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Auctions">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Auction">
+        <MappingFragment StoreEntitySet="Auctions">
+          <ScalarProperty Name="AuctionId" ColumnName="AuctionId" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ReditCard" ColumnName="ReditCard" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="FavoriteArtwork" ColumnName="FavoriteArtwork" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Functions">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Function">
+        <MappingFragment StoreEntitySet="Functions">
+          <ScalarProperty Name="FunctionId" ColumnName="FunctionId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Group">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="FunctionId" ColumnName="FunctionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="Art_GalleryModel.New">
+        <MappingFragment StoreEntitySet="New">
+          <ScalarProperty Name="NewId" ColumnName="NewId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="NewDate" ColumnName="NewDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Notification">
+        <MappingFragment StoreEntitySet="Notification">
+          <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+          <ScalarProperty Name="RequestMessage" ColumnName="RequestMessage" />
+          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+          <ScalarProperty Name="ArtworkId" ColumnName="ArtworkId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payment_gateways">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Payment_gateways">
+        <MappingFragment StoreEntitySet="Payment_gateways">
+          <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Purcher_order">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Purcher_order">
+        <MappingFragment StoreEntitySet="Purcher_order">
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="ArtworkId" ColumnName="ArtworkId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rel_Artwork_Auctions">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Rel_Artwork_Auctions">
+        <MappingFragment StoreEntitySet="Rel_Artwork_Auctions">
+          <ScalarProperty Name="ArtworkId" ColumnName="ArtworkId" />
+          <ScalarProperty Name="AuctionId" ColumnName="AuctionId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reviews">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Review">
+        <MappingFragment StoreEntitySet="Review">
+          <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="ArtworkId" ColumnName="ArtworkId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shippings">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Shipping">
+        <MappingFragment StoreEntitySet="Shipping">
+          <ScalarProperty Name="ShippingId" ColumnName="ShippingId" />
+          <ScalarProperty Name="ActualDeliveryDate" ColumnName="ActualDeliveryDate" />
+          <ScalarProperty Name="EstimateDeliveryDate" ColumnName="EstimateDeliveryDate" />
+          <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
+          <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Rel_Employee_Group" TypeName="Art_GalleryModel.Rel_Employee_Group" StoreEntitySet="Rel_Employee_Group">
+      <EndProperty Name="Employee">
+        <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+      </EndProperty>
+      <EndProperty Name="Groups">
+        <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Rel_Group_Function" TypeName="Art_GalleryModel.Rel_Group_Function" StoreEntitySet="Rel_Group_Function">
+      <EndProperty Name="Functions">
+        <ScalarProperty Name="FunctionId" ColumnName="FunctionId" />
+      </EndProperty>
+      <EndProperty Name="Groups">
+        <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Rel_Shipping_Payment" TypeName="Art_GalleryModel.Rel_Shipping_Payment" StoreEntitySet="Rel_Shipping_Payment">
+      <EndProperty Name="Payment_gateways">
+        <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+      </EndProperty>
+      <EndProperty Name="Shipping">
+        <ScalarProperty Name="ShippingId" ColumnName="ShippingId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
