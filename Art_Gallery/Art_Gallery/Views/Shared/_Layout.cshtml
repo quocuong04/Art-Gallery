@@ -1,0 +1,145 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#feed01" />
+    <title>@ViewBag.Title</title>
+    <meta name="author" content="Group 3">
+    <link rel="icon" href="~/Content/webapp/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="~/Content/webapp/images/favicon.png" type="image/x-icon">
+
+    <!-- SOCIAL MEDIA META -->
+    <meta property="og:description" content="Wandau | Art & History Museum">
+    <meta property="og:image" content="http://www.Group 3.net/wandau/preview.png">
+    <meta property="og:site_name" content="wandau">
+    <meta property="og:title" content="wandau">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://www.Group 3.net/wandau">
+
+
+
+    <!-- CSS FILES -->
+    <link rel="stylesheet" href="~/Content/webapp/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/Content/webapp/css/odometer.min.css">
+    <link rel="stylesheet" href="~/Content/webapp/css/fancybox.min.css">
+    <link rel="stylesheet" href="~/Content/webapp/css/swiper.min.css">
+    <link rel="stylesheet" href="~/Content/webapp/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/webapp/css/style.css">
+</head>
+<body>
+    <div class="smooth-scroll">
+        <div class="section-wrapper" data-scroll-section>
+            <div class="search-box">
+                <div class="container">
+                    <div class="form">
+                        <h3>SEARCH ARTWORK</h3>
+                        <input type="search" placeholder="What are you looking for ?">
+                        <input type="submit" value="SEARCH">
+                    </div>
+                    <!-- end form -->
+                    <!-- end search-artwork -->
+                </div>
+            </div>
+
+            <aside class="side-widget">
+                <figure class="logo"> <img src="~/Content/webapp/images/logo-light.png" alt="Image"> </figure>
+                <div class="display-mobile" style="padding-top: 30px;">
+                    <!-- end custom-menu -->
+                    <div class="site-menu">
+                        <ul>
+                            <li><a href="auctions.html">Auctions</a></li>
+                            <li><a href="artwork.html">Artwork</a></li>
+                            <li><a href="news.html">News</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <!-- end site-menu -->
+                </div>
+                <!-- end display-mobile -->
+            </aside>
+            <nav class="navbar d-flex justify-content-between">
+                <div class="logo"> <a href="@Url.Action("", "Home")"> <img src="~/Content/webapp/images/logo.png" alt="Image"> </a> </div>
+                <div class="site-menu">
+                    <ul>
+                        <li><a href="@Url.Action("", "Auctions")">Auctions</a></li>
+                        <li><a href="@Url.Action("", "Artwork")">Artwork</a></li>
+                        <li><a href="@Url.Action("", "News")">News</a></li>
+                        <li><a href="@Url.Action("", "About")">About</a></li>
+                        <li><a href="@Url.Action("", "Contact")">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="d-flex align-items-center">
+                    <a href="@Url.Action("", "Membership")" class="custom-button text-indent-none" style="padding: 0 20px; height: 48px; line-height: 48px;">Register to member</a>
+                    <div class="search-button"> <i class="far fa-search"></i> </div>
+                    <div class="hamburger-menu">
+                        <svg class="hamburger" width="30" height="30" viewBox="0 0 30 30">
+                            <path class="line line-top" d="M0,9h30" />
+                            <path class="line line-center" d="M0,15h30" />
+                            <path class="line line-bottom" d="M0,21h30" />
+                        </svg>
+                    </div>
+                    <a href="@Url.Action("", "Login")" class="login-text">Login</a>
+                </div>
+            </nav>
+            
+            @RenderBody()
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <h6 class="widget-title">About Art Gallery</h6>
+                            <ul class="footer-menu">
+                                <li><a href="~/about.html">About us </a></li>
+                                <li><a href="~/contact.html">Contact us</a></li>
+                                <li><a href="~/auctions.html">Auctions</a></li>
+                                <li><a href="~/artwork.html">Artwork</a></li>
+                                <li><a href="~/news.html">News</a></li>
+                            </ul>
+                        </div>
+                        <!-- end col-4 -->
+                        <div class="col-lg-4 col-md-6">
+                            <h6 class="widget-title">Connect Us</h6>
+                            <ul class="social-media">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i> /art gallery</a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i> /art gallery</a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i> /art gallery</a></li>
+                            </ul>
+                        </div>
+                        <!-- end col-4 -->
+                        <div class="col-lg-4">
+                            <h6 class="widget-title">Visit Us Now</h6>
+                            <address class="address">
+                                19 Le Thanh Nghi, Hai Ba Trung<strong>Hanoi - Vietnam</strong> <i class="fas fa-info-circle"></i> 0123456789
+                            </address>
+                        </div>
+                        <!-- end col-4 -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end container -->
+                <div class="footer-bottom">
+                    <div class="container"> <span class="copyright">© 2023 Art Gallery</span> <span class="creation">Site created by <a href="#">Group 3</a></span> </div>
+                    <!-- end container -->
+                </div>
+                <!-- end footer-bottom -->
+            </footer>
+            <!-- end footer -->
+        </div>
+    </div>
+
+    <!-- JS FILES -->
+    <script src="~/Content/webapp/js/jquery.min.js"></script>
+    <script src="~/Content/webapp/js/bootstrap.min.js"></script>
+    <script src="~/Content/webapp/js/gsap.min.js"></script>
+    <script src="~/Content/webapp/js/locomotive-scroll.min.js"></script>
+    <script src="~/Content/webapp/js/ScrollTrigger.min.js"></script>
+    <script src="~/Content/webapp/js/kinetic-slider.js"></script>
+    <script src="~/Content/webapp/js/fancybox.min.js"></script>
+    <script src="~/Content/webapp/js/odometer.min.js"></script>
+    <script src="~/Content/webapp/js/swiper.min.js"></script>
+    <script src="~/Content/webapp/js/scripts.js"></script>
+</body>
+</html>
+

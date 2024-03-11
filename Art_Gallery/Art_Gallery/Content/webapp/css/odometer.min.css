@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="theme-color" content="#feed01"/>
+<title>Art Gallery</title>
+<meta name="author" content="Group 3">
+
+
+<link href="./assets/images/favicon.png" rel="shortcut icon">
+
+<!-- CSS FILES -->
+<link rel="stylesheet" href="./assets/css/fontawesome.min.css">
+<link rel="stylesheet" href="./assets/css/odometer.min.css">
+<link rel="stylesheet" href="./assets/css/fancybox.min.css">
+<link rel="stylesheet" href="./assets/css/swiper.min.css">
+<link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+<div class="smooth-scroll">
+  <div class="section-wrapper" data-scroll-section>
+    <div class="search-box">
+      <div class="container">
+        <div class="form">
+          <h3>SEARCH EVENT</h3>
+          <input type="search" placeholder="What are you looking for ?">
+          <input type="submit" value="SEARCH">
+        </div>
+        <!-- end form -->
+        
+        <!-- end search-events -->
+      </div>
+    </div>
+    <!-- end search-box -->
+    <aside class="side-widget">
+      <figure class="logo"> <img src="./assets/images/logo-light.png" alt="Image"> </figure>
+      <div class="display-mobile" style="padding-top: 30px;">
+        <!-- end custom-menu -->
+        <div class="site-menu">
+          <ul>
+          <li><a href="auctions.html">Auctions</a></li>
+          <li><a href="artwork.html">Artwork</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        </div>
+        <!-- end site-menu -->
+      </div>
+      <!-- end display-mobile -->
+    </aside>
+
+    <nav class="navbar d-flex justify-content-between">
+      <div class="logo"> <a href="index.html"> <img src="./assets/images/logo.png" alt="Image"> </a> </div>
+      <div class="site-menu">
+        <ul>
+          <li><a href="auctions.html">Auctions</a></li>
+          <li><a href="artwork.html">Artwork</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="d-flex align-items-center">
+        <a href="./membership.html" class="custom-button text-indent-none" style="padding: 0 20px; height: 48px; line-height: 48px;">Register to member</a>
+        <div class="search-button"> <i class="far fa-search"></i> </div>
+        <div class="hamburger-menu">
+          <svg class="hamburger" width="30" height="30" viewBox="0 0 30 30">
+            <path class="line line-top" d="M0,9h30"/>
+            <path class="line line-center" d="M0,15h30"/>
+            <path class="line line-bottom" d="M0,21h30"/>
+          </svg>
+        </div>
+        <a href="login.html" class="login-text">Login</a>
+      </div>
+    </nav>
+    <header class="page-header" data-background="./assets/images/page-header.jpg">
+      <div class="inner">
+        <svg width="580" height="400" class="svg-morph">
+          <path id="svg_morph" d="m261,30.4375c0,0 114,6 151,75c37,69 37,174 6,206.5625c-31,32.5625 -138,11.4375 -196,-19.5625c-58,-31 -86,-62 -90,-134.4375c12,-136.5625 92,-126.5625 129,-127.5625z" />
+        </svg>
+        <h1>autions</h1>
+        
+      </div>
+      <!-- end inner -->
+    </header>
+    <!-- end page-header -->
+    <section class="content-section" data-background="#fffbf7">
+      <div class="container">
+			<div class="row justify-content-center">
+          <div class="col-lg-4 col-md-6 d-flex align-items-center">
+            <div class="aution-box"  >
+              <figure> <a href="auction-artwork-detail.html"><img src="./assets/images/event01.jpg" alt="Image" class="img"></a>
+                <div class="info">
+                  
+                  </div>
+                <!-- end info -->
+              </figure>
+              <div class="content-box">
+                <h4><a href="auction-artwork-detail.html">Artemisia Gentileschi
+                  talk with Maria</a></h4>
+                <p> 15 August – 31 October 2020 </p>
+              </div>
+              <!-- end content-box -->
+            </div>
+            <!-- end aution-box -->
+          </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-center">
+            <div class="aution-box" >
+              <figure> <a href="auction-artwork-detail.html"><img src="./assets/images/event02.jpg" alt="Image" class="img"></a>
+                <div class="info">
+                  
+                  </div>
+                <!-- end info -->
+              </figure>
+              <div class="content-box">
+                <h4><a href="auction-artwork-detail.html">Arctic culture and
+                  climate aution</a></h4>
+                <p> 22 Oct 2020 - 21 Feb 2023</p>
+              </div>
+              <!-- end content-box -->
+            </div>
+            <!-- end aution-box --> </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-center">
+            <div class="aution-box"  >
+              <figure> <a href="auction-artwork-detail.html"><img src="./assets/images/event02.jpg" alt="Image" class="img"></a>
+                <div class="info">
+                  
+                  </div>
+                <!-- end info -->
+              </figure>
+              <div class="content-box">
+                <h4><a href="auction-artwork-detail.html">Thomas Becket murder and
+                  the making of a saint</a></h4>
+                <p> 22 Apr 2023 - 22 Aug 2023</p>
+              </div>
+              <!-- end content-box -->
+            </div>
+            <!-- end aution-box --></div>
+          <!-- end col-4 -->
+				<div class="col-lg-4 col-md-6 d-flex align-items-center">
+            <div class="aution-box"  >
+              <figure> <a href="auction-artwork-detail.html"><img src="./assets/images/event02.jpg" alt="Image" class="img"></a>
+                <div class="info">
+                  
+                  </div>
+                <!-- end info -->
+              </figure>
+              <div class="content-box">
+                <h4><a href="auction-artwork-detail.html">Artemisia Gentileschi
+                  talk with Maria</a></h4>
+                <p> 15 August – 31 October 2020 </p>
+              </div>
+              <!-- end content-box -->
+            </div>
+            <!-- end aution-box -->
+          </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-center">
+            <div class="aution-box" >
+              <figure> <a href="auction-artwork-detail.html"><img src="./assets/images/event02.jpg" alt="Image" class="img"></a>
+                <div class="info">
+                  
+                  </div>
+                <!-- end info -->
+              </figure>
+              <div class="content-box">
+                <h4><a href="auction-artwork-detail.html">Arctic culture and
+                  climate aution</a></h4>
+                <p> 22 Oct 2020 - 21 Feb 2023</p>
+              </div>
+              <!-- end content-box -->
+            </div>
+            <!-- end aution-box -->
+				</div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-center">
+            <div class="aution-box" >
+              <figure> <a href="auction-artwork-detail.html"><img src="./assets/images/event02.jpg" alt="Image" class="img"></a>
+                <div class="info">
+                  
+                  </div>
+                <!-- end info -->
+              </figure>
+              <div class="content-box">
+                <h4><a href="auction-artwork-detail.html">Thomas Becket murder and
+                  the making of a saint</a></h4>
+                <p> 22 Apr 2023 - 22 Aug 2023</p>
+              </div>
+              <!-- end content-box -->
+            </div>
+            <!-- end aution-box -->
+				</div>
+          <!-- end col-4 -->
+				<div class="col-lg-4 col-md-6 d-flex align-items-center">
+            <div class="aution-box"  >
+              <figure> <a href="auction-artwork-detail.html"><img src="./assets/images/event02.jpg" alt="Image" class="img"></a>
+                <div class="info">
+                  
+                  </div>
+                <!-- end info -->
+              </figure>
+              <div class="content-box">
+                <h4><a href="auction-artwork-detail.html">Artemisia Gentileschi
+                  talk with Maria</a></h4>
+                <p> 15 August – 31 October 2020 </p>
+              </div>
+              <!-- end content-box -->
+            </div>
+            <!-- end aution-box -->
+          </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-center">
+            <div class="aution-box" >
+              <figure> <a href="auction-artwork-detail.html"><img src="./assets/images/event02.jpg" alt="Image" class="img"></a>
+                <div class="info">
+                  
+                  </div>
+                <!-- end info -->
+              </figure>
+              <div class="content-box">
+                <h4><a href="auction-artwork-detail.html">Arctic culture and
+                  climate aution</a></h4>
+                <p> 22 Oct 2020 - 21 Feb 2023</p>
+              </div>
+              <!-- end content-box -->
+            </div>
+            <!-- end aution-box --> </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-center">
+            <div class="aution-box"  >
+              <figure> <a href="auction-artwork-detail.html"><img src="./assets/images/event02.jpg" alt="Image" class="img"></a>
+                <div class="info">
+                  
+                  </div>
+                <!-- end info -->
+              </figure>
+              <div class="content-box">
+                <h4><a href="auction-artwork-detail.html">Thomas Becket murder and
+                  the making of a saint</a></h4>
+                <p> 22 Apr 2023 - 22 Aug 2023</p>
+              </div>
+              <!-- end content-box -->
+            </div>
+            <!-- end aution-box --></div>
+          <!-- end col-4 -->
+		  </div>
+        <!-- end row -->
+      </div>
+      <!-- end container -->
+    </section>
+    <!-- end content-section -->
+    
+    <!-- end content-section -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <h6 class="widget-title">About Art Gallery</h6>
+          <ul class="footer-menu">
+              <li><a href="./about.html">About us </a></li>
+              <li><a href="./contact.html">Contact us</a></li>
+              <li><a href="./auctions.html">Auctions</a></li>
+              <li><a href="./artwork.html">Artwork</a></li>
+              <li><a href="./news.html">News</a></li>
+            </ul>
+          </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4 col-md-6">
+            <h6 class="widget-title">Connect Us</h6>
+            <ul class="social-media">
+              <li><a href="#"><i class="fab fa-facebook-f"></i> /art gallery</a></li>
+              <li><a href="#"><i class="fab fa-twitter"></i> /art gallery</a></li>
+              <li><a href="#"><i class="fab fa-youtube"></i> /art gallery</a></li>
+            </ul>
+          </div>
+          <!-- end col-4 -->
+          <div class="col-lg-4">
+            <h6 class="widget-title">Visit Us Now</h6>
+            <address class="address">
+            19 Le Thanh Nghi, Hai Ba Trung<strong>Hanoi - Vietnam</strong> <i class="fas fa-info-circle"></i> 0123456789
+            </address>
+          </div>
+          <!-- end col-4 -->
+        </div>
+        <!-- end row -->
+      </div>
+      <!-- end container -->
+      <div class="footer-bottom">
+        <div class="container"> <span class="copyright">© 2023 Art Gallery</span> <span class="creation">Site created by <a href="#">Group 3</a></span> </div>
+        <!-- end container -->
+      </div>
+      <!-- end footer-bottom -->
+    </footer>
+    <!-- end footer -->
+  </div>
+</div>
+
+<!-- JS FILES -->
+<script src="./assets/js/jquery.min.js"></script>
+<script src="./assets/js/bootstrap.min.js"></script>
+<script src="./assets/js/gsap.min.js"></script>
+<script src="./assets/js/locomotive-scroll.min.js"></script>
+<script src="./assets/js/ScrollTrigger.min.js"></script>
+<script src="./assets/js/kinetic-slider.js"></script>
+<script src="./assets/js/fancybox.min.js"></script>
+<script src="./assets/js/odometer.min.js"></script>
+<script src="./assets/js/swiper.min.js"></script>
+<script src="./assets/js/scripts.js"></script>
+</body>
+</html>
+.odometer.odometer-auto-theme,.odometer.odometer-auto-theme .odometer-digit,.odometer.odometer-theme-car,.odometer.odometer-theme-car .odometer-digit{-moz-box-orient:vertical;display:inline-block;vertical-align:middle;position:relative}.odometer.odometer-auto-theme .odometer-digit .odometer-digit-spacer,.odometer.odometer-theme-car .odometer-digit .odometer-digit-spacer{-moz-box-orient:vertical;display:inline-block;vertical-align:middle;visibility:hidden}.odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner,.odometer.odometer-theme-car .odometer-digit .odometer-digit-inner{text-align:left;display:block;position:absolute;top:0;right:0;bottom:0;overflow:hidden;left:.1em}.odometer.odometer-auto-theme .odometer-digit .odometer-ribbon,.odometer.odometer-theme-car .odometer-digit .odometer-ribbon{display:block}.odometer.odometer-auto-theme .odometer-digit .odometer-ribbon-inner,.odometer.odometer-theme-car .odometer-digit .odometer-ribbon-inner{display:block;-webkit-backface-visibility:hidden}.odometer.odometer-auto-theme .odometer-digit .odometer-value,.odometer.odometer-theme-car .odometer-digit .odometer-value{display:block;-webkit-transform:translateZ(0)}.odometer.odometer-auto-theme .odometer-digit .odometer-value.odometer-last-value,.odometer.odometer-theme-car .odometer-digit .odometer-value.odometer-last-value{position:absolute}.odometer.odometer-auto-theme.odometer-animating-up .odometer-ribbon-inner,.odometer.odometer-theme-car.odometer-animating-up .odometer-ribbon-inner{-webkit-transition:-webkit-transform 2s;-moz-transition:-moz-transform 2s;-ms-transition:-ms-transform 2s;-o-transition:-o-transform 2s;transition:transform 2s}.odometer.odometer-auto-theme.odometer-animating-down .odometer-ribbon-inner,.odometer.odometer-auto-theme.odometer-animating-up.odometer-animating .odometer-ribbon-inner,.odometer.odometer-theme-car.odometer-animating-down .odometer-ribbon-inner,.odometer.odometer-theme-car.odometer-animating-up.odometer-animating .odometer-ribbon-inner{-webkit-transform:translateY(-100%);-moz-transform:translateY(-100%);-ms-transform:translateY(-100%);-o-transform:translateY(-100%);transform:translateY(-100%)}.odometer.odometer-auto-theme.odometer-animating-down.odometer-animating .odometer-ribbon-inner,.odometer.odometer-theme-car.odometer-animating-down.odometer-animating .odometer-ribbon-inner{-webkit-transition:-webkit-transform 2s;-moz-transition:-moz-transform 2s;-ms-transition:-ms-transform 2s;-o-transition:-o-transform 2s;transition:transform 2s;-webkit-transform:translateY(0);-moz-transform:translateY(0);-ms-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}.odometer.odometer-auto-theme,.odometer.odometer-theme-car{padding:.1em}.odometer.odometer-auto-theme .odometer-digit,.odometer.odometer-theme-car .odometer-digit{padding:0 .1em}

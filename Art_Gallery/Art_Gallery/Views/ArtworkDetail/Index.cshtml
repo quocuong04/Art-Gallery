@@ -1,0 +1,237 @@
+﻿@{
+    ViewBag.Title = "Artwork Detail Page";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main>
+    <header class="page-header" data-background="~/Content/webapp/images/page-header.jpg">
+        <div class="inner">
+            <svg width="580" height="400" class="svg-morph">
+                <path id="svg_morph" d="m261,30.4375c0,0 114,6 151,75c37,69 37,174 6,206.5625c-31,32.5625 -138,11.4375 -196,-19.5625c-58,-31 -86,-62 -90,-134.4375c12,-136.5625 92,-126.5625 129,-127.5625z" />
+            </svg>
+            <h1>Artwork Detail</h1>
+
+        </div>
+        <!-- end inner -->
+    </header>
+    <!-- end page-header -->
+    <section class="content-section" style="padding: 40px 0 0 ;" data-background="#fffbf7">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 collection-detail-slide">
+                    <div class="swiper collection-detail-top">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" style="background-image:url(~/Content/webapp/images/art-slide01.jpg)"></div>
+                            <div class="swiper-slide" style="background-image:url(~/Content/webapp/images/art-slide01.jpg)"></div>
+                            <div class="swiper-slide" style="background-image:url(~/Content/webapp/images/art-slide01.jpg)"></div>
+                            <div class="swiper-slide" style="background-image:url(~/Content/webapp/images/art-slide01.jpg)"></div>
+                            <div class="swiper-slide" style="background-image:url(~/Content/webapp/images/art-slide01.jpg)"></div>
+                            <div class="swiper-slide" style="background-image:url(~/Content/webapp/images/art-slide01.jpg)"></div>
+                        </div>
+                        <!-- Add Arrows -->
+                        <div class="swiper-button-next swiper-button-white"></div>
+                        <div class="swiper-button-prev swiper-button-white"></div>
+                    </div>
+                    <div class="swiper collection-detail-thumbs">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" style="background-image:url(~/Content/webapp/images/art-slide01.jpg)"></div>
+                            <div class="swiper-slide" style="background-image:url(~/Content/webapp/images/art-slide01.jpg)"></div>
+                            <div class="swiper-slide" style="background-image:url(~/Content/webapp/images/art-slide01.jpg)"></div>
+                            <div class="swiper-slide" style="background-image:url(~/Content/webapp/images/art-slide01.jpg)"></div>
+                            <div class="swiper-slide" style="background-image:url(~/Content/webapp/images/art-slide01.jpg)"></div>
+                            <div class="swiper-slide" style="background-image:url(~/Content/webapp/images/art-slide01.jpg)"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 collection-detail-description">
+                    <div class="art-content">
+                        <p class="category-label">Art paintings</p>
+                        <h6>Edward Seago, RWS, RBA(British, 1910-1974)</h6>
+                        <p>Pink Palazzo, Venice</p>
+                        <p class="price">£7,000 - £10,000</p>
+                        <a href="./@Url.Action("", "Login")" class="custom-button">Login to bid</a>
+                        <button class="custom-button d-block border-0 mt-1">Add to my favorite</button>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="text-box">
+                        <h2>Special Artwork</h2>
+                        <p>
+                            Archibald Thorburn (British, 1860-1935) <br>
+                            English Partridges <br>
+                            signed and dated 'Archibald Thorburn/1917' (lower right)<br>
+                            watercolour<br>
+                            18 x 27cm (7 1/16 x 10 5/8in).<br>
+                            Footnotes<br>
+                            Provenance<br>
+                            With Frost & Reed Ltd., London.<br>
+                            Private collection, UK.
+                        </p>
+                    </div>
+
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+    </section>
+    <section class="content-section no-bottom-spacing bottom-white" data-background="#fffbf7">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="section-title text-center">
+                        <figure><img src="~/Content/webapp/images/title-shape.png" alt="Image"></figure>
+                        <h6>Art Collection</h6>
+                        <h2>Sale  Artwork</h2>
+                    </div>
+                    <!-- end section-title -->
+                </div>
+                <div data-scroll data-scroll-speed="1">
+                    <div class="art-list">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="art-box">
+                                    <a href="">
+                                        <div class="art-img">
+                                            <img src="~/Content/webapp/images/event02.jpg" alt="">
+                                        </div>
+                                        <div class="art-content">
+                                            <p class="category-label">Art paintings</p>
+                                            <h6>Edward Seago, RWS, RBA(British, 1910-1974)</h6>
+                                            <p>Pink Palazzo, Venice</p>
+                                            <p class="price">£7,000 - £10,000</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div><div class="swiper-slide">
+                                <div class="art-box">
+                                    <a href="">
+                                        <div class="art-img">
+                                            <img src="~/Content/webapp/images/image06.jpg" alt="">
+                                        </div>
+                                        <div class="art-content">
+                                            <p class="category-label">Art paintings</p>
+                                            <h6>Edward Seago, RWS, RBA(British, 1910-1974)</h6>
+                                            <p>Pink Palazzo, Venice</p>
+                                            <p class="price">£7,000 - £10,000</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="art-box">
+                                    <a href="">
+                                        <div class="art-img">
+                                            <img src="~/Content/webapp/images/image05.jpg" alt="">
+                                        </div>
+                                        <div class="art-content">
+                                            <p class="category-label">Art paintings</p>
+                                            <h6>Edward Seago, RWS, RBA(British, 1910-1974)</h6>
+                                            <p>Pink Palazzo, Venice</p>
+                                            <p class="price">£7,000 - £10,000</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="art-box">
+                                    <a href="">
+                                        <div class="art-img">
+                                            <img src="~/Content/webapp/images/image04.jpg" alt="">
+                                        </div>
+                                        <div class="art-content">
+                                            <p class="category-label">Art paintings</p>
+                                            <h6>Edward Seago, RWS, RBA(British, 1910-1974)</h6>
+                                            <p>Pink Palazzo, Venice</p>
+                                            <p class="price">£7,000 - £10,000</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="art-box">
+                                    <a href="">
+                                        <div class="art-img">
+                                            <img src="~/Content/webapp/images/image01.jpg" alt="">
+                                        </div>
+                                        <div class="art-content">
+                                            <p class="category-label">Art paintings</p>
+                                            <h6>Edward Seago, RWS, RBA(British, 1910-1974)</h6>
+                                            <p>Pink Palazzo, Venice</p>
+                                            <p class="price">£7,000 - £10,000</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="art-box">
+                                    <a href="">
+                                        <div class="art-img">
+                                            <img src="~/Content/webapp/images/image03.jpg" alt="">
+                                        </div>
+                                        <div class="art-content">
+                                            <p class="category-label">Art paintings</p>
+                                            <h6>Edward Seago, RWS, RBA(British, 1910-1974)</h6>
+                                            <p>Pink Palazzo, Venice</p>
+                                            <p class="price">£7,000 - £10,000</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="art-box">
+                                    <a href="">
+                                        <div class="art-img">
+                                            <img src="~/Content/webapp/images/image02.jpg" alt="">
+                                        </div>
+                                        <div class="art-content">
+                                            <p class="category-label">Art paintings</p>
+                                            <h6>Edward Seago, RWS, RBA(British, 1910-1974)</h6>
+                                            <p>Pink Palazzo, Venice</p>
+                                            <p class="price">£7,000 - £10,000</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="art-box">
+                                    <a href="">
+                                        <div class="art-img">
+                                            <img src="~/Content/webapp/images/event03.jpg" alt="">
+                                        </div>
+                                        <div class="art-content">
+                                            <p class="category-label">Art paintings</p>
+                                            <h6>Edward Seago, RWS, RBA(British, 1910-1974)</h6>
+                                            <p>Pink Palazzo, Venice</p>
+                                            <p class="price">£7,000 - £10,000</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="art-box">
+                                    <a href="">
+                                        <div class="art-img">
+                                            <img src="~/Content/webapp/images/event02.jpg" alt="">
+                                        </div>
+                                        <div class="art-content">
+                                            <p class="category-label">Art paintings</p>
+                                            <h6>Edward Seago, RWS, RBA(British, 1910-1974)</h6>
+                                            <p>Pink Palazzo, Venice</p>
+                                            <p class="price">£7,000 - £10,000</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end row -->
+        </div>
+    </section>
+    <!-- end content-section -->
+</main>
