@@ -1,4 +1,4 @@
-﻿@{
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
                 <div class="login__box">
                     <i class="ri-user-3-line login__icon"></i>
                     <div class="login__box-input">
-                        <input type="email" required class="login__input" id="login-email" placeholder=" ">
+                        <input type="email" required class="login__input" id="login-email" placeholder=" " autocomplete="off">
                         <label for="login-email" class="login__label">Email</label>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
             </div>
             <button type="submit" class="login__button">Login</button>
             <h5 class="login__register">
-                New user? <a href="@Url.Action("", "Register")">Register</a>
+                Don't have an account? <a href="@Url.Action("", "Register")">Register</a>
             </h5>
         </form>
     </div>
