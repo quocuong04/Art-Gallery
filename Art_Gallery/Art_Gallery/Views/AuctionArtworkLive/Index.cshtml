@@ -1,0 +1,55 @@
+﻿@model Art_Gallery.Controllers.ArtWork_AuctionModel
+@{
+    ViewBag.Title = "Auction Artwork Live Page";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main>
+    <header class="page-header" data-background="~/Content/webapp/images/page-header.jpg">
+        <div class="inner">
+            <svg width="580" height="400" class="svg-morph">
+                <path id="svg_morph" d="m261,30.4375c0,0 114,6 151,75c37,69 37,174 6,206.5625c-31,32.5625 -138,11.4375 -196,-19.5625c-58,-31 -86,-62 -90,-134.4375c12,-136.5625 92,-126.5625 129,-127.5625z" />
+            </svg>
+            <h1>@Model.Auction.AuctionName</h1>
+        </div>
+    </header>
+    <section class="content-section" data-background="#fffbf7">
+        <div class="container">
+            <div class="d-flex justify-content-around p-2 border-top border-bottom mb-5">
+                <div class="text-center">
+                    <p class="opacity-70">Start Date</p>
+                    <p class="fz-20">@Model.Auction.StartDate</p>
+                </div>
+                <div class="text-center">
+                    <p class="opacity-70">End Date</p>
+                    <p class="fz-20">@Model.Auction.EndDate</p>
+                </div>
+                <div class="text-center">
+                    <p class="opacity-70">Quantity Artwork</p>
+                    <p class="fz-20">@Model.Artworks.Count</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                @foreach (var item in Model.Artworks)
+                {
+                    <div class="col-lg-4 col-md-6 d-flex align-items-center">
+                        <div class="aution-box">
+                            <figure>
+                                <a href="@Url.Action("", "AuctionArtworkDetail")"><img src="~/Content/uploads/@item.Image" alt="Image" class="img"></a>
+                            </figure>
+                            <div class="content-box">
+                                <h4>
+                                    <a href="@Url.Action("", "AuctionArtworkDetail", new {  id = @item.ArtworkId })">
+                                        @item.Name
+                                    </a>
+                                </h4>
+                                <p>Start Price: @item.Price </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>

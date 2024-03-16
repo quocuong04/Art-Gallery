@@ -21,9 +21,11 @@ namespace Art_Gallery.Models
         }
     
         public int AuctionId { get; set; }
-        public string EndDate { get; set; }
-        public string StartDate { get; set; }
-        public string Name { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
+        public string AuctionName { get; set; }
+        public string Image { get; set; }
+        public string Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rel_Artwork_Auctions> Rel_Artwork_Auctions { get; set; }

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Art_Gallery.Controllers
 {
-    public class MembershipController : Controller
+    public class MembershipController : BaseController
     {
         // GET: Membership
         public ActionResult Index()

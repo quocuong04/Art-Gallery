@@ -1,8 +1,14 @@
-﻿@{
+﻿@model Art_Gallery.Controllers.ArtWorkAuctionModel
+@{
     ViewBag.Title = "Auction Artwork Detail Page";
 }
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var fullName = ViewBag.FullName;
+    var userName = ViewBag.UserName;
 }
 <main>
     <header class="page-header" data-background="~/Content/webapp/images/page-header.jpg">
@@ -22,29 +28,29 @@
                 <div class="col-lg-6">
                     <div class="side-content left">
                         <h2>
-                            Artemisia Gentileschi
-                            talk with Maria
+                            @Model.Artwork.Name
                         </h2>
                         <p>
-                            Beautiful paintings, sculpture and decorative art from the
-                            13th century to the present day.
+                            @Model.Artwork.Descriptions
                         </p>
                         <table>
                             <tr>
                                 <td>START</td>
-                                <td>: 15 November 2020</td>
+                                <td>
+                                    : @Model.Auction.StartDate
+                                </td>
                             </tr>
                             <tr>
                                 <td>END </td>
-                                <td>: 25 November 2020 </td>
+                                <td>: @Model.Auction.EndDate </td>
                             </tr>
                             <tr>
                                 <td>EVENT CATEGORY </td>
-                                <td>: Exhibition</td>
+                                <td>: @Model.Category.CategoryName</td>
                             </tr>
                             <tr>
                                 <td>AUTHOR NAME </td>
-                                <td>: Tate Modern</td>
+                                <td>: @Model.Artist.ArtistName</td>
                             </tr>
                         </table>
                     </div>
@@ -60,91 +66,72 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="side-content left">
-                        <table>
-                            <tr>
-                                <td>Start Price</td>
-                                <td>: 100.000VND</td>
-                            </tr>
-                            <tr>
-                                <td>Current Price</td>
-                                <td>: 123.000VND</td>
-                            </tr>
-                            <tr>
-                                <td>Current Count</td>
-                                <td>: 4</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <button id="auctionBtn" class="custom-button d-block border-0 mt-1" data-bs-toggle="modal" data-bs-target="#auctionForm">Auction</button>
-                    <!-- Đóng hiển thị -->
-                    <!-- Hiển thị khi chưa login -->
-                    <a href="@Url.Action("", "Login")" class="custom-button mt-1">Login to bid</a>
+                    @if (@Model.Auction != null && @Model.Auction.Status.Equals("L"))
+                    {
+                        <div class="side-content left">
+                            <table>
+                                <tr>
+                                    <td>Start Price</td>
+                                    <td>: @Model.Artwork.Price</td>
+                                </tr>
+                                <tr>
+                                    <td>Current Price</td>
+                                    <td>: @Model.Artwork.AuctionPrice</td>
+                                </tr>
+                                <tr>
+                                    <td>Current Count</td>
+                                    <td>: @Model.Artwork.CountAuction</td>
+                                </tr>
+                            </table>
+                        </div>
+                        if (userName != null)
+                        {
+                            <button id="auctionBtn" class="custom-button d-block border-0 mt-1" data-bs-toggle="modal" data-bs-target="#auctionForm">Auction</button>
+                        }
+                    }
+                    @if (userName == null)
+                    {
+                        <a href="@Url.Action("", "Login")" class="custom-button mt-1">Login to bid</a>
+                    }
+
                 </div>
-                <!-- end col-6 -->
                 <div class="col-lg-6">
                     <div class="side-image right-half" data-scroll data-scroll-speed="1">
-                        <img src="~/Content/webapp/images/side-imag05.jpg" alt="Image">
+                        <img src="~/Content/uploads/@Model.Artwork.Image" alt="Image">
                     </div>
-                    <!-- end side-image -->
                 </div>
-                <!--end col-6 -->
             </div>
-            <!-- end row -->
         </div>
-        <!-- end container -->
     </section>
-    <div class="modal fade" id="auctionForm" tabindex="-1" role="dialog" aria-labelledby="auctionFormLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="auctionFormLabel">Auction</h5>
-                    <i class="fa fa-times close" aria-hidden="true" data-bs-dismiss="modal" aria-label="Close"></i>
-                </div>
-                <form>
-                    <div class="modal-body">
-                        <div class="form-group d-flex  align-items-center">
-                            <label class="w-50">Your Price Auction</label>
-                            <input type="number" class="form-control w-50" name="priceAuction" min="1" style="height: 50px;">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn bgr-primary">Ok</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    <script src="~/Content/webapp/js/jquery.min.js"></script>
     <script>
-  $(document).ready(function() {
-    // Đặt thời gian bắt đầu và thời gian kết thúc
-    var startTime = new Date('2024-03-05 09:00:00').getTime();
-    var endTime = new Date('2024-03-05 23:59:00').getTime();
+        $(document).ready(function () {
+            var startTime = new Date('@Model.Auction.StartDate').getTime();
+            var endTime = new Date('@Model.Auction.EndDate').getTime();
 
-    // Cập nhật đồng hồ đếm ngược mỗi giây
-    var countdownInterval = setInterval(function() {
-      // Lấy thời gian hiện tại
-      var currentTime = new Date().getTime();
+            // Cập nhật đồng hồ đếm ngược mỗi giây
+            var countdownInterval = setInterval(function () {
+                // Lấy thời gian hiện tại
+                var currentTime = new Date().getTime();
 
-      // Tính thời gian còn lại
-      var timeLeft = endTime - currentTime;
+                // Tính thời gian còn lại
+                var timeLeft = endTime - currentTime;
 
-      // Tính toán giờ, phút, giây
-      var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                // Tính toán giờ, phút, giây
+                var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-      // Hiển thị đếm ngược trên trang web
-      $('#countdown').text(hours + ' hour ' + minutes + ' minus ' + seconds + ' second');
+                // Hiển thị đếm ngược trên trang web
+                $('#countdown').text(hours + ' hour ' + minutes + ' minus ' + seconds + ' second');
 
-      // Kiểm tra nếu thời gian đã hết
-      if (timeLeft < 0) {
-        clearInterval(countdownInterval);
-        $('#countdown').text('The countdown has ended');
-      }
-    }, 1000);
-  });
+                // Kiểm tra nếu thời gian đã hết
+                if (timeLeft < 0) {
+                    clearInterval(countdownInterval);
+                    $('#countdown').text('The countdown has ended');
+                }
+            }, 1000);
+        });
 
     </script>
 </main>

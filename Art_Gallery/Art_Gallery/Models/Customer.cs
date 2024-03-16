@@ -23,7 +23,7 @@ namespace Art_Gallery.Models
         }
     
         public string Email { get; set; }
-        public string Name { get; set; }
+        public string CustomerName { get; set; }
         public string ReditCard { get; set; }
         public string Password { get; set; }
         public string Address { get; set; }

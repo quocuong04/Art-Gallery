@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Art_Gallery.Controllers.ArtWorkListModel>
+@{
     ViewBag.Title = "Artwork Page";
 }
 @{
@@ -13,9 +14,7 @@
             <h1>Artwork</h1>
 
         </div>
-        <!-- end inner -->
     </header>
-    <!-- end page-header -->
     <section class="content-section" data-background="#fffbf7">
         <div class="container">
             <div class="row">
@@ -27,144 +26,26 @@
                             most important
                         </h2>
                     </div>
-                    <!-- end section-title -->
                 </div>
-                <!-- end col-12 -->
             </div>
-            <!-- end row -->
             <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6">
-                    <div class="collection-box" data-scroll data-scroll-speed="1.5">
-                        <figure><img src="~/Content/webapp/images/collection02.jpg" alt="Image"></figure>
-                        <p class="category-label">Art paintings</p>
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="collection-box" data-scroll data-scroll-speed="1.5">
+                            <figure><img src="~/Content/uploads/@item.Image" alt="Image"></figure>
+                            <p class="category-label">@item.CategoryName</p>
 
-                        <h4><a href="@Url.Action("", "ArtworkDetail")">Hammersmith: Kelmscott Press.</a></h4>
-                        <p>
-                            The Works of Geoffrey Chaucer Now
-                            Newly Imprinted, by William Morris & Sir
-                            Edward Burne-Jones, 1896, Hammersmith:
-                            Kelmscott Press.
-                        </p>
-                        <p class="price">£7,000 - £10,000</p>
-                        <p class="price">Status: <span class="text-danger">Auctioned</span></p>
+                            <h4><a href="@Url.Action("", "ArtworkDetail", new {id=item.ArtworkId})">@item.Name</a></h4>
+                            <p>
+                                @item.Descriptions
+                            </p>
+                            <p class="price">$@item.Price</p>
+                            <p class="price">Status: @item.Status</p>
+                        </div>
                     </div>
-                    <!-- end collection-box -->
-                </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="collection-box" data-scroll data-scroll-speed="1">
-                        <figure><img src="~/Content/webapp/images/collection02.jpg" alt="Image"></figure>
-                        <p class="category-label">Art paintings</p>
-                        <h4><a href="@Url.Action("", "ArtworkDetail")">Inner coffin of Hornedjitef</a></h4>
-                        <p>
-                            The mummy of the priest Hornedjitef was encased in a gilded mask and cover, and two human-shaped wooden coffins.
-                        </p>
-                        <p class="price">£7,000 - £10,000</p>
-                    </div>
-                    <!-- end collection-box -->
-                </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="collection-box" data-scroll data-scroll-speed="0.5">
-                        <figure><img src="~/Content/webapp/images/collection02.jpg" alt="Image"></figure>
-                        <p class="category-label">Art paintings</p>
-                        <h4><a href="@Url.Action("", "ArtworkDetail")">Brass head of an Ooni</a></h4>
-                        <p>
-                            This crowned head was discovered by accident in 1939 during digging close to the royal palace in Ife.
-                        </p>
-                        <p class="price">£7,000 - £10,000</p>
-                    </div>
-                    <!-- end collection-box -->
-                </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="collection-box" data-scroll data-scroll-speed="1.5">
-                        <figure><img src="~/Content/webapp/images/collection02.jpg" alt="Image"></figure>
-                        <p class="category-label">Art paintings</p>
-                        <h4><a href="@Url.Action("", "ArtworkDetail")">The goddess Tara</a></h4>
-                        <p>Between 1100 and 1400 Ife was one of the great city-states in West Africa</p>
-                        <p class="price">£7,000 - £10,000</p>
-                    </div>
-                    <!-- end collection-box -->
-                </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="collection-box" data-scroll data-scroll-speed="1">
-                        <figure><img src="~/Content/webapp/images/collection02.jpg" alt="Image"></figure>
-                        <p class="category-label">Art paintings</p>
-                        <h4><a href="@Url.Action("", "ArtworkDetail")">Raphael cartoon</a></h4>
-                        <p>Lofe and flourished as a commercial centre within regional and long-distance trade networks. </p>
-                        <p class="price">£7,000 - £10,000</p>
-                    </div>
-                    <!-- end collection-box -->
-                </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="collection-box" data-scroll data-scroll-speed="0.5">
-                        <figure><img src="~/Content/webapp/images/collection02.jpg" alt="Image"></figure>
-                        <p class="category-label">Art paintings</p>
-                        <h4><a href="@Url.Action("", "ArtworkDetail")">The Anglo-Saxon </a></h4>
-                        <p>
-                            The most impressive example of a medieval ship burial in Europe. But who was buried here? And what do their treasures reveal?
-
-                        </p>
-                        <p class="price">£7,000 - £10,000</p>
-                    </div>
-                    <!-- end collection-box -->
-                </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="collection-box" data-scroll data-scroll-speed="1.5">
-                        <figure><img src="~/Content/webapp/images/collection02.jpg" alt="Image"></figure>
-                        <p class="category-label">Art paintings</p>
-                        <h4><a href="@Url.Action("", "ArtworkDetail")">In Ancient Mesopotamia</a></h4>
-                        <p>
-                            The Works of Geoffrey Chaucer Now
-                            Newly Imprinted, by William Morris & Sir
-                            Edward Burne-Jones, 1896, Hammersmith:
-                            Kelmscott Press.
-                        </p>
-                        <p class="price">£7,000 - £10,000</p>
-                    </div>
-                    <!-- end collection-box -->
-                </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="collection-box" data-scroll data-scroll-speed="1">
-                        <figure><img src="~/Content/webapp/images/collection02.jpg" alt="Image"></figure>
-                        <p class="category-label">Art paintings</p>
-                        <h4><a href="@Url.Action("", "ArtworkDetail")">Canopic jars</a></h4>
-                        <p>
-                            The Works of Geoffrey Chaucer Now
-                            Newly Imprinted, by William Morris & Sir
-                            Edward Burne-Jones, 1896, Hammersmith:
-                            Kelmscott Press.
-                        </p>
-                        <p class="price">£7,000 - £10,000</p>
-                    </div>
-                    <!-- end collection-box -->
-                </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="collection-box" data-scroll data-scroll-speed="0.5">
-                        <figure><img src="~/Content/webapp/images/collection02.jpg" alt="Image"></figure>
-                        <p class="category-label">Art paintings</p>
-                        <h4><a href="@Url.Action("", "ArtworkDetail")">Red-figured loutrophoros</a></h4>
-                        <p>
-                            The Works of Geoffrey Chaucer Now
-                            Newly Imprinted, by William Morris & Sir
-                            Edward Burne-Jones, 1896, Hammersmith:
-                            Kelmscott Press.
-                        </p>
-                        <p class="price">£7,000 - £10,000</p>
-                    </div>
-                    <!-- end collection-box -->
-                </div>
-                <!-- end col-4 -->
+                }
             </div>
-            <!-- end row -->
         </div>
-        <!-- end container -->
     </section>
-    <!-- end content-section -->
 </main>

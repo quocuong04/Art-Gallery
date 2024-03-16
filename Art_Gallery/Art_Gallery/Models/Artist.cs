@@ -21,10 +21,8 @@ namespace Art_Gallery.Models
         }
     
         public int ArtistId { get; set; }
-        public string Name { get; set; }
+        public string ArtistName { get; set; }
         public string Nationality { get; set; }
-        public Nullable<int> Age { get; set; }
-        public string Sex { get; set; }
         public string Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

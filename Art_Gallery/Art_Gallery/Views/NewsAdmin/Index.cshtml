@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Art_Gallery.Models.New>
+@{
+    ViewBag.Title = "News Admin Page";
+}
+@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <h1 class="h3 mb-2 text-gray-800">News Management</h1>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">News<a href="@Url.Action("Create", "NewsAdmin")"><i class="fas fa-plus-circle"></i></a></h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Title)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CreateDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Image)
+                            </th>
+                            <th></th>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Title
+                                </td>
+                                <td>
+                                    @item.CreateDate
+                                </td>
+                                <td>
+                                    <img width="200" src="~/Content/uploads/@item.Image" />
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Delete", "NewsAdmin", new { id = item.NewId })"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="@Url.Action("Edit", "NewsAdmin", new { id = item.NewId })"><i class="fas fa-edit"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

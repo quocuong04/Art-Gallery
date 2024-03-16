@@ -15,9 +15,9 @@ namespace Art_Gallery.Models
     public partial class New
     {
         public int NewId { get; set; }
-        public string Name { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public Nullable<System.DateTime> NewDate { get; set; }
+        public string Image { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
     }
 }

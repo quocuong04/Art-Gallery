@@ -1,0 +1,83 @@
+﻿@model List<Art_Gallery.Controllers.ArtWork_AuctionModel>
+
+@{
+    ViewBag.Title = "Auction Admin Page";
+}
+@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Auction Management</h1>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Auction<a href="@Url.Action("Create", "AuctionsAdmin")"><i class="fas fa-plus-circle"></i></a></h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                Auction Name
+                            </th>
+                            <th>
+                                Start Date
+                            </th>
+                            <th>
+                                End Date
+                            </th>
+                            <th>
+                                Artworks Name
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Image
+                            </th>
+                            <th></th>
+</thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Auction.AuctionName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Auction.StartDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Auction.EndDate)
+                                </td>
+
+                                <td>
+                                    @foreach (var artWork in @item.Artworks)
+                                    {
+                                        if (artWork != null)
+                                        {
+                                            <span>@artWork.Name</span><span>, </span>
+                                        }
+                                    }
+                                </td>
+                                <td>@Html.DisplayFor(modelItem => item.Auction.Status)</td>
+                                <td>
+                                    <img width="200" src="~/Content/uploads/@Html.DisplayFor(modelItem => item.Auction.Image)" />
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Delete", "AuctionsAdmin", new { id = item.Auction.AuctionId })"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="@Url.Action("Edit", "AuctionsAdmin", new { id = item.Auction.AuctionId })"><i class="fas fa-edit"></i></a>
+                                </td>
+                            </tr>
+                            }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
