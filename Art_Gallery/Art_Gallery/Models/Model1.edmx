@@ -74,7 +74,6 @@
           <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="60" />
           <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" />
           <Property Name="Adress" Type="char" MaxLength="18" />
           <Property Name="PhoneNumber" Type="char" MaxLength="18" />
           <Property Name="Age" Type="int" />
@@ -86,6 +85,7 @@
           </Key>
           <Property Name="FunctionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FunctionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FunctionCode" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -186,6 +186,14 @@
           <Property Name="EstimateDeliveryDate" Type="datetime" />
           <Property Name="ShippingDate" Type="datetime" />
           <Property Name="PaymentId" Type="int" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="StatusCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <Association Name="FK__Artwork__ArtistI__5AEE82B9">
           <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
@@ -422,6 +430,7 @@
           <EntitySet Name="Rel_Shipping_Payment" EntityType="Self.Rel_Shipping_Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shipping" EntityType="Self.Shipping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Artwork__ArtistI__5AEE82B9" Association="Self.FK__Artwork__ArtistI__5AEE82B9">
             <End Role="Artist" EntitySet="Artist" />
             <End Role="Artwork" EntitySet="Artwork" />
@@ -583,7 +592,6 @@
           <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Adress" Type="String" MaxLength="18" FixedLength="true" Unicode="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="true" Unicode="false" />
           <Property Name="Age" Type="Int32" />
@@ -597,6 +605,7 @@
           </Key>
           <Property Name="FunctionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FunctionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FunctionCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Groups" Relationship="Self.Rel_Group_Function" FromRole="Functions" ToRole="Groups" />
         </EntityType>
         <EntityType Name="Group">
@@ -687,6 +696,14 @@
           <Property Name="ShippingDate" Type="DateTime" Precision="3" />
           <Property Name="PaymentId" Type="Int32" />
           <NavigationProperty Name="Payment_gateways" Relationship="Self.Rel_Shipping_Payment" FromRole="Shipping" ToRole="Payment_gateways" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="StatusCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <Association Name="FK__Artwork__ArtistI__5AEE82B9">
           <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
@@ -860,6 +877,7 @@
           <EntitySet Name="Rel_Artwork_Auctions" EntityType="Self.Rel_Artwork_Auctions" />
           <EntitySet Name="Reviews" EntityType="Self.Review" />
           <EntitySet Name="Shippings" EntityType="Self.Shipping" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
           <AssociationSet Name="FK__Artwork__ArtistI__5AEE82B9" Association="Self.FK__Artwork__ArtistI__5AEE82B9">
             <End Role="Artist" EntitySet="Artists" />
             <End Role="Artwork" EntitySet="Artworks" />
@@ -1000,7 +1018,6 @@
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Adress" ColumnName="Adress" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="Age" ColumnName="Age" />
@@ -1013,6 +1030,7 @@
               <MappingFragment StoreEntitySet="Functions">
                 <ScalarProperty Name="FunctionId" ColumnName="FunctionId" />
                 <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+                <ScalarProperty Name="FunctionCode" ColumnName="FunctionCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1096,6 +1114,15 @@
                 <ScalarProperty Name="EstimateDeliveryDate" ColumnName="EstimateDeliveryDate" />
                 <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
                 <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="Art_GalleryModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

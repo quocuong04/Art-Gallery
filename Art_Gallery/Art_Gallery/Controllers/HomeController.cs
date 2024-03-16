@@ -143,6 +143,7 @@ namespace Art_Gallery.Controllers
         public List<Artwork> Artworks { get; set; }
         public List<Artwork> ArtworksAll { get; set; }
         public Auction Auction { get; set; }
+        public string StatusName { get; set; }
     }
 
     public class ArtWorkListModel: Artwork

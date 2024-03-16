@@ -74,7 +74,6 @@
           <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Adress" ColumnName="Adress" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="Age" ColumnName="Age" />
@@ -87,6 +86,7 @@
         <MappingFragment StoreEntitySet="Functions">
           <ScalarProperty Name="FunctionId" ColumnName="FunctionId" />
           <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+          <ScalarProperty Name="FunctionCode" ColumnName="FunctionCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -170,6 +170,15 @@
           <ScalarProperty Name="EstimateDeliveryDate" ColumnName="EstimateDeliveryDate" />
           <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
           <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

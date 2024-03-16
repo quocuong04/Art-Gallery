@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Art_Gallery.Models;
+using static Art_Gallery.Controllers.AdminControllers.AuctionsAdminController;
 
 namespace Art_Gallery.Controllers.AdminControllers
 {
@@ -57,7 +58,17 @@ namespace Art_Gallery.Controllers.AdminControllers
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            var functionIds = await (from rel in db.Groups
+                                     where rel.EmployeeId == id
+                                     select rel.FunctionId).ToArrayAsync();
+
+            var model = new EmployeeEditModel
+            {
+                Employee = await db.Employees.FindAsync(id),
+                SelectedIds = functionIds
+            };
+            ViewBag.Functions = new MultiSelectList(db.Functions, "FunctionId", "FunctionName", functionIds);
+            return View(model);
         }
 
         // POST: EmployeesAdmin/Edit/5
@@ -65,12 +76,29 @@ namespace Art_Gallery.Controllers.AdminControllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "EmployeeId,Email,EmployeeName,Password,Adress,PhoneNumber,Age,Sex")] Employee employee)
+        public async Task<ActionResult> Edit([Bind(Include = "EmployeeId,Email,EmployeeName,Password,Adress,PhoneNumber,Age,Sex")] Employee employee,int[] selectedIds)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(employee).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+                if (selectedIds != null && selectedIds.Length > 0)
+                {
+                    var existingRel = db.Groups.Where(rel => rel.EmployeeId == employee.EmployeeId);
+                    db.Groups.RemoveRange(existingRel);
+
+                    foreach (var functionId in selectedIds)
+                    {
+                        var relArtworkAuction = new Group
+                        {
+                            EmployeeId = employee.EmployeeId,
+                            FunctionId = functionId
+                        };
+                        db.Groups.Add(relArtworkAuction);
+                    }
+
+                    await db.SaveChangesAsync();
+                }
                 return RedirectToAction("Index");
             }
             return View(employee);
@@ -109,6 +137,11 @@ namespace Art_Gallery.Controllers.AdminControllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public class EmployeeEditModel
+        {
+            public Employee Employee { get; set; }
+            public int?[] SelectedIds { get; set; }
         }
     }
 }

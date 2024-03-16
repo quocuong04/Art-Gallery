@@ -30,7 +30,8 @@ namespace Art_Gallery.Controllers.AdminControllers
                                   .Select(g => new ArtWork_AuctionModel
                                   {
                                       Auction = g.Key,
-                                      Artworks = g.Select(x => x.Artwork).ToList()
+                                      Artworks = g.Select(x => x.Artwork).ToList(),
+                                      StatusName = db.Status.Where(a => a.StatusCode == g.Key.Status).Select(a => a.StatusName).FirstOrDefault()
                                   })
                                   .ToListAsync();
 
@@ -42,7 +43,7 @@ namespace Art_Gallery.Controllers.AdminControllers
         // GET: AuctionsAdmin/Create
         public ActionResult Create()
         {
-            var artworkWithoutAuction = db.Artworks.Where(a => a.Status == "A").ToList();
+            var artworkWithoutAuction = db.Artworks.Where(a => a.Status == null).ToList();
 
             ViewBag.Artworks = new MultiSelectList(artworkWithoutAuction, "ArtworkId", "Name");
             return View();
@@ -84,7 +85,7 @@ namespace Art_Gallery.Controllers.AdminControllers
                         var artwork = db.Artworks.Find(artworkId);
                         if (artwork != null)
                         {
-                            artwork.Status = "P";
+                            artwork.Status = "A";
                         }
 
                         db.Rel_Artwork_Auctions.Add(relArtworkAuction);
@@ -108,15 +109,26 @@ namespace Art_Gallery.Controllers.AdminControllers
             }
 
             var artworkIds = await (from rel in db.Rel_Artwork_Auctions
-                        where rel.AuctionId == id
-                        select rel.ArtworkId).ToArrayAsync();
+                                    where rel.AuctionId == id
+                                    select rel.ArtworkId).ToArrayAsync();
+
+            var auctionStatus = await db.Auctions.FindAsync(id);
+            var statusList = await db.Status.ToListAsync();
+
+            var artworks = await db.Artworks
+                .Where(a => a.Status == null || (a.Status == "A" && artworkIds.Contains(a.ArtworkId)) || (a.Status == "L" && auctionStatus.Status == "L" && artworkIds.Contains(a.ArtworkId)))
+                .ToListAsync();
+
+            ViewBag.Artworks = new MultiSelectList(artworks, "ArtworkId", "Name", artworkIds);
+            ViewBag.StatusList = new SelectList(statusList, "StatusCode", "StatusName", auctionStatus.Status);
+
             var model = new AuctionEditModel
             {
                 Auction = await db.Auctions.FindAsync(id),
-                SelectedArtworkIds = artworkIds
+                SelectedArtworkIds = artworkIds,
+                StatusSelected = auctionStatus.Status
             };
-            ViewBag.Artworks = new MultiSelectList(db.Artworks.Where(a => a.Status != "I").ToList(), "ArtworkId", "Name", artworkIds);
-            
+
             if (model == null)
             {
                 return HttpNotFound();
@@ -129,7 +141,7 @@ namespace Art_Gallery.Controllers.AdminControllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "AuctionId, EndDate, StartDate,Status, AuctionName")] Auction auction, HttpPostedFileBase image, int[] selectedArtworkIds)
+        public async Task<ActionResult> Edit([Bind(Include = "AuctionId, EndDate, StartDate,Status, AuctionName")] Auction auction, HttpPostedFileBase image, int[] selectedArtworkIds, string statusSelected)
         {
             if (ModelState.IsValid)
             {
@@ -150,6 +162,7 @@ namespace Art_Gallery.Controllers.AdminControllers
                         auction.Image = existingAuction.Image;
                     }
                 }
+                auction.Status = statusSelected;
 
                 db.Entry(auction).State = EntityState.Modified;
                 await db.SaveChangesAsync();
@@ -174,7 +187,7 @@ namespace Art_Gallery.Controllers.AdminControllers
                                 artwork.Status = "L";
                             } else
                             {
-                                artwork.Status = "P";
+                                artwork.Status = "A";
                             }
                         }
                         db.Rel_Artwork_Auctions.Add(relArtworkAuction);
@@ -211,6 +224,16 @@ namespace Art_Gallery.Controllers.AdminControllers
         {
             Auction auction = await db.Auctions.FindAsync(id);
             db.Auctions.Remove(auction);
+
+            var artworkIds = await (from rel in db.Rel_Artwork_Auctions
+                                    where rel.AuctionId == id
+                                    select rel.ArtworkId).ToArrayAsync();
+            await db.Artworks
+            .Where(a => artworkIds.Contains(a.ArtworkId))
+            .ForEachAsync(a => a.Status = null);
+
+            db.Rel_Artwork_Auctions
+                .RemoveRange(db.Rel_Artwork_Auctions.Where(rel => rel.AuctionId == id));
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -227,6 +250,7 @@ namespace Art_Gallery.Controllers.AdminControllers
         {
             public Auction Auction { get; set; }
             public int[] SelectedArtworkIds { get; set; }
+            public string StatusSelected { get; set; }
         }
         public class ArtWorkAuctionModifyModel
         {
