@@ -17,6 +17,7 @@ namespace Art_Gallery.Models
         public int ReviewId { get; set; }
         public Nullable<int> CustomerId { get; set; }
         public Nullable<int> ArtworkId { get; set; }
+        public string Reviews { get; set; }
     
         public virtual Artwork Artwork { get; set; }
         public virtual Customer Customer { get; set; }

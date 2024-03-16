@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Art_Gallery.Controllers.ArtWork_AuctionModel
+@{
     ViewBag.Title = "Auction Artwork Page";
 }
 @{
@@ -10,226 +11,48 @@
             <svg width="580" height="400" class="svg-morph">
                 <path id="svg_morph" d="m261,30.4375c0,0 114,6 151,75c37,69 37,174 6,206.5625c-31,32.5625 -138,11.4375 -196,-19.5625c-58,-31 -86,-62 -90,-134.4375c12,-136.5625 92,-126.5625 129,-127.5625z" />
             </svg>
-            <h1>Antique Painting Auction</h1>
+            <h1>@Model.Auction.AuctionName</h1>
         </div>
-        <!-- end inner -->
     </header>
-    <!-- end page-header -->
     <section class="content-section" data-background="#fffbf7">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6 d-flex align-items-center">
-                    <div class="aution-box">
-                        <figure>
-                            <a href="@Url.Action("", "AuctionArtworkDetail")"><img src="~/Content/webapp/images/event01.jpg" alt="Image" class="img"></a>
-                            <div class="info">
-
-                            </div>
-                            <!-- end info -->
-                        </figure>
-                        <div class="content-box">
-                            <h4>
-                                <a href="@Url.Action("", "AuctionArtworkDetail")">
-                                    Artemisia Gentileschi
-                                    talk with Maria
-                                </a>
-                            </h4>
-                            <p> 15 August – 31 October 2020 </p>
-                        </div>
-                        <!-- end content-box -->
-                    </div>
-                    <!-- end aution-box -->
+            <div class="d-flex justify-content-around p-2 border-top border-bottom mb-5">
+                <div class="text-center">
+                    <p class="opacity-70">Start Date</p>
+                    <p class="fz-20">@Model.Auction.StartDate</p>
                 </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6 d-flex align-items-center">
-                    <div class="aution-box">
-                        <figure>
-                            <a href="@Url.Action("", "AuctionArtworkDetail")"><img src="~/Content/webapp/images/event02.jpg" alt="Image" class="img"></a>
-                            <div class="info">
-
-                            </div>
-                            <!-- end info -->
-                        </figure>
-                        <div class="content-box">
-                            <h4>
-                                <a href="@Url.Action("", "AuctionArtworkDetail")">
-                                    Arctic culture and
-                                    climate aution
-                                </a>
-                            </h4>
-                            <p> 22 Oct 2020 - 21 Feb 2023</p>
-                        </div>
-                        <!-- end content-box -->
-                    </div>
-                    <!-- end aution-box -->
+                <div class="text-center">
+                    <p class="opacity-70">End Date</p>
+                    <p class="fz-20">@Model.Auction.EndDate</p>
                 </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6 d-flex align-items-center">
-                    <div class="aution-box">
-                        <figure>
-                            <a href="@Url.Action("", "AuctionArtworkDetail")"><img src="~/Content/webapp/images/event02.jpg" alt="Image" class="img"></a>
-                            <div class="info">
-
-                            </div>
-                            <!-- end info -->
-                        </figure>
-                        <div class="content-box">
-                            <h4>
-                                <a href="@Url.Action("", "AuctionArtworkDetail")">
-                                    Thomas Becket murder and
-                                    the making of a saint
-                                </a>
-                            </h4>
-                            <p> 22 Apr 2023 - 22 Aug 2023</p>
-                        </div>
-                        <!-- end content-box -->
-                    </div>
-                    <!-- end aution-box -->
+                <div class="text-center">
+                    <p class="opacity-70">Quantity Artwork</p>
+                    <p class="fz-20">@Model.Artworks.Count</p>
                 </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6 d-flex align-items-center">
-                    <div class="aution-box">
-                        <figure>
-                            <a href="@Url.Action("", "AuctionArtworkDetail")"><img src="~/Content/webapp/images/event02.jpg" alt="Image" class="img"></a>
-                            <div class="info">
-
-                            </div>
-                            <!-- end info -->
-                        </figure>
-                        <div class="content-box">
-                            <h4>
-                                <a href="@Url.Action("", "AuctionArtworkDetail")">
-                                    Artemisia Gentileschi
-                                    talk with Maria
-                                </a>
-                            </h4>
-                            <p> 15 August – 31 October 2020 </p>
-                        </div>
-                        <!-- end content-box -->
-                    </div>
-                    <!-- end aution-box -->
-                </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6 d-flex align-items-center">
-                    <div class="aution-box">
-                        <figure>
-                            <a href="@Url.Action("", "AuctionArtworkDetail")"><img src="~/Content/webapp/images/event02.jpg" alt="Image" class="img"></a>
-                            <div class="info">
-
-                            </div>
-                            <!-- end info -->
-                        </figure>
-                        <div class="content-box">
-                            <h4>
-                                <a href="@Url.Action("", "AuctionArtworkDetail")">
-                                    Arctic culture and
-                                    climate aution
-                                </a>
-                            </h4>
-                            <p> 22 Oct 2020 - 21 Feb 2023</p>
-                        </div>
-                        <!-- end content-box -->
-                    </div>
-                    <!-- end aution-box -->
-                </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6 d-flex align-items-center">
-                    <div class="aution-box">
-                        <figure>
-                            <a href="@Url.Action("", "AuctionArtworkDetail")"><img src="~/Content/webapp/images/event02.jpg" alt="Image" class="img"></a>
-                            <div class="info">
-
-                            </div>
-                            <!-- end info -->
-                        </figure>
-                        <div class="content-box">
-                            <h4>
-                                <a href="@Url.Action("", "AuctionArtworkDetail")">
-                                    Thomas Becket murder and
-                                    the making of a saint
-                                </a>
-                            </h4>
-                            <p> 22 Apr 2023 - 22 Aug 2023</p>
-                        </div>
-                        <!-- end content-box -->
-                    </div>
-                    <!-- end aution-box -->
-                </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6 d-flex align-items-center">
-                    <div class="aution-box">
-                        <figure>
-                            <a href="@Url.Action("", "AuctionArtworkDetail")"><img src="~/Content/webapp/images/event02.jpg" alt="Image" class="img"></a>
-                            <div class="info">
-
-                            </div>
-                            <!-- end info -->
-                        </figure>
-                        <div class="content-box">
-                            <h4>
-                                <a href="@Url.Action("", "AuctionArtworkDetail")">
-                                    Artemisia Gentileschi
-                                    talk with Maria
-                                </a>
-                            </h4>
-                            <p> 15 August – 31 October 2020 </p>
-                        </div>
-                        <!-- end content-box -->
-                    </div>
-                    <!-- end aution-box -->
-                </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6 d-flex align-items-center">
-                    <div class="aution-box">
-                        <figure>
-                            <a href="@Url.Action("", "AuctionArtworkDetail")"><img src="~/Content/webapp/images/event02.jpg" alt="Image" class="img"></a>
-                            <div class="info">
-
-                            </div>
-                            <!-- end info -->
-                        </figure>
-                        <div class="content-box">
-                            <h4>
-                                <a href="@Url.Action("", "AuctionArtworkDetail")">
-                                    Arctic culture and
-                                    climate aution
-                                </a>
-                            </h4>
-                            <p> 22 Oct 2020 - 21 Feb 2023</p>
-                        </div>
-                        <!-- end content-box -->
-                    </div>
-                    <!-- end aution-box -->
-                </div>
-                <!-- end col-4 -->
-                <div class="col-lg-4 col-md-6 d-flex align-items-center">
-                    <div class="aution-box">
-                        <figure>
-                            <a href="@Url.Action("", "AuctionArtworkDetail")"><img src="~/Content/webapp/images/event02.jpg" alt="Image" class="img"></a>
-                            <div class="info">
-
-                            </div>
-                            <!-- end info -->
-                        </figure>
-                        <div class="content-box">
-                            <h4>
-                                <a href="@Url.Action("", "AuctionArtworkDetail")">
-                                    Thomas Becket murder and
-                                    the making of a saint
-                                </a>
-                            </h4>
-                            <p> 22 Apr 2023 - 22 Aug 2023</p>
-                        </div>
-                        <!-- end content-box -->
-                    </div>
-                    <!-- end aution-box -->
-                </div>
-                <!-- end col-4 -->
             </div>
-            <!-- end row -->
+            <div class="row justify-content-center">
+                @foreach (var item in Model.Artworks)
+                {
+                    if(item != null)
+                {
+                    <div class="col-lg-4 col-md-6 d-flex align-items-center">
+                        <div class="aution-box">
+                            <figure>
+                                <a href="@Url.Action("", "AuctionArtworkDetail")"><img src="~/Content/uploads/@item.Image" alt="Image" class="img"></a>
+                            </figure>
+                            <div class="content-box">
+                                <h4>
+                                    <a href="@Url.Action("", "AuctionArtworkDetail", new {  id = @item.ArtworkId })">
+                                        @item.Name
+                                    </a>
+                                </h4>
+                                <p>Start Price: @item.Price </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+                }
+            </div>
         </div>
-        <!-- end container -->
     </section>
-    <!-- end content-section -->
-    <!-- end content-section -->
 </main>

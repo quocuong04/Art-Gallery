@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var fullName = ViewBag.FullName;
+    var userName = ViewBag.UserName;
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,15 +13,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Art Gallery Admin</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="~/Content/admin/vendor/fontawesome-free/~/Content/admin/css/all.min.~/Content/admin/css" rel="stylesheet" type="text/~/Content/admin/css">
-    <link href="https://fonts.googleapis.com/~/Content/admin/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    <title>@ViewBag.Title</title>
+    <link rel="icon" href="~/Content/admin/img/favicon.png" type="image/x-icon">
+    <link href="~/Content/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="~/Content/admin/css/sb-admin-2.~/Content/admin/css" rel="stylesheet">
+    <link href="~/Content/admin/css/sb-admin-2.css" rel="stylesheet">
+
+    <link href="~/Content/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -30,113 +34,129 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a href="@Url.Action("", "Home")" class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <~/Content/admin/img width="50" src="~/Content/admin/img/favicon.png" alt="">
+                    <img width="50" src="~/Content/admin/img/favicon.png" alt="">
                 </div>
                 <div class="sidebar-brand-text mx-3">Art Gallary</div>
             </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Common function
-            </div>
-            <li class="nav-item">
-                <a class="nav-link" href="artworks.html">
-                    <i class="fas fa-palette"></i>
-                    <span>ArtWork</span>
-                </a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Admin Function
-            </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                   aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-hammer"></i>
-                    <span>Auction</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="auctions-live.html">Auction Live</a>
-                        <a class="collapse-item" href="auctions.html">Auctions</a>
+            @if (ViewBag.AllowedFunctions.Contains("AW"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "ArtworksAdmin")">
+                        <i class="fas fa-palette"></i>
+                        <span>ArtWork</span>
+                    </a>
+                </li>
+            }
+            @if (ViewBag.AllowedFunctions.Contains("AU"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                       aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-hammer"></i>
+                        <span>Auction</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="@Url.Action("Index", "AuctionLiveAdmin")">Auction Live</a>
+                            <a class="collapse-item" href="@Url.Action("Index", "AuctionsAdmin")">Auctions</a>
+                        </div>
                     </div>
+                </li>
+            }
+            @if (ViewBag.AllowedFunctions.Contains("EM"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "EmployeesAdmin")">
+                        <i class="fas fa-users"></i>
+                        <span>Employee</span>
+                    </a>
+                </li>
+            }
+            @if (ViewBag.AllowedFunctions.Contains("CUS"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "CustomersAdmin")">
+                        <i class="fas fa-user-friends"></i>
+                        <span>Customer</span>
+                    </a>
+                </li>
+            }
+            @if (ViewBag.AllowedFunctions.Contains("CAT"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "CategoriesAdmin")">
+                        <i class="fas fa-th-large"></i>
+                        <span>Category</span>
+                    </a>
+                </li>
+            }
+            @if (ViewBag.AllowedFunctions.Contains("NEW"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "NewsAdmin")">
+                        <i class="fas fa-newspaper"></i>
+                        <span>New</span>
+                    </a>
+                </li>
+            }
+            @if (ViewBag.AllowedFunctions.Contains("ARTI"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "ArtistsAdmin")">
+                        <i class="fab fa-artstation"></i>
+                        <span>Artist</span>
+                    </a>
+                </li>
+            }
+            @if (ViewBag.AllowedFunctions.Contains("REV"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "ReviewsAdmin")">
+                        <i class="fas fa-comments"></i>
+                        <span>Review</span>
+                    </a>
+                </li>
+            }
+            @if (ViewBag.AllowedFunctions.Contains("ORD"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "OrdersAdmin")">
+                        <i class="fas fa-cart-plus"></i>
+                        <span>Order</span>
+                    </a>
+                </li>
+            }
+            @if (ViewBag.AllowedFunctions.Contains("PAY"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "PaymentsAdmin")">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Payment</span>
+                    </a>
+                </li>
+            }
+            @if (ViewBag.AllowedFunctions.Contains("SHIP"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "ShippingsAdmin")">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>Shipping</span>
+                    </a>
+                </li>
+                }
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
+
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="employees.html">
-                    <i class="fas fa-users"></i>
-                    <span>Employee</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="customers.html">
-                    <i class="fas fa-user-friends"></i>
-                    <span>Customer</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="categories.html">
-                    <i class="fas fa-th-large"></i>
-                    <span>Category</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="artists.html">
-                    <i class="fab fa-artstation"></i>
-                    <span>Artist</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="reviews.html">
-                    <i class="fas fa-comments"></i>
-                    <span>Review</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="orders.html">
-                    <i class="fas fa-cart-plus"></i>
-                    <span>Order</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="payments.html">
-                    <i class="fas fa-file-invoice-dollar"></i>
-                    <span>Payment</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="shipping.html">
-                    <i class="fas fa-shipping-fast"></i>
-                    <span>Shipping</span>
-                </a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+            </ul>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -148,21 +168,10 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                   aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
+                    <form class="form-inline">
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
                     </form>
 
                     <!-- Topbar Navbar -->
@@ -256,58 +265,143 @@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <~/Content/admin/img class="~/Content/admin/img-profile rounded-circle"
-                                     src="~/Content/admin/img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                        @if (!string.IsNullOrEmpty(userName))
+                        {
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@fullName</span>
+                                    <img class="img-profile rounded-circle" src="~/Content/admin/img/avatar.png" />
                                 </a>
-                            </div>
-                        </li>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                     aria-labelledby="userDropdown">
+                                    <a href="@Url.Action("Logout", "Account")" class="dropdown-item">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                            </li>
+                        }
 
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Art Gallary 2024</span>
-                        </div>
-                    </div>
-                </footer>
-                <!-- End of Footer -->
+
+                @RenderBody()
 
             </div>
-            <!-- End of Content Wrapper -->
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; &copy; Art Gallary 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
 
         </div>
-        <!-- End of Page Wrapper -->
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
+        <!-- End of Content Wrapper -->
 
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Artwork name</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Description</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" href="">Modify</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="acceptAuctionModal" tabindex="-1" role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Auction Accept</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <p>Tuan(tuan.com) paid for 300,000</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">Reject</button>
+                        <button class="btn btn-primary" href="">Accept</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="~/Content/admin/vendor/jquery/jquery.min.js"></script>
-        <script src="~/Content/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <div class="modal fade" id="acceptMemberModal" tabindex="-1" role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Member Accept</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <p>Tuan(tuan.com) wants to become a member of the shop</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">Reject</button>
+                        <button class="btn btn-primary" href="">Accept</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Content/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="~/Content/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/Content/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <script src="js/sb-admin-2.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/Content/admin/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="~/Content/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/Content/admin/js/demo/datatables-demo.js"></script>
 
 </body>
 

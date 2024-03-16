@@ -16,7 +16,7 @@ namespace Art_Gallery.Models
     {
         public int ArtworkId { get; set; }
         public int AuctionId { get; set; }
-        public string Name { get; set; }
+        public string ArtworkAuctionName { get; set; }
     
         public virtual Artwork Artwork { get; set; }
         public virtual Auction Auction { get; set; }

@@ -1,0 +1,130 @@
+﻿@model Art_Gallery.Models.Artwork
+
+@{
+    ViewBag.Title = "Delete Artists Page";
+}
+@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="p-3">
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Artwork</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CountAuction)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CountAuction)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AuctionPrice)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AuctionPrice)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Discount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Discount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreateDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descriptions)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Descriptions)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Artist.ArtistName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Artist.ArtistName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category.CategoryName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.CustomerName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Customer.CustomerName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee.EmployeeName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Purcher_order.OrderId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Purcher_order.OrderId)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-primary" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</div>

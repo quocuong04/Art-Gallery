@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Art_Gallery.Models.Purcher_order>
+
+@{
+    ViewBag.Title = "Orders Admin Page";
+}
+@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Order Management</h1>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Order</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TotalAmount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OrderDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ArtworkId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Customer.Email)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OrderDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ArtworkId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Customer.Email)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Delete", "OrdersAdmin", new { id = item.OrderId })"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="@Url.Action("Edit", "OrdersAdmin", new { id = item.OrderId })"><i class="fas fa-edit"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

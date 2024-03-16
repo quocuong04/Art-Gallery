@@ -1,4 +1,9 @@
-﻿<!doctype html>
+﻿
+@{
+    var fullName = ViewBag.FullName;
+    var userName = ViewBag.UserName;
+}
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -80,10 +85,19 @@
                             <path class="line line-bottom" d="M0,21h30" />
                         </svg>
                     </div>
-                    <a href="@Url.Action("", "Login")" class="login-text">Login</a>
+
+                    @if (!string.IsNullOrEmpty(userName))
+                    {
+                        <p class="login-text mb-0">@fullName</p>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("", "Login")" class="login-text">Login</a>
+                    }
+
                 </div>
             </nav>
-            
+
             @RenderBody()
             <footer class="footer">
                 <div class="container">
@@ -126,6 +140,28 @@
                 <!-- end footer-bottom -->
             </footer>
             <!-- end footer -->
+        </div>
+        <div class="modal fade" id="auctionForm" tabindex="-1" role="dialog" aria-labelledby="auctionFormLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="auctionFormLabel">Auction</h5>
+                        <i class="fa fa-times close" aria-hidden="true" data-bs-dismiss="modal" aria-label="Close"></i>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            <div class="form-group d-flex  align-items-center">
+                                <label class="w-50">Your Price Auction</label>
+                                <input type="number" class="form-control w-50" name="priceAuction" min="1" style="height: 50px;">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn bgr-primary">Ok</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 

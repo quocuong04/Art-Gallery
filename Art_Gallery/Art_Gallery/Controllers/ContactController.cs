@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Art_Gallery.Controllers
 {
-    public class ContactController : Controller
+    public class ContactController : BaseController
     {
         // GET: Contact
         public ActionResult Index()

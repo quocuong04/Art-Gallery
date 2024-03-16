@@ -35,6 +35,8 @@ namespace Art_Gallery.Models
         public Nullable<int> CustomerId { get; set; }
         public Nullable<int> ArtistId { get; set; }
         public int ArtworkId { get; set; }
+        public string Image { get; set; }
+        public string Descriptions { get; set; }
     
         public virtual Artist Artist { get; set; }
         public virtual Category Category { get; set; }
