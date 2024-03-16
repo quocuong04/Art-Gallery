@@ -74,12 +74,12 @@ namespace Art_Gallery.Controllers
                                          }).ToList();
 
                         ViewBag.Functions = functions;
-                        ViewBag.AllowedFunctions = functions.Select(f => f.Function.FunctionName).ToList();
+                        ViewBag.AllowedFunctions = functions.Select(f => f.Function.FunctionCode).ToList();
                         var allowedFunctions = filterContext.Controller.ViewBag.AllowedFunctions as List<string>;
 
                         foreach (var function in functions)
                         {
-                            if (!allowedFunctions.Contains(function.Function.FunctionName))
+                            if (!allowedFunctions.Contains(function.Function.FunctionCode))
                             {
                                 filterContext.Result = new RedirectResult("/Unauthorized");
                                 break; 

@@ -69,7 +69,6 @@
     <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Email" Type="nvarchar" MaxLength="60" />
     <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" />
-    <Property Name="Password" Type="nvarchar" MaxLength="50" />
     <Property Name="Adress" Type="char" MaxLength="18" />
     <Property Name="PhoneNumber" Type="char" MaxLength="18" />
     <Property Name="Age" Type="int" />
@@ -81,6 +80,7 @@
     </Key>
     <Property Name="FunctionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FunctionName" Type="nvarchar" MaxLength="50" />
+    <Property Name="FunctionCode" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Groups">
     <Key>
@@ -181,6 +181,14 @@
     <Property Name="EstimateDeliveryDate" Type="datetime" />
     <Property Name="ShippingDate" Type="datetime" />
     <Property Name="PaymentId" Type="int" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="StatusCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StatusName" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <Association Name="FK__Artwork__ArtistI__5AEE82B9">
     <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
@@ -417,6 +425,7 @@
     <EntitySet Name="Rel_Shipping_Payment" EntityType="Self.Rel_Shipping_Payment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Shipping" EntityType="Self.Shipping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Artwork__ArtistI__5AEE82B9" Association="Self.FK__Artwork__ArtistI__5AEE82B9">
       <End Role="Artist" EntitySet="Artist" />
       <End Role="Artwork" EntitySet="Artwork" />

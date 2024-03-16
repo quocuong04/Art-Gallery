@@ -55,7 +55,6 @@ namespace Art_Gallery.Controllers.AdminControllers
                 var currentUserEmail = (string)Session["User"];
                 var employee = db.Employees.FirstOrDefault(e => e.Email == currentUserEmail);
 
-                artwork.Status = "A";
                 artwork.CreateDate = currentDate;
                 artwork.EmployeeId = employee.EmployeeId;
 

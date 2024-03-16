@@ -40,5 +40,6 @@ namespace Art_Gallery.Models
         public virtual DbSet<Rel_Artwork_Auctions> Rel_Artwork_Auctions { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Shipping> Shippings { get; set; }
+        public virtual DbSet<Status> Status { get; set; }
     }
 }
