@@ -1,0 +1,98 @@
+﻿@model Art_Gallery.Models.Request
+
+@{
+    ViewBag.Title = "Delete Request Page";
+}
+@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+<div class="p-3">
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Request</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            @if (Model.RequestType == "M")
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.RequestMessage)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.RequestMessage)
+                </dd>
+            }
+            @if (Model.RequestType == "B")
+            {
+                <dt>
+                    Artwork Name
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Artwork.Name)
+                </dd>
+            }
+            <dt>
+                @Html.DisplayNameFor(model => model.RequestType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RequestType)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreateDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Status.StatusName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Status.StatusName)
+            </dd>
+
+            <dt>
+                User Request
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Customer.CustomerName)
+            </dd>
+            @if (@Model.RequestType == "B")
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.PriceAuction)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PriceAuction)
+                </dd>
+            }
+            @if (@Model.RequestType == "B")
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Artwork.CountAuction)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Artwork.CountAuction)
+                </dd>
+            }
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</div>

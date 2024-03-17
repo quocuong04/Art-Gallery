@@ -56,18 +56,22 @@
                     </div>
                     <!-- end side-content -->
                     <!-- Hiển thị khi vào sản phẩm đang đấu giá -->
-                    <div class="side-icon-list mb-3">
-                        <ul>
-                            <li class="d-flex align-items-center">
-                                <figure> <img src="~/Content/webapp/images/icon01.png" alt="Image"> </figure>
-                                <div class="content">
-                                    <div id="countdown"></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+
+                    @{
+                        var minPrice = @Model.Artwork.AuctionPrice != null ? @Model.Artwork.AuctionPrice : @Model.Artwork.Price;
+                    }
                     @if (@Model.Auction != null && @Model.Auction.Status.Equals("L"))
                     {
+                        <div class="side-icon-list mb-3">
+                            <ul>
+                                <li class="d-flex align-items-center">
+                                    <figure> <img src="~/Content/webapp/images/icon01.png" alt="Image"> </figure>
+                                    <div class="content">
+                                        <div id="countdown"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="side-content left">
                             <table>
                                 <tr>
@@ -84,9 +88,17 @@
                                 </tr>
                             </table>
                         </div>
+
                         if (userName != null)
                         {
-                            <button id="auctionBtn" class="custom-button d-block border-0 mt-1" data-bs-toggle="modal" data-bs-target="#auctionForm">Auction</button>
+
+                            using (Html.BeginForm(Html.BeginForm("Create", "AuctionArtworkDetail", FormMethod.Post, new { enctype = "multipart/form-data" })))
+                            {
+                                <label>Please enter your price</label>
+                                <input name="artworkId" value="@Model.Artwork.ArtworkId" hidden />
+                                <input type="number" id="priceAuction" name="priceAuction" class="form-control" style="width: 200px" min="@minPrice" />
+                                <button type="submit" id="submitBtn" class="custom-button d-block border-0 mt-2" disabled>Auction</button>
+                            }
                         }
                     }
                     @if (userName == null)
@@ -131,7 +143,23 @@
                     $('#countdown').text('The countdown has ended');
                 }
             }, 1000);
+
         });
 
+    </script>
+    <script>
+        const priceInput = document.getElementById('priceAuction');
+        const submitButton = document.getElementById('submitBtn');
+
+        priceInput.addEventListener('input', function () {
+            const price = parseFloat(this.value);
+            const minPrice = parseFloat(this.min);
+
+            if (isNaN(price) || price < minPrice) {
+                submitButton.disabled = true;
+            } else {
+                submitButton.disabled = false;
+            }
+        });
     </script>
 </main>

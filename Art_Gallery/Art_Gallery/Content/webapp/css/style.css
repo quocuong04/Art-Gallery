@@ -3902,3 +3902,7 @@ a, a:hover {
 .bgr-primary {
   background-color: #94ffc4;
 }
+
+button:disabled {
+  opacity: 0.3;
+}

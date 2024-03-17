@@ -17,8 +17,8 @@ namespace Art_Gallery.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Artwork()
         {
-            this.Notifications = new HashSet<Notification>();
             this.Rel_Artwork_Auctions = new HashSet<Rel_Artwork_Auctions>();
+            this.Requests = new HashSet<Request>();
             this.Reviews = new HashSet<Review>();
         }
     
@@ -44,10 +44,11 @@ namespace Art_Gallery.Models
         public virtual Employee Employee { get; set; }
         public virtual Purcher_order Purcher_order { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Notification> Notifications { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rel_Artwork_Auctions> Rel_Artwork_Auctions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Request> Requests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
+        public virtual Status Status1 { get; set; }
     }
 }

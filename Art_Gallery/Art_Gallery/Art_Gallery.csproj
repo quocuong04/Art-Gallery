@@ -138,6 +138,7 @@
     <Compile Include="Controllers\AdminControllers\CustomersAdminController.cs" />
     <Compile Include="Controllers\AdminControllers\EmployeesAdminController.cs" />
     <Compile Include="Controllers\AdminControllers\NewsAdminController.cs" />
+    <Compile Include="Controllers\AdminControllers\RequestsAdminController.cs" />
     <Compile Include="Controllers\AuctionArtworkLiveController.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Controllers\AdminControllers\OrdersAdminController.cs" />
@@ -171,6 +172,9 @@
     <Compile Include="Models\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Contact.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Customer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -201,9 +205,6 @@
     <Compile Include="Models\New.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Notification.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Payment_gateways.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -211,6 +212,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Rel_Artwork_Auctions.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Request.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Review.cs">
@@ -313,9 +317,6 @@
     <Content Include="Views\AuctionsAdmin\Create.cshtml" />
     <Content Include="Views\AuctionsAdmin\Delete.cshtml" />
     <Content Include="Views\AuctionsAdmin\Index.cshtml" />
-    <Content Include="Views\AuctionLiveAdmin\Create.cshtml" />
-    <Content Include="Views\AuctionLiveAdmin\Delete.cshtml" />
-    <Content Include="Views\AuctionLiveAdmin\Edit.cshtml" />
     <Content Include="Views\AuctionLiveAdmin\Index.cshtml" />
     <Content Include="Views\EmployeesAdmin\Create.cshtml" />
     <Content Include="Views\EmployeesAdmin\Delete.cshtml" />
@@ -355,6 +356,9 @@
     <Content Include="Views\AuctionArtworkLive\Index.cshtml" />
     <Content Include="Views\NewDetail\Index.cshtml" />
     <Content Include="Views\AuctionsAdmin\Edit.cshtml" />
+    <Content Include="Views\RequestsAdmin\Delete.cshtml" />
+    <Content Include="Views\RequestsAdmin\Index.cshtml" />
+    <Content Include="Views\RequestsAdmin\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

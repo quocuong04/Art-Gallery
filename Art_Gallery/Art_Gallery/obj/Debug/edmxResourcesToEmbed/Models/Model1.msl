@@ -52,6 +52,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Contact">
+        <MappingFragment StoreEntitySet="Contact">
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="Art_GalleryModel.Customer">
         <MappingFragment StoreEntitySet="Customer">
@@ -110,16 +122,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Notifications">
-      <EntityTypeMapping TypeName="Art_GalleryModel.Notification">
-        <MappingFragment StoreEntitySet="Notification">
-          <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
-          <ScalarProperty Name="RequestMessage" ColumnName="RequestMessage" />
-          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
-          <ScalarProperty Name="ArtworkId" ColumnName="ArtworkId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Payment_gateways">
       <EntityTypeMapping TypeName="Art_GalleryModel.Payment_gateways">
         <MappingFragment StoreEntitySet="Payment_gateways">
@@ -149,6 +151,20 @@
           <ScalarProperty Name="ArtworkId" ColumnName="ArtworkId" />
           <ScalarProperty Name="AuctionId" ColumnName="AuctionId" />
           <ScalarProperty Name="ArtworkAuctionName" ColumnName="ArtworkAuctionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Requests">
+      <EntityTypeMapping TypeName="Art_GalleryModel.Request">
+        <MappingFragment StoreEntitySet="Request">
+          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+          <ScalarProperty Name="RequestMessage" ColumnName="RequestMessage" />
+          <ScalarProperty Name="ArtworkId" ColumnName="ArtworkId" />
+          <ScalarProperty Name="RequestType" ColumnName="RequestType" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+          <ScalarProperty Name="PriceAuction" ColumnName="PriceAuction" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

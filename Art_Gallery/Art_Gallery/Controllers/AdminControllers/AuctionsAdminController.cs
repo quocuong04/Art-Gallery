@@ -113,7 +113,7 @@ namespace Art_Gallery.Controllers.AdminControllers
                                     select rel.ArtworkId).ToArrayAsync();
 
             var auctionStatus = await db.Auctions.FindAsync(id);
-            var statusList = await db.Status.ToListAsync();
+            var statusList = await db.Status.Where(e=>e.StatusCode=="A" || e.StatusCode == "L" || e.StatusCode == "I").ToListAsync();
 
             var artworks = await db.Artworks
                 .Where(a => a.Status == null || (a.Status == "A" && artworkIds.Contains(a.ArtworkId)) || (a.Status == "L" && auctionStatus.Status == "L" && artworkIds.Contains(a.ArtworkId)))

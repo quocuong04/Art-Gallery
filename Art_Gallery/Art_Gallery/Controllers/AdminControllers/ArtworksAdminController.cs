@@ -15,13 +15,41 @@ namespace Art_Gallery.Controllers.AdminControllers
 {
     public class ArtworksAdminController : BaseController
     {
-        private Art_GalleryEntities db = new Art_GalleryEntities();     
+        private Art_GalleryEntities db = new Art_GalleryEntities();
 
         // GET: ArtworksAdmin
         public async Task<ActionResult> Index()
         {
-            var artworks = db.Artworks.Include(a => a.Artist).Include(a => a.Category).Include(a => a.Customer).Include(a => a.Employee).Include(a => a.Purcher_order);
-            return View(await artworks.ToListAsync());
+            var artworks = await db.Artworks
+                .Include(a => a.Artist)
+                .Include(a => a.Status)
+                .Include(a => a.Category)
+                .Include(a => a.Customer)
+                .Include(a => a.Employee)
+                .Include(a => a.Purcher_order)
+                .Select(a => new Art_Gallery.Controllers.AdminControllers.ArtWorkModel
+                {
+                    ArtworkId = a.ArtworkId,
+                    Name = a.Name,
+                    CountAuction = a.CountAuction,
+                    AuctionPrice = a.AuctionPrice,
+                    Discount = a.Discount,
+                    CreateDate = a.CreateDate,
+                    Price =a.Price,
+                    Descriptions=a.Descriptions,
+                    Image =a.Image,
+                    StatusName = db.Status.FirstOrDefault(s => s.StatusCode == a.Status) != null
+                        ? db.Status.FirstOrDefault(s => s.StatusCode == a.Status).StatusName
+                        : null,
+                    Artist = a.Artist,
+                    Category = a.Category,
+                    Customer = a.Customer,
+                    Employee = a.Employee,
+                    Purcher_order = a.Purcher_order
+                })
+                .ToListAsync();
+
+            return View(artworks);
         }
 
 
@@ -156,5 +184,9 @@ namespace Art_Gallery.Controllers.AdminControllers
             }
             base.Dispose(disposing);
         }
+    }
+    public class ArtWorkModel : Artwork
+    {
+        public string StatusName { get; set; }
     }
 }

@@ -29,5 +29,6 @@ namespace Art_Gallery.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rel_Artwork_Auctions> Rel_Artwork_Auctions { get; set; }
+        public virtual Status Status1 { get; set; }
     }
 }

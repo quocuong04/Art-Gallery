@@ -18,6 +18,7 @@ namespace Art_Gallery.Models
         public Employee()
         {
             this.Artworks = new HashSet<Artwork>();
+            this.Contacts = new HashSet<Contact>();
             this.Groups = new HashSet<Group>();
         }
     
@@ -31,6 +32,8 @@ namespace Art_Gallery.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Artwork> Artworks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contact> Contacts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Group> Groups { get; set; }
     }
