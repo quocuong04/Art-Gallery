@@ -36,8 +36,28 @@ namespace Art_Gallery.Controllers
                                    Category = c,
                                    Artist = ar
                                }).SingleOrDefaultAsync();
-
             return View(model);
+        }
+        public async Task<ActionResult> Create([Bind(Include = "RequestId,RequestType,StatusCode,PriceAuction,CreateUserId,CreateDate,ArtworkId")] Request req, int artworkId, int priceAuction)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = Session["User"];
+                var customer = await db.Customers.FirstOrDefaultAsync(e => e.Email == user);
+                var currentDate = DateTime.Now;
+
+                req.ArtworkId = artworkId;
+                req.CreateDate = DateTime.Now;
+                req.CreateUserId = customer.CustomerId;
+                req.PriceAuction = priceAuction;
+                req.StatusCode = "A";
+                req.RequestType = "B";
+
+                db.Requests.Add(req);
+                await db.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index", new { id = artworkId });
         }
     }
     public class ArtWorkAuctionModel

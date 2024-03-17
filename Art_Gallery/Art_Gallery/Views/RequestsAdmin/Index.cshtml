@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Art_Gallery.Models.Request>
+@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">Request Management</h1>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Requests </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.RequestType)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CreateDate)
+                            </th>
+                            <th>
+                                User Request
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status.StatusName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.RequestMessage)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PriceAuction)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Artwork.CountAuction)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @if (item.RequestType == "B")
+                                    {
+                                        <span>Request to Buy</span>
+                                    }
+                                    else if (item.RequestType == "M")
+                                    {
+                                        <span>Request to Member</span>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Customer.CustomerName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status.StatusName)
+                                </td>
+                                <td>
+                                    @if (item.RequestType == "M")
+                                    {
+                                        @Html.DisplayFor(modelItem => item.RequestMessage)
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(modelItem => item.Artwork.Name)
+                                    }
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PriceAuction)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Artwork.CountAuction)
+                                </td>
+                                <td class="d-flex align-items-center justify-content-around">
+                                    <a href="@Url.Action("Delete", "RequestsAdmin", new { id = item.RequestId })"><i class="fas fa-trash-alt"></i></a>
+                                    @if (item.StatusCode == "A")
+                                    {
+                                        using (Html.BeginForm("Reject", "RequestsAdmin"))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.Hidden("id", item.RequestId)
+                                            <button type="submit" class="btn btn-danger ml-1">Reject</button>
+                                        }
+                                        using (Html.BeginForm("Accept", "RequestsAdmin"))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.Hidden("id", item.RequestId)
+                                            @Html.Hidden("requestType", item.RequestType)
+                                            <button type="submit" class="btn btn-primary ml-1">Accept</button>
+                                        }
+                                    }
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

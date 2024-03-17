@@ -201,6 +201,7 @@
     slidesPerView: 4,
     loop: true,
     loopedSlides: 4,
+    initialSlide: 1,
     breakpoints: {
       1024: {
         slidesPerView: 3

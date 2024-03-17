@@ -13,35 +13,31 @@
             <h1>Membership</h1>
 
         </div>
-        <!-- end inner -->
     </header>
-    <section class="content-section" data-background="#fffbf7">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="section-title text-center">
-                        <figure><img src="~/Content/webapp/images/title-shape.png" alt="Image"></figure>
-                        <h2>Do you want to become a member <br> of the Art Gallery</h2>
-                    </div>
-                    <!-- end section-title -->
-                </div>
-                <div class="col-lg-8">
-                    <div class="contact-form">
-                        <div class="mb-3">
-                            <textarea placeholder="Enter your request"></textarea>
+    @using (Html.BeginForm(Html.BeginForm("Create", "Membership", FormMethod.Post, new { enctype = "multipart/form-data" })))
+    {
+        @Html.AntiForgeryToken()
+        <section class="content-section" data-background="#fffbf7">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="section-title text-center">
+                            <figure><img src="~/Content/webapp/images/title-shape.png" alt="Image"></figure>
+                            <h2>Do you want to become a member <br> of the Art Gallery</h2>
                         </div>
-                        <!-- end mb-3 -->
-                        <div class="mb-3 d-flex justify-content-center">
-                            <input type="submit" value="Register">
-                        </div>
-                        <!-- end mb-3 -->
                     </div>
-                    <!-- end contact-form -->
+                    <div class="col-lg-8">
+                        <div class="contact-form">
+                            <div class="mb-3">
+                                <textarea placeholder="Enter your request" name="RequestMessage"></textarea>
+                            </div>
+                            <div class="mb-3 d-flex justify-content-center">
+                                <input type="submit" value="Register">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- end col-5 -->
             </div>
-            <!-- end row -->
-        </div>
-        <!-- end container -->
-    </section>
+        </section>
+    }
 </main>

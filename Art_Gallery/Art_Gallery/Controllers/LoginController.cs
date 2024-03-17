@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WebGrease.Css.Ast;
@@ -62,8 +63,8 @@ namespace Art_Gallery.Controllers
                     {
                         filterContext.Result = new RedirectResult("/Home");
                     }
-
-                    if(employee !=null)
+                    
+                    if (employee !=null)
                     {
                         var functions = (from f in dbContext.Functions
                                          join g in dbContext.Groups on f.FunctionId equals g.FunctionId
@@ -85,13 +86,26 @@ namespace Art_Gallery.Controllers
                                 break; 
                             }
                         }
-
+                        var requests = dbContext.Requests.Include(n => n.Artwork).Include(n => n.Customer).Include(n => n.Status)
+                            .Where(e => e.StatusCode == "A").ToList();
+                        ViewBag.Requestlist = requests;
                     }
-
+                    if (employee != null)
+                    {
+                        ViewBag.isMember = true;
+                    }
+                    else
+                    {
+                        ViewBag.isMember = false;
+                    }
+                    if (IsMemberShipController(controllerName))
+                    {
+                        filterContext.Result = new RedirectResult("/Home");
+                    }
                 }
 
                 ViewBag.UserName = user;
-                
+
             }
             else
             {
@@ -106,6 +120,10 @@ namespace Art_Gallery.Controllers
         private bool IsAdminController(string controllerName)
         {
             return controllerName.Contains("AdminController");
+        }
+        private bool IsMemberShipController(string controllerName)
+        {
+            return controllerName.Contains("MemberShipController");
         }
     }
 

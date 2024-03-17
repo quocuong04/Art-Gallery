@@ -12,13 +12,19 @@ namespace Art_Gallery.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Notification
+    public partial class Request
     {
-        public int NotificationId { get; set; }
+        public int RequestId { get; set; }
         public string RequestMessage { get; set; }
-        public Nullable<double> BidPrice { get; set; }
         public Nullable<int> ArtworkId { get; set; }
+        public string RequestType { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<int> CreateUserId { get; set; }
+        public string StatusCode { get; set; }
+        public Nullable<double> PriceAuction { get; set; }
     
         public virtual Artwork Artwork { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual Status Status { get; set; }
     }
 }

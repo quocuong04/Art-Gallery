@@ -67,6 +67,15 @@
                     </div>
                 </li>
             }
+            @if (ViewBag.AllowedFunctions.Contains("REQ"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "RequestsAdmin")">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Request</span>
+                    </a>
+                </li>
+            }
             @if (ViewBag.AllowedFunctions.Contains("EMP"))
             {
                 <li class="nav-item">
@@ -147,16 +156,16 @@
                         <span>Shipping</span>
                     </a>
                 </li>
-                }
-                <!-- Divider -->
-                <hr class="sidebar-divider d-none d-md-block">
+            }
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
 
-                <!-- Sidebar Toggler (Sidebar) -->
-                <div class="text-center d-none d-md-inline">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
 
-            </ul>
+        </ul>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -207,7 +216,7 @@
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
+                                <span class="badge badge-danger badge-counter">@ViewBag.Requestlist.Count</span>
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -215,51 +224,28 @@
                                 <h6 class="dropdown-header">
                                     Notifications
                                 </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#" data-toggle="modal" data-target="#acceptAuctionModal">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">Tuan(tuan@abc.com)</div>
-                                        <span class="font-weight-bold">Paid for 300,000</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#" data-toggle="modal" data-target="#acceptAuctionModal">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">Tuan1(tuan1@abc.com)</div>
-                                        <span class="font-weight-bold">Paid for 300,000</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#" data-toggle="modal" data-target="#acceptAuctionModal">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">Tuan2(tuan2@abc.com)</div>
-                                        <span class="font-weight-bold">Paid for 300,000</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#" data-toggle="modal" data-target="#acceptMemberModal">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">Tuan2(tuan2@abc.com)</div>
-                                        <span class="font-weight-bold">wants to become a member of the shop</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                @foreach(var item in @ViewBag.Requestlist)
+                                    {
+                                        <a class="dropdown-item d-flex align-items-center" href="@Url.Action("Detail", "RequestsAdmin", new {id=item.RequestId})">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-primary">
+                                                    <i class="fas fa-file-alt text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="small text-gray-500">@item.Customer.CustomerName</div>
+                                                <span class="font-weight-bold">
+                                                    @if (item.RequestType == "B")
+                                                    {
+                                                        <span>Paid for @item.Artwork.Name</span> <span>with: price: @item.PriceAuction</span>
+                                                    }else
+                                                    {
+                                                        <span> @item.RequestMessage</span>
+                                                    }
+                                                    </span>
+                                            </div>
+                                        </a>
+                                    }
                             </div>
                         </li>
 

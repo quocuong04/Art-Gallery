@@ -339,7 +339,6 @@
                                 <h6>Artist</h6>
                                 <h2>Author</h2>
                             </div>
-                            <!-- end titles -->
                             <div class="swiper-container art-slider-content">
                                 <div class="swiper-wrapper">
                                     @foreach (var item in Model.Artists)
@@ -351,15 +350,10 @@
                                             </h3>
                                         </div>
                                     }
-                                    <!-- end swiper-slide -->
                                 </div>
-                                <!-- end swiper-wrapper -->
                             </div>
-                            <!-- end art-slider-content -->
                         </div>
-                        <!-- end art-slider -->
                     </div>
-                    <!-- end col-6 -->
                     <div class="col-lg-6">
                         <div class="art-slider" data-scroll data-scroll-speed="1">
                             <div class="swiper-container art-slider-images">
@@ -368,19 +362,12 @@
                                     {
                                         <div class="swiper-slide"> <img src="~/Content/uploads/@Html.DisplayFor(modelItem => item.Image)" alt="Image"> </div>
                                     }
-                                    <!-- end swiper-slide -->
                                 </div>
-                                <!-- end swiper-wrapper -->
                             </div>
-                            <!-- end art-slider-images -->
                         </div>
-                        <!-- end art-slider -->
                     </div>
-                    <!-- end col-6 -->
                 </div>
-                <!-- end row -->
             </div>
-            <!-- end container -->
         </section>
     }
     @if (Model.News != null)

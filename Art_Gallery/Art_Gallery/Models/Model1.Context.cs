@@ -29,15 +29,16 @@ namespace Art_Gallery.Models
         public virtual DbSet<Artwork> Artworks { get; set; }
         public virtual DbSet<Auction> Auctions { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Function> Functions { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<New> News { get; set; }
-        public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Payment_gateways> Payment_gateways { get; set; }
         public virtual DbSet<Purcher_order> Purcher_order { get; set; }
         public virtual DbSet<Rel_Artwork_Auctions> Rel_Artwork_Auctions { get; set; }
+        public virtual DbSet<Request> Requests { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Shipping> Shippings { get; set; }
         public virtual DbSet<Status> Status { get; set; }
