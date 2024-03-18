@@ -12,7 +12,10 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary mb-2">Auction</h6>
-                @if (Model?.Auction?.AuctionId != null) { 
+                @if (Model?.Auction?.AuctionId != null)
+                {
+                    <h5>@Model.Auction.AuctionName</h5>
+                    <p><span>Start date: @Model.Auction.StartDate</span>   <span>End date: @Model.Auction.EndDate</span></p>
                     using (Html.BeginForm("Endding", "AuctionLiveAdmin"))
                     {
                         @Html.AntiForgeryToken()
@@ -55,9 +58,9 @@
                                     <th>
                                         CategoryName
                                     </th>
-                                    <td>
+                                    <th>
                                         CustomerName
-                                    </td>
+                                    </th>
                                     <th>
                                         EmployeeName
                                     </th>
@@ -95,7 +98,7 @@
                                             @Html.DisplayFor(modelItem => item.Category.CategoryName)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+                                            @Html.DisplayFor(modelItem => item.Customer.CustomerName)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Employee.EmployeeName)

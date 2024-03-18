@@ -58,10 +58,28 @@ namespace Art_Gallery.Controllers.AdminControllers
 
                 foreach (var artwork in artworks)
                 {
-                    artwork.Status = "I";
-                    db.Entry(artwork).State = EntityState.Modified;
-                }
+                    if(artwork.AuctionPrice != null)
+                    {
+                        artwork.Status = "I";
+                        db.Entry(artwork).State = EntityState.Modified;
 
+                        if (artwork.CustomerId != null)
+                        {
+                            Purcher_order orders = new Purcher_order();
+                            orders.OrderDate = DateTime.Now;
+                            orders.ArtworkId = artwork.ArtworkId;
+                            orders.CustomerId = artwork.CustomerId;
+                            orders.AuctionId = aution.AuctionId;
+                            orders.TotalAmount = artwork.AuctionPrice;
+                            db.Purcher_order.Add(orders);
+                        }
+                    } else
+                    {
+                        artwork.Status = "A";
+                        db.Entry(artwork).State = EntityState.Modified;
+                    }
+                }
+                
                 await db.SaveChangesAsync();
             }
             return RedirectToAction("Index");

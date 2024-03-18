@@ -15,31 +15,12 @@ namespace Art_Gallery.Controllers
         // GET: Artwork
         public async Task<ActionResult> Index()
         {
-            var artworks =
-                db.Artworks
-                 .Join(
-                     db.Artists,
-                     artwork => artwork.ArtistId,
-                     artist => artist.ArtistId,
-                     (artwork, artist) => new { Artwork = artwork, Artist = artist }
-                 )
-                 .Join(
-                     db.Categories,
-                     joined => joined.Artwork.CategoryId,
-                     category => category.CategoryId,
-                     (joined, category) => new ArtWorkListModel
-                     {
-                         ArtworkId = joined.Artwork.ArtworkId,
-                         Descriptions = joined.Artwork.Descriptions,
-                         Price = joined.Artwork.Price,
-                         Name = joined.Artwork.Name,
-                         Image = joined.Artwork.Image,
-                         ArtistName = joined.Artist.ArtistName,
-                         CategoryName = category.CategoryName,
-                         Discount = joined.Artwork.Discount
-                     }
-                 )
-                .ToList();
+            var artworks = db.Artworks.Include(a => a.Artist)
+                                .Include(a => a.Category)
+                                .Include(a => a.Customer)
+                                .Include(a => a.Employee)
+                                .Include(a => a.Purcher_order)
+                                .Include(a => a.Status1).ToList();
             return View(artworks);
         }
     }

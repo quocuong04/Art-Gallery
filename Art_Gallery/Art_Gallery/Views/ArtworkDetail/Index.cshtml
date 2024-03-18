@@ -26,32 +26,73 @@
                 <div class="col-lg-6 col-md-12 collection-detail-slide">
                     <div class="swiper collection-detail-top">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="~/Content/uploads/@Model.ArtworkDetail.Artwork.Image" alt="Image"></div>
+                            <div class="swiper-slide"><img src="~/Content/uploads/@Model.ArtworkDetail.Image" alt="Image"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 collection-detail-description">
                     <div class="art-content">
                         <p class="category-label">@Model.ArtworkDetail.Category.CategoryName</p>
-                        <h6>@Model.ArtworkDetail.Artwork.Name</h6>
+                        <h6>@Model.ArtworkDetail.Name</h6>
                         <p>@Model.ArtworkDetail.Artist.ArtistName</p>
-                        <p class="price">$@Model.ArtworkDetail.Artwork.Price</p>
-                        @if(userName == null)
+                        <p class="price">$@Model.ArtworkDetail.Price</p>
+                        @if (userName == null)
+                        {
+                            <a href="@Url.Action("", "Login")" class="custom-button">Login to bid</a>
+                        }
+
+                        @if (@Model.isFavorit == true)
+                        {
+                            using (Html.BeginForm("AddFavorit", "Personal"))
                             {
-                                <a href="@Url.Action("", "Login")" class="custom-button">Login to bid</a>
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("id", Model.ArtworkDetail.ArtworkId)
+                                <button type="submit" class="custom-button d-block border-0 mt-1">Add to my favorite</button>
                             }
-                        <button class="custom-button d-block border-0 mt-1">Add to my favorite</button>
+                        }
+
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="text-box">
                         <h2>Special Artwork</h2>
                         <p>
-                            @Model.ArtworkDetail.Artwork.Descriptions
+                            @Model.ArtworkDetail.Descriptions
                         </p>
                     </div>
 
                 </div>
+                @if (userName != null)
+                {
+                    <div class="col-12 mb-4">
+                        <div class="text-box">
+                            <h2>Comment</h2>
+                            @using (Html.BeginForm(Html.BeginForm("Create", "ArtworkDetail")))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("id", Model.ArtworkDetail.ArtworkId)
+                                <div class="mb-3">
+                                    <textarea placeholder="Enter your comment" name="reviewMessage"></textarea>
+                                </div>
+                                <div class="mb-3 d-flex justify-content-center">
+                                    <input type="submit" value="Send">
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                    <div class="col-12">
+                        <ul class="list-group w-100">
+                            @foreach (var item in @Model.reviews)
+                            {
+                                <li class="list-group-item">
+                                    <small>@item.Customer.CustomerName</small>
+                                    <p>@item.Reviews</p>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
             </div>
         </div>
     </section>
@@ -79,9 +120,9 @@
                                                     <img src="~/Content/uploads/@item.Image" alt="">
                                                 </div>
                                                 <div class="art-content">
-                                                    <p class="category-label">@item.CategoryName</p>
+                                                    <p class="category-label">@item.Category.CategoryName</p>
                                                     <h6>@item.Name</h6>
-                                                    <p>@item.ArtistName</p>
+                                                    <p>@item.Artist.ArtistName</p>
                                                     <p class="price">@item.Price</p>
                                                 </div>
                                             </a>

@@ -23,68 +23,6 @@ namespace Art_Gallery.Controllers.AdminControllers
         }
 
         
-        // GET: ReviewsAdmin/Create
-        public ActionResult Create()
-        {
-            ViewBag.ArtworkId = new SelectList(db.Artworks, "ArtworkId", "Status");
-            ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "CustomerName");
-            return View();
-        }
-
-        // POST: ReviewsAdmin/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ReviewId,CustomerId,ArtworkId")] Review review)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Reviews.Add(review);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.ArtworkId = new SelectList(db.Artworks, "ArtworkId", "Status", review.ArtworkId);
-            ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "CustomerName", review.CustomerId);
-            return View(review);
-        }
-
-        // GET: ReviewsAdmin/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Review review = await db.Reviews.FindAsync(id);
-            if (review == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ArtworkId = new SelectList(db.Artworks, "ArtworkId", "Status", review.ArtworkId);
-            ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "CustomerName", review.CustomerId);
-            return View(review);
-        }
-
-        // POST: ReviewsAdmin/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ReviewId,CustomerId,ArtworkId")] Review review)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(review).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            ViewBag.ArtworkId = new SelectList(db.Artworks, "ArtworkId", "Status", review.ArtworkId);
-            ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "CustomerName", review.CustomerId);
-            return View(review);
-        }
-
         // GET: ReviewsAdmin/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {

@@ -21,16 +21,21 @@ namespace Art_Gallery.Models
             this.Payment_gateways = new HashSet<Payment_gateways>();
         }
     
-        public Nullable<int> TotalAmount { get; set; }
+        public Nullable<double> TotalAmount { get; set; }
         public Nullable<System.DateTime> OrderDate { get; set; }
         public Nullable<int> CustomerId { get; set; }
         public int OrderId { get; set; }
         public Nullable<int> ArtworkId { get; set; }
+        public string StatusCode { get; set; }
+        public Nullable<int> AuctionId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Artwork> Artworks { get; set; }
+        public virtual Artwork Artwork { get; set; }
+        public virtual Auction Auction { get; set; }
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment_gateways> Payment_gateways { get; set; }
+        public virtual Status Status { get; set; }
     }
 }

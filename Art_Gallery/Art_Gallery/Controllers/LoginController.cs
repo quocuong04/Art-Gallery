@@ -42,18 +42,18 @@ namespace Art_Gallery.Controllers
     }
     public class BaseController : Controller
     {
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        protected async override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var user = Session["User"];
             var controllerName = filterContext.Controller.GetType().Name;
             var isAdminController = IsAdminController(controllerName);
+            
             if (user != null)
             {
                 using (var dbContext = new Art_GalleryEntities())
                 {
                     var customer = dbContext.Customers.FirstOrDefault(c => c.Email == user);
                     var employee = dbContext.Employees.FirstOrDefault(e => e.Email == user);
-
                     if (customer != null)
                     {
                         ViewBag.FullName = customer.CustomerName;
@@ -90,6 +90,7 @@ namespace Art_Gallery.Controllers
                             .Where(e => e.StatusCode == "A").ToList();
                         ViewBag.Requestlist = requests;
                     }
+                    
                     if (employee != null)
                     {
                         ViewBag.isMember = true;
@@ -109,10 +110,11 @@ namespace Art_Gallery.Controllers
             }
             else
             {
-                if (isAdminController)
+                if (isAdminController|| IsLogin(controllerName))
                 {
                     filterContext.Result = new RedirectResult("/Home");
                 }
+
             }
 
             base.OnActionExecuting(filterContext);
@@ -124,6 +126,13 @@ namespace Art_Gallery.Controllers
         private bool IsMemberShipController(string controllerName)
         {
             return controllerName.Contains("MemberShipController");
+
+
+        }
+        private bool IsLogin(string controllerName)
+        {
+            return controllerName.Contains("OrderCustomerController")
+                    || controllerName.Contains("PersonalController");
         }
     }
 
