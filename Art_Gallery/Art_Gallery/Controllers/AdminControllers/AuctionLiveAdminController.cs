@@ -71,6 +71,7 @@ namespace Art_Gallery.Controllers.AdminControllers
                             orders.CustomerId = artwork.CustomerId;
                             orders.AuctionId = aution.AuctionId;
                             orders.TotalAmount = artwork.AuctionPrice;
+                            orders.StatusCode = "A";
                             db.Purcher_order.Add(orders);
                         }
                     } else

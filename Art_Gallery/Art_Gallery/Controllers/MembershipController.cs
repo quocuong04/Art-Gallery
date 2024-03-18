@@ -13,8 +13,12 @@ namespace Art_Gallery.Controllers
     {
         private Art_GalleryEntities db = new Art_GalleryEntities();
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
+            var user = Session["User"];
+            var customer = await db.Customers.FirstOrDefaultAsync(e => e.Email == user);
+            var isSendRequest = db.Requests.Any(r => r.StatusCode == "A" && r.RequestType == "M" && r.CreateUserId == customer.CustomerId);
+            ViewBag.isSendRequest = isSendRequest;
             return View();
         }
 

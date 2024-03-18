@@ -71,21 +71,18 @@ namespace Art_Gallery.Controllers
                     
                     if (employee !=null)
                     {
-                        var functions = (from f in dbContext.Functions
-                                         join g in dbContext.Groups on f.FunctionId equals g.FunctionId
-                                         join e in dbContext.Employees on g.EmployeeId equals e.EmployeeId
-                                         select new
-                                         {
-                                             Function = f
-                                         }).ToList();
+                        var functions = from g in dbContext.Groups
+                                        join f in dbContext.Functions on g.FunctionId equals f.FunctionId
+                                        where g.EmployeeEmail == employee.Email
+                                        select f;
 
                         ViewBag.Functions = functions;
-                        ViewBag.AllowedFunctions = functions.Select(f => f.Function.FunctionCode).ToList();
+                        ViewBag.AllowedFunctions = functions.Select(f => f.FunctionCode).ToList();
                         var allowedFunctions = filterContext.Controller.ViewBag.AllowedFunctions as List<string>;
 
                         foreach (var function in functions)
                         {
-                            if (!allowedFunctions.Contains(function.Function.FunctionCode))
+                            if (!allowedFunctions.Contains(function.FunctionCode))
                             {
                                 filterContext.Result = new RedirectResult("/Unauthorized");
                                 break; 
