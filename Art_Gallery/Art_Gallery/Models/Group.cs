@@ -22,8 +22,8 @@ namespace Art_Gallery.Models
         }
     
         public int GroupId { get; set; }
-        public Nullable<int> EmployeeId { get; set; }
         public Nullable<int> FunctionId { get; set; }
+        public string EmployeeEmail { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }

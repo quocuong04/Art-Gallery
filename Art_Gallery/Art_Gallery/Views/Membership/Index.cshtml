@@ -27,14 +27,18 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        <div class="contact-form">
-                            <div class="mb-3">
-                                <textarea placeholder="Enter your request" name="RequestMessage"></textarea>
+                        @if(ViewBag.isSendRequest  == false)
+                        {
+                            <div class="contact-form">
+                                <div class="mb-3">
+                                    <textarea placeholder="Enter your request" name="RequestMessage"></textarea>
+                                </div>
+                                <div class="mb-3 d-flex justify-content-center">
+                                    <input type="submit" value="Register">
+                                </div>
                             </div>
-                            <div class="mb-3 d-flex justify-content-center">
-                                <input type="submit" value="Register">
-                            </div>
-                        </div>
+                        }
+                        
                     </div>
                 </div>
             </div>

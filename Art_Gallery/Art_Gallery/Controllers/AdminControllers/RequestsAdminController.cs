@@ -60,6 +60,12 @@ namespace Art_Gallery.Controllers.AdminControllers
                         employee.Age = customer.Age;
 
                         db.Employees.Add(employee);
+
+                        Group group = new Group();
+                        group.EmployeeEmail = customer.Email;
+                        group.FunctionId = 1;
+                        db.Groups.Add(group);
+
                         await db.SaveChangesAsync();
                     }
                 }

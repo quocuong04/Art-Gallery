@@ -59,7 +59,7 @@ namespace Art_Gallery.Controllers.AdminControllers
                 return HttpNotFound();
             }
             var functionIds = await (from rel in db.Groups
-                                     where rel.EmployeeId == id
+                                     where rel.EmployeeEmail == employee.Email
                                      select rel.FunctionId).ToArrayAsync();
 
             var model = new EmployeeEditModel
@@ -84,14 +84,14 @@ namespace Art_Gallery.Controllers.AdminControllers
                 await db.SaveChangesAsync();
                 if (selectedIds != null && selectedIds.Length > 0)
                 {
-                    var existingRel = db.Groups.Where(rel => rel.EmployeeId == employee.EmployeeId);
+                    var existingRel = db.Groups.Where(rel => rel.EmployeeEmail == employee.Email);
                     db.Groups.RemoveRange(existingRel);
 
                     foreach (var functionId in selectedIds)
                     {
                         var relArtworkAuction = new Group
                         {
-                            EmployeeId = employee.EmployeeId,
+                            EmployeeEmail = employee.Email,
                             FunctionId = functionId
                         };
                         db.Groups.Add(relArtworkAuction);
