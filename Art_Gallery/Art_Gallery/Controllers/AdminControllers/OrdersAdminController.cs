@@ -18,7 +18,7 @@ namespace Art_Gallery.Controllers.AdminControllers
         // GET: OrderAdmin
         public async Task<ActionResult> Index()
         {
-            var purcher_order = db.Purcher_order.Include(p => p.Customer);
+            var purcher_order = db.Purcher_order.Include(p => p.Customer).Include(p=>p.Artwork).Include(p => p.Auction).Include(p => p.Status);
             return View(await purcher_order.ToListAsync());
         }
 
@@ -27,6 +27,9 @@ namespace Art_Gallery.Controllers.AdminControllers
         public ActionResult Create()
         {
             ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "Email");
+            ViewBag.ArtworkId = new SelectList(db.Artworks, "ArtworkId", "Name");
+            ViewBag.AuctionId = new SelectList(db.Auctions, "AuctionId", "AuctionName");
+            ViewBag.StatusCode = new SelectList(db.Status.Where(a => a.StatusCode == "A" || a.StatusCode == "P" || a.StatusCode == "I"), "StatusCode", "StatusName");
             return View();
         }
 
@@ -35,7 +38,7 @@ namespace Art_Gallery.Controllers.AdminControllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "TotalAmount,OrderDate,CustomerId,OrderId,ArtworkId")] Purcher_order purcher_order)
+        public async Task<ActionResult> Create([Bind(Include = "TotalAmount,OrderDate,CustomerId,OrderId,ArtworkId,AuctionId,StatusCode")] Purcher_order purcher_order)
         {
             if (ModelState.IsValid)
             {
@@ -45,6 +48,9 @@ namespace Art_Gallery.Controllers.AdminControllers
             }
 
             ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "Email", purcher_order.CustomerId);
+            ViewBag.ArtworkId = new SelectList(db.Artworks, "ArtworkId", "Name", purcher_order.ArtworkId);
+            ViewBag.AuctionId = new SelectList(db.Auctions, "AuctionId", "AuctionName", purcher_order.AuctionId);
+            ViewBag.StatusCode = new SelectList(db.Status.Where(a => a.StatusCode == "A" || a.StatusCode == "P" || a.StatusCode == "I"), "StatusCode", "StatusName", purcher_order.StatusCode);
             return View(purcher_order);
         }
 
@@ -61,6 +67,7 @@ namespace Art_Gallery.Controllers.AdminControllers
                 return HttpNotFound();
             }
             ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "Email", purcher_order.CustomerId);
+            ViewBag.StatusCode = new SelectList(db.Status.Where(a=>a.StatusCode == "A" || a.StatusCode == "P" || a.StatusCode =="I"), "StatusCode", "StatusName", purcher_order.StatusCode);
             return View(purcher_order);
         }
 

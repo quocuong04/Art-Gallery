@@ -39,8 +39,12 @@
                 <div class="container">
                     <div class="form">
                         <h3>SEARCH ARTWORK</h3>
-                        <input type="search" placeholder="What are you looking for ?">
-                        <input type="submit" value="SEARCH">
+                        @using (Html.BeginForm("Index", "Search", FormMethod.Get))
+                        {
+                            <input type="search" name="searchTerm" placeholder="What are you looking for ?">
+                            <input type="submit" value="SEARCH">
+                        }
+
                     </div>
                     <!-- end form -->
                     <!-- end search-artwork -->
@@ -53,11 +57,11 @@
                     <!-- end custom-menu -->
                     <div class="site-menu">
                         <ul>
-                            <li><a href="auctions.html">Auctions</a></li>
-                            <li><a href="artwork.html">Artwork</a></li>
-                            <li><a href="news.html">News</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="@Url.Action("", "Auctions")">Auctions</a></li>
+                            <li><a href="@Url.Action("", "Artwork")">Artwork</a></li>
+                            <li><a href="@Url.Action("", "News")">News</a></li>
+                            <li><a href="@Url.Action("", "About")">About</a></li>
+                            <li><a href="@Url.Action("", "Contact")">Contact</a></li>
                         </ul>
                     </div>
                     <!-- end site-menu -->
@@ -91,7 +95,17 @@
 
                     @if (!string.IsNullOrEmpty(userName))
                     {
-                        <p class="login-text mb-0">@fullName</p>
+                        <div class="d-flex align-items-center">
+                            <p class="login-text mb-0">@fullName</p>
+                            <div class="dropdown dropstart arrow-user">
+                                <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                </div>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="@Url.Action("", "Personal")">Personal page</a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("Logout", "Account")">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     }
                     else
                     {

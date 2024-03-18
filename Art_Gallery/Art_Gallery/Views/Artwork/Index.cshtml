@@ -1,4 +1,4 @@
-﻿@model List<Art_Gallery.Controllers.ArtWorkListModel>
+﻿@model List<Art_Gallery.Models.Artwork>
 @{
     ViewBag.Title = "Artwork Page";
 }
@@ -34,7 +34,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="collection-box" data-scroll data-scroll-speed="1.5">
                             <figure><img src="~/Content/uploads/@item.Image" alt="Image"></figure>
-                            <p class="category-label">@item.CategoryName</p>
+                            <p class="category-label">@item.Category.CategoryName</p>
 
                             <h4><a href="@Url.Action("", "ArtworkDetail", new {id=item.ArtworkId})">@item.Name</a></h4>
                             <p>

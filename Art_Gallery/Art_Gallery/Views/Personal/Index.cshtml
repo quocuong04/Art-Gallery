@@ -1,0 +1,125 @@
+﻿@model Art_Gallery.Controllers.PersonalModel
+
+@{
+    ViewBag.Title = "Personal Page";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .text-box {
+        margin-top: 15px;
+        width: 100% !important;
+    }
+</style>
+<main>
+    <section class="content-section" data-background="#fffbf7">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="section-title text-center">
+                        <figure><img src="~/Content/webapp/images/title-shape.png" alt="Image"></figure>
+                        <h2>Your information</h2>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserInfor.CustomerName, "Your Name", htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.UserInfor.CustomerName, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "ReadOnly" } })
+                        @Html.ValidationMessageFor(model => model.UserInfor.CustomerName, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserInfor.Email, "Your Email", htmlAttributes: new { @class = "control-label mt-3" })
+                        @Html.EditorFor(model => model.UserInfor.Email, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "ReadOnly" } })
+                        @Html.ValidationMessageFor(model => model.UserInfor.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserInfor.ReditCard, "Your ReditCard", htmlAttributes: new { @class = "control-label mt-3" })
+                        @Html.EditorFor(model => model.UserInfor.ReditCard, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "ReadOnly" } })
+                        @Html.ValidationMessageFor(model => model.UserInfor.ReditCard, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserInfor.Address, "Your Address", htmlAttributes: new { @class = "control-label mt-3" })
+                        @Html.EditorFor(model => model.UserInfor.Address, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "ReadOnly" } })
+                        @Html.ValidationMessageFor(model => model.UserInfor.Address, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserInfor.PhoneNumber, "Your PhoneNumber", htmlAttributes: new { @class = "control-label mt-3" })
+                        @Html.EditorFor(model => model.UserInfor.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "ReadOnly" } })
+                        @Html.ValidationMessageFor(model => model.UserInfor.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserInfor.Age, "Your Age", htmlAttributes: new { @class = "control-label mt-3" })
+                        @Html.EditorFor(model => model.UserInfor.Age, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "ReadOnly" } })
+                        @Html.ValidationMessageFor(model => model.UserInfor.Age, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserInfor.Sex, "Your Sex", htmlAttributes: new { @class = "control-label mt-3" })
+                        @Html.EditorFor(model => model.UserInfor.Sex, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "ReadOnly" } })
+                        @Html.ValidationMessageFor(model => model.UserInfor.Sex, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserInfor.Password, "Your Password", htmlAttributes: new { @class = "control-label mt-3" })
+                        @Html.EditorFor(model => model.UserInfor.Password, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "ReadOnly" } })
+                        @Html.ValidationMessageFor(model => model.UserInfor.Password, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.HiddenFor(model => model.UserInfor.CustomerId)
+
+                    <div class="d-flex justify-content-center align-items-center mt-5 mb-3">
+                        <a href="@Url.Action("Edit", "Personal")" class="custom-button">Modify</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <section class="content-section" data-background="#fffbf7">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title text-center">
+                        <figure><img src="~/Content/webapp/images/title-shape.png" alt="Image"></figure>
+                        <h2>My Favorit</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                @if (Model.ArtworkFavorit.Count() > 0)
+                {
+                    foreach (var item in Model.ArtworkFavorit)
+                    {
+                        <div class="col-lg-4 col-md-6">
+                            <div class="collection-box" data-scroll data-scroll-speed="1.5">
+                                <figure><img src="~/Content/uploads/@item.Image" alt="Image"></figure>
+                                <p class="category-label">@item.Category.CategoryName</p>
+
+                                <h4><a href="@Url.Action("", "ArtworkDetail", new {id=item.ArtworkId})">@item.Name</a></h4>
+                                <p>
+                                    @item.Descriptions
+                                </p>
+                                <p class="price">$@item.Price</p>
+                                <p class="price">Status: @item.Status</p>
+                                @using (Html.BeginForm("RemoveFavorite", "Personal"))
+                                {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("id", item.ArtworkId)
+                                <button type="submit" class="btn btn-danger ml-1">Remove</button>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No results found.</p>
+                }
+            </div>
+        </div>
+    </section>
+</main>

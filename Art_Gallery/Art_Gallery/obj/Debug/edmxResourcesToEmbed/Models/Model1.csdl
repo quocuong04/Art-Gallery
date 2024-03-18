@@ -35,9 +35,11 @@
     <NavigationProperty Name="Employee" Relationship="Self.FK__Artwork__Employe__5812160E" FromRole="Artwork" ToRole="Employee" />
     <NavigationProperty Name="Purcher_order" Relationship="Self.FK__Artwork__OrderId__5BE2A6F2" FromRole="Artwork" ToRole="Purcher_order" />
     <NavigationProperty Name="Rel_Artwork_Auctions" Relationship="Self.FK__Rel_Artwo__Artwo__5FB337D6" FromRole="Artwork" ToRole="Rel_Artwork_Auctions" />
+    <NavigationProperty Name="Rel_Customer_Artwork" Relationship="Self.FK__Rel_Custo__Artwo__45BE5BA9" FromRole="Artwork" ToRole="Rel_Customer_Artwork" />
     <NavigationProperty Name="Requests" Relationship="Self.FK__Request__Artwork__0C85DE4D" FromRole="Artwork" ToRole="Request" />
     <NavigationProperty Name="Reviews" Relationship="Self.FK__Review__ArtworkI__68487DD7" FromRole="Artwork" ToRole="Review" />
     <NavigationProperty Name="Status1" Relationship="Self.FK_Artwork_Status" FromRole="Artwork" ToRole="Status" />
+    <NavigationProperty Name="Purcher_order1" Relationship="Self.FK_Purcher_Order_Artwork" FromRole="Artwork" ToRole="Purcher_order" />
   </EntityType>
   <EntityType Name="Auction">
     <Key>
@@ -51,6 +53,7 @@
     <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Rel_Artwork_Auctions" Relationship="Self.FK__Rel_Artwo__Aucti__60A75C0F" FromRole="Auctions" ToRole="Rel_Artwork_Auctions" />
     <NavigationProperty Name="Status1" Relationship="Self.FK_Auctions_Status" FromRole="Auctions" ToRole="Status" />
+    <NavigationProperty Name="Purcher_order" Relationship="Self.FK_Purcher_Order_Autions" FromRole="Auctions" ToRole="Purcher_order" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -90,6 +93,7 @@
     <NavigationProperty Name="Artworks" Relationship="Self.FK__Artwork__Custome__59063A47" FromRole="Customer" ToRole="Artwork" />
     <NavigationProperty Name="Contacts" Relationship="Self.FK__Contact__CreateU__76969D2E" FromRole="Customer" ToRole="Contact" />
     <NavigationProperty Name="Purcher_order" Relationship="Self.FK__Purcher_o__Custo__5EBF139D" FromRole="Customer" ToRole="Purcher_order" />
+    <NavigationProperty Name="Rel_Customer_Artwork" Relationship="Self.FK__Rel_Custo__Custo__44CA3770" FromRole="Customer" ToRole="Rel_Customer_Artwork" />
     <NavigationProperty Name="Requests" Relationship="Self.FK__Request__StatusC__0A9D95DB" FromRole="Customer" ToRole="Request" />
     <NavigationProperty Name="Reviews" Relationship="Self.FK__Review__Customer__6754599E" FromRole="Customer" ToRole="Review" />
   </EntityType>
@@ -154,14 +158,19 @@
     <Key>
       <PropertyRef Name="OrderId" />
     </Key>
-    <Property Name="TotalAmount" Type="Int32" />
+    <Property Name="TotalAmount" Type="Double" />
     <Property Name="OrderDate" Type="DateTime" Precision="3" />
     <Property Name="CustomerId" Type="Int32" />
     <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ArtworkId" Type="Int32" />
+    <Property Name="StatusCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AuctionId" Type="Int32" />
     <NavigationProperty Name="Artworks" Relationship="Self.FK__Artwork__OrderId__5BE2A6F2" FromRole="Purcher_order" ToRole="Artwork" />
+    <NavigationProperty Name="Artwork" Relationship="Self.FK_Purcher_Order_Artwork" FromRole="Purcher_order" ToRole="Artwork" />
+    <NavigationProperty Name="Auction" Relationship="Self.FK_Purcher_Order_Autions" FromRole="Purcher_order" ToRole="Auctions" />
     <NavigationProperty Name="Customer" Relationship="Self.FK__Purcher_o__Custo__5EBF139D" FromRole="Purcher_order" ToRole="Customer" />
     <NavigationProperty Name="Payment_gateways" Relationship="Self.FK__Payment_g__Order__5DCAEF64" FromRole="Purcher_order" ToRole="Payment_gateways" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Purcher_Order_Status" FromRole="Purcher_order" ToRole="Status" />
   </EntityType>
   <EntityType Name="Rel_Artwork_Auctions">
     <Key>
@@ -173,6 +182,16 @@
     <Property Name="ArtworkAuctionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Artwork" Relationship="Self.FK__Rel_Artwo__Artwo__5FB337D6" FromRole="Rel_Artwork_Auctions" ToRole="Artwork" />
     <NavigationProperty Name="Auction" Relationship="Self.FK__Rel_Artwo__Aucti__60A75C0F" FromRole="Rel_Artwork_Auctions" ToRole="Auctions" />
+  </EntityType>
+  <EntityType Name="Rel_Customer_Artwork">
+    <Key>
+      <PropertyRef Name="CustomerArtworkId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" />
+    <Property Name="ArtworkId" Type="Int32" />
+    <Property Name="CustomerArtworkId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Artwork" Relationship="Self.FK__Rel_Custo__Artwo__45BE5BA9" FromRole="Rel_Customer_Artwork" ToRole="Artwork" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Rel_Custo__Custo__44CA3770" FromRole="Rel_Customer_Artwork" ToRole="Customer" />
   </EntityType>
   <EntityType Name="Request">
     <Key>
@@ -221,7 +240,18 @@
     <Property Name="StatusName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Artworks" Relationship="Self.FK_Artwork_Status" FromRole="Status" ToRole="Artwork" />
     <NavigationProperty Name="Auctions" Relationship="Self.FK_Auctions_Status" FromRole="Status" ToRole="Auctions" />
+    <NavigationProperty Name="Purcher_order" Relationship="Self.FK_Purcher_Order_Status" FromRole="Status" ToRole="Purcher_order" />
     <NavigationProperty Name="Requests" Relationship="Self.FK__Request__StatusC__0B91BA14" FromRole="Status" ToRole="Request" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <Association Name="FK__Artwork__ArtistI__5AEE82B9">
     <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
@@ -295,6 +325,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Rel_Custo__Artwo__45BE5BA9">
+    <End Role="Artwork" Type="Self.Artwork" Multiplicity="0..1" />
+    <End Role="Rel_Customer_Artwork" Type="Self.Rel_Customer_Artwork" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artwork">
+        <PropertyRef Name="ArtworkId" />
+      </Principal>
+      <Dependent Role="Rel_Customer_Artwork">
+        <PropertyRef Name="ArtworkId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Request__Artwork__0C85DE4D">
     <End Role="Artwork" Type="Self.Artwork" Multiplicity="0..1" />
     <End Role="Request" Type="Self.Request" Multiplicity="*" />
@@ -331,6 +373,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Purcher_Order_Artwork">
+    <End Role="Artwork" Type="Self.Artwork" Multiplicity="0..1" />
+    <End Role="Purcher_order" Type="Self.Purcher_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artwork">
+        <PropertyRef Name="ArtworkId" />
+      </Principal>
+      <Dependent Role="Purcher_order">
+        <PropertyRef Name="ArtworkId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Rel_Artwo__Aucti__60A75C0F">
     <End Role="Auctions" Type="Self.Auction" Multiplicity="1" />
     <End Role="Rel_Artwork_Auctions" Type="Self.Rel_Artwork_Auctions" Multiplicity="*" />
@@ -352,6 +406,18 @@
       </Principal>
       <Dependent Role="Auctions">
         <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purcher_Order_Autions">
+    <End Role="Auctions" Type="Self.Auction" Multiplicity="0..1" />
+    <End Role="Purcher_order" Type="Self.Purcher_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Auctions">
+        <PropertyRef Name="AuctionId" />
+      </Principal>
+      <Dependent Role="Purcher_order">
+        <PropertyRef Name="AuctionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -391,6 +457,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Rel_Custo__Custo__44CA3770">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Rel_Customer_Artwork" Type="Self.Rel_Customer_Artwork" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Rel_Customer_Artwork">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Request__StatusC__0A9D95DB">
     <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
     <End Role="Request" Type="Self.Request" Multiplicity="*" />
@@ -424,6 +502,18 @@
       </Principal>
       <Dependent Role="Payment_gateways">
         <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purcher_Order_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Purcher_order" Type="Self.Purcher_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusCode" />
+      </Principal>
+      <Dependent Role="Purcher_order">
+        <PropertyRef Name="StatusCode" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -465,10 +555,12 @@
     <EntitySet Name="Payment_gateways" EntityType="Self.Payment_gateways" />
     <EntitySet Name="Purcher_order" EntityType="Self.Purcher_order" />
     <EntitySet Name="Rel_Artwork_Auctions" EntityType="Self.Rel_Artwork_Auctions" />
+    <EntitySet Name="Rel_Customer_Artwork" EntityType="Self.Rel_Customer_Artwork" />
     <EntitySet Name="Requests" EntityType="Self.Request" />
     <EntitySet Name="Reviews" EntityType="Self.Review" />
     <EntitySet Name="Shippings" EntityType="Self.Shipping" />
     <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <AssociationSet Name="FK__Artwork__ArtistI__5AEE82B9" Association="Self.FK__Artwork__ArtistI__5AEE82B9">
       <End Role="Artist" EntitySet="Artists" />
       <End Role="Artwork" EntitySet="Artworks" />
@@ -493,6 +585,10 @@
       <End Role="Artwork" EntitySet="Artworks" />
       <End Role="Rel_Artwork_Auctions" EntitySet="Rel_Artwork_Auctions" />
     </AssociationSet>
+    <AssociationSet Name="FK__Rel_Custo__Artwo__45BE5BA9" Association="Self.FK__Rel_Custo__Artwo__45BE5BA9">
+      <End Role="Artwork" EntitySet="Artworks" />
+      <End Role="Rel_Customer_Artwork" EntitySet="Rel_Customer_Artwork" />
+    </AssociationSet>
     <AssociationSet Name="FK__Request__Artwork__0C85DE4D" Association="Self.FK__Request__Artwork__0C85DE4D">
       <End Role="Artwork" EntitySet="Artworks" />
       <End Role="Request" EntitySet="Requests" />
@@ -505,6 +601,10 @@
       <End Role="Status" EntitySet="Status" />
       <End Role="Artwork" EntitySet="Artworks" />
     </AssociationSet>
+    <AssociationSet Name="FK_Purcher_Order_Artwork" Association="Self.FK_Purcher_Order_Artwork">
+      <End Role="Artwork" EntitySet="Artworks" />
+      <End Role="Purcher_order" EntitySet="Purcher_order" />
+    </AssociationSet>
     <AssociationSet Name="FK__Rel_Artwo__Aucti__60A75C0F" Association="Self.FK__Rel_Artwo__Aucti__60A75C0F">
       <End Role="Auctions" EntitySet="Auctions" />
       <End Role="Rel_Artwork_Auctions" EntitySet="Rel_Artwork_Auctions" />
@@ -512,6 +612,10 @@
     <AssociationSet Name="FK_Auctions_Status" Association="Self.FK_Auctions_Status">
       <End Role="Status" EntitySet="Status" />
       <End Role="Auctions" EntitySet="Auctions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purcher_Order_Autions" Association="Self.FK_Purcher_Order_Autions">
+      <End Role="Auctions" EntitySet="Auctions" />
+      <End Role="Purcher_order" EntitySet="Purcher_order" />
     </AssociationSet>
     <AssociationSet Name="FK__Contact__CreateU__76969D2E" Association="Self.FK__Contact__CreateU__76969D2E">
       <End Role="Customer" EntitySet="Customers" />
@@ -525,6 +629,10 @@
       <End Role="Customer" EntitySet="Customers" />
       <End Role="Purcher_order" EntitySet="Purcher_order" />
     </AssociationSet>
+    <AssociationSet Name="FK__Rel_Custo__Custo__44CA3770" Association="Self.FK__Rel_Custo__Custo__44CA3770">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Rel_Customer_Artwork" EntitySet="Rel_Customer_Artwork" />
+    </AssociationSet>
     <AssociationSet Name="FK__Request__StatusC__0A9D95DB" Association="Self.FK__Request__StatusC__0A9D95DB">
       <End Role="Customer" EntitySet="Customers" />
       <End Role="Request" EntitySet="Requests" />
@@ -536,6 +644,10 @@
     <AssociationSet Name="FK__Payment_g__Order__5DCAEF64" Association="Self.FK__Payment_g__Order__5DCAEF64">
       <End Role="Purcher_order" EntitySet="Purcher_order" />
       <End Role="Payment_gateways" EntitySet="Payment_gateways" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purcher_Order_Status" Association="Self.FK_Purcher_Order_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Purcher_order" EntitySet="Purcher_order" />
     </AssociationSet>
     <AssociationSet Name="FK__Request__StatusC__0B91BA14" Association="Self.FK__Request__StatusC__0B91BA14">
       <End Role="Status" EntitySet="Status" />

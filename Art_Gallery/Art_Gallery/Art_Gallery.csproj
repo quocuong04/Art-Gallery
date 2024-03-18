@@ -156,7 +156,10 @@
     <Compile Include="Controllers\MembershipController.cs" />
     <Compile Include="Controllers\NewDetailController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\OrderCustomerController.cs" />
+    <Compile Include="Controllers\PersonalController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,6 +217,9 @@
     <Compile Include="Models\Rel_Artwork_Auctions.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Rel_Customer_Artwork.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Request.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -224,6 +230,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Status.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -330,14 +339,10 @@
     <Content Include="Views\CategoriesAdmin\Delete.cshtml" />
     <Content Include="Views\CategoriesAdmin\Edit.cshtml" />
     <Content Include="Views\CategoriesAdmin\Index.cshtml" />
-    <Content Include="Views\ReviewsAdmin\Create.cshtml" />
     <Content Include="Views\ReviewsAdmin\Delete.cshtml" />
-    <Content Include="Views\ReviewsAdmin\Details.cshtml" />
-    <Content Include="Views\ReviewsAdmin\Edit.cshtml" />
     <Content Include="Views\ReviewsAdmin\Index.cshtml" />
     <Content Include="Views\OrdersAdmin\Create.cshtml" />
     <Content Include="Views\OrdersAdmin\Delete.cshtml" />
-    <Content Include="Views\OrdersAdmin\Details.cshtml" />
     <Content Include="Views\OrdersAdmin\Edit.cshtml" />
     <Content Include="Views\OrdersAdmin\Index.cshtml" />
     <Content Include="Views\PaymentsAdmin\Create.cshtml" />
@@ -359,6 +364,10 @@
     <Content Include="Views\RequestsAdmin\Delete.cshtml" />
     <Content Include="Views\RequestsAdmin\Index.cshtml" />
     <Content Include="Views\RequestsAdmin\Detail.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\OrderCustomer\Index.cshtml" />
+    <Content Include="Views\Personal\Edit.cshtml" />
+    <Content Include="Views\Personal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

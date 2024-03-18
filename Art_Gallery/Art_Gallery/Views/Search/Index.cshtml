@@ -1,0 +1,47 @@
+﻿
+@model IEnumerable<Art_Gallery.Models.Artwork>
+@{
+    ViewBag.Title = "Search Page";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main>
+    <header class="page-header" data-background="~/Content/webapp/images/page-header.jpg">
+        <div class="inner">
+            <svg width="580" height="400" class="svg-morph">
+                <path id="svg_morph" d="m261,30.4375c0,0 114,6 151,75c37,69 37,174 6,206.5625c-31,32.5625 -138,11.4375 -196,-19.5625c-58,-31 -86,-62 -90,-134.4375c12,-136.5625 92,-126.5625 129,-127.5625z" />
+            </svg>
+            <h1>Search Results</h1>
+
+        </div>
+    </header>
+    <section class="content-section" data-background="#fffbf7">
+        <div class="container">
+            <div class="row justify-content-center">
+                @if (Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 col-md-6">
+                            <div class="collection-box" data-scroll data-scroll-speed="1.5">
+                                <figure><img src="~/Content/uploads/@item.Image" alt="Image"></figure>
+                                <p class="category-label">@item.Category.CategoryName</p>
+
+                                <h4><a href="@Url.Action("", "ArtworkDetail", new {id=item.ArtworkId})">@item.Name</a></h4>
+                                <p>
+                                    @item.Descriptions
+                                </p>
+                                <p class="price">$@item.Price</p>
+                                <p class="price">Status: @item.Status</p>
+                            </div>
+                        </div>
+                    }
+                } else
+                    {
+                    <p>No results found.</p>
+                    }
+            </div>
+        </div>
+    </section>
+</main>

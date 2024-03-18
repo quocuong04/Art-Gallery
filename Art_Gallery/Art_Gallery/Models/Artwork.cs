@@ -18,8 +18,10 @@ namespace Art_Gallery.Models
         public Artwork()
         {
             this.Rel_Artwork_Auctions = new HashSet<Rel_Artwork_Auctions>();
+            this.Rel_Customer_Artwork = new HashSet<Rel_Customer_Artwork>();
             this.Requests = new HashSet<Request>();
             this.Reviews = new HashSet<Review>();
+            this.Purcher_order1 = new HashSet<Purcher_order>();
         }
     
         public Nullable<int> CategoryId { get; set; }
@@ -46,9 +48,13 @@ namespace Art_Gallery.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rel_Artwork_Auctions> Rel_Artwork_Auctions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rel_Customer_Artwork> Rel_Customer_Artwork { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Request> Requests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual Status Status1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Purcher_order> Purcher_order1 { get; set; }
     }
 }

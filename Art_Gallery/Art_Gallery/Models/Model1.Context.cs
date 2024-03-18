@@ -38,9 +38,11 @@ namespace Art_Gallery.Models
         public virtual DbSet<Payment_gateways> Payment_gateways { get; set; }
         public virtual DbSet<Purcher_order> Purcher_order { get; set; }
         public virtual DbSet<Rel_Artwork_Auctions> Rel_Artwork_Auctions { get; set; }
+        public virtual DbSet<Rel_Customer_Artwork> Rel_Customer_Artwork { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Shipping> Shippings { get; set; }
         public virtual DbSet<Status> Status { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

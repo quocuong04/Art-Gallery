@@ -21,10 +21,14 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Artwork.Status)
+                                @Html.DisplayNameFor(model => model.Customer.CustomerName)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Customer.Email)
+                                Artwork Name
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Reviews)
                             </th>
                             <th></th>
                         </tr>
@@ -34,14 +38,16 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Artwork.Status)
+                                    @Html.DisplayFor(modelItem => item.Customer.CustomerName)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Customer.Email)
+                                    @Html.DisplayFor(modelItem => item.Artwork.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Reviews)
                                 </td>
                                 <td>
                                     <a href="@Url.Action("Delete", "ReviewsAdmin", new { id = item.ReviewId })"><i class="fas fa-trash-alt"></i></a>
-                                    <a href="@Url.Action("Edit", "ReviewsAdmin", new { id = item.ReviewId })"><i class="fas fa-edit"></i></a>
                                 </td>
                             </tr>
                         }
