@@ -1,3 +1,4 @@
+@model Art_Gallery.Controllers.RegisterController.RegisterViewModel
 @{
     Layout = null;
 }
@@ -35,6 +36,7 @@
                             <span class="text-danger" data-valmsg-for="email"></span>
                         </div>
                     </div>
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
                     <div class="register__box">
                         <i class="ri-user-3-line register__icon"></i>
                         <div class="register__box-input">

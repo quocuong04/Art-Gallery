@@ -13,7 +13,8 @@ namespace Art_Gallery.Controllers
         private Art_GalleryEntities db = new Art_GalleryEntities();
         public ActionResult Index()
         {
-            return View();
+            var model = new RegisterViewModel(); 
+            return View(model);
         }
         [HttpPost]
         public ActionResult Create(RegisterViewModel model)

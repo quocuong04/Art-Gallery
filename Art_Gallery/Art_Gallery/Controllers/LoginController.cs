@@ -1,6 +1,7 @@
 ﻿using Art_Gallery.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,26 +17,30 @@ namespace Art_Gallery.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            return View();
+            var model = new LoginViewModel(); // Khởi tạo model
+            return View(model);
         }
+
         [HttpPost]
-        public ActionResult Login(string email, string password)
+        public ActionResult Login(LoginViewModel model)
         {
-            var user = db.Customers.FirstOrDefault(u => u.Email == email);
+            var user = db.Customers.FirstOrDefault(u => u.Email == model.Email);
             if (user == null)
             {
-                ModelState.AddModelError("", "Email not exist");
-                return View();
-            } else
+                ModelState.AddModelError("Email", "Email does not exist");
+                return View("Index", model);
+            }
+            else
             {
-                if(user.Password == password)
+                if (user.Password == model.Password)
                 {
                     Session["User"] = user.Email;
                     return RedirectToAction("Index", "Home");
-                } else
+                }
+                else
                 {
-                    ModelState.AddModelError("", "Password is wrong");
-                    return View();
+                    ModelState.AddModelError("Password", "Incorrect password");
+                    return View("Index", model);
                 }
             }
         }
@@ -135,5 +140,19 @@ namespace Art_Gallery.Controllers
                     || controllerName.Contains("PersonalController");
         }
     }
+    public class LoginViewModel
+    {
+        public string Email { get; set; }
+        public string Password { get; set; }
+        [Required(ErrorMessage = "Please enter email")]
+        [EmailAddress(ErrorMessage = "Email not invalid")]
+        public string email { get; set; }
 
+        [Required(ErrorMessage = "Please enter fullname.")]
+        public string fullname { get; set; }
+
+        [Required(ErrorMessage = "Please enter password")]
+        [DataType(DataType.Password)]
+        public string password { get; set; }
+    }
 }
