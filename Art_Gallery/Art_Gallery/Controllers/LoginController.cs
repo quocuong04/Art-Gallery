@@ -144,15 +144,5 @@ namespace Art_Gallery.Controllers
     {
         public string Email { get; set; }
         public string Password { get; set; }
-        [Required(ErrorMessage = "Please enter email")]
-        [EmailAddress(ErrorMessage = "Email not invalid")]
-        public string email { get; set; }
-
-        [Required(ErrorMessage = "Please enter fullname.")]
-        public string fullname { get; set; }
-
-        [Required(ErrorMessage = "Please enter password")]
-        [DataType(DataType.Password)]
-        public string password { get; set; }
     }
 }
