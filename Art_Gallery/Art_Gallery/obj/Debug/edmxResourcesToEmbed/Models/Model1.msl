@@ -15,7 +15,6 @@
       <EntityTypeMapping TypeName="Art_GalleryModel.Artwork">
         <MappingFragment StoreEntitySet="Artwork">
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="CountAuction" ColumnName="CountAuction" />
           <ScalarProperty Name="AuctionPrice" ColumnName="AuctionPrice" />
           <ScalarProperty Name="Discount" ColumnName="Discount" />
@@ -29,6 +28,7 @@
           <ScalarProperty Name="ArtworkId" ColumnName="ArtworkId" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -40,7 +40,7 @@
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="AuctionName" ColumnName="AuctionName" />
           <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -56,11 +56,11 @@
       <EntityTypeMapping TypeName="Art_GalleryModel.Contact">
         <MappingFragment StoreEntitySet="Contact">
           <ScalarProperty Name="ContactId" ColumnName="ContactId" />
-          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="Message" ColumnName="Message" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -90,6 +90,7 @@
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="Age" ColumnName="Age" />
           <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -106,8 +107,8 @@
       <EntityTypeMapping TypeName="Art_GalleryModel.Group">
         <MappingFragment StoreEntitySet="Groups">
           <ScalarProperty Name="GroupId" ColumnName="GroupId" />
-          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
           <ScalarProperty Name="FunctionId" ColumnName="FunctionId" />
+          <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -129,8 +130,11 @@
           <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
           <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
-          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
           <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -196,7 +200,10 @@
           <ScalarProperty Name="ActualDeliveryDate" ColumnName="ActualDeliveryDate" />
           <ScalarProperty Name="EstimateDeliveryDate" ColumnName="EstimateDeliveryDate" />
           <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
           <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+          <ScalarProperty Name="ShipperName" ColumnName="ShipperName" />
+          <ScalarProperty Name="PhoneNumberShipper" ColumnName="PhoneNumberShipper" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

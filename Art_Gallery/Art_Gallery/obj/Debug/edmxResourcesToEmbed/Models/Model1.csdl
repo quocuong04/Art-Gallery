@@ -15,7 +15,6 @@
       <PropertyRef Name="ArtworkId" />
     </Key>
     <Property Name="CategoryId" Type="Int32" />
-    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CountAuction" Type="Int32" />
     <Property Name="AuctionPrice" Type="Double" />
     <Property Name="Discount" Type="Double" />
@@ -29,6 +28,7 @@
     <Property Name="ArtworkId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StatusCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Artist" Relationship="Self.FK__Artwork__ArtistI__5AEE82B9" FromRole="Artwork" ToRole="Artist" />
     <NavigationProperty Name="Category" Relationship="Self.FK__Artwork__Categor__59FA5E80" FromRole="Artwork" ToRole="Category" />
     <NavigationProperty Name="Customer" Relationship="Self.FK__Artwork__Custome__59063A47" FromRole="Artwork" ToRole="Customer" />
@@ -38,7 +38,7 @@
     <NavigationProperty Name="Rel_Customer_Artwork" Relationship="Self.FK__Rel_Custo__Artwo__45BE5BA9" FromRole="Artwork" ToRole="Rel_Customer_Artwork" />
     <NavigationProperty Name="Requests" Relationship="Self.FK__Request__Artwork__0C85DE4D" FromRole="Artwork" ToRole="Request" />
     <NavigationProperty Name="Reviews" Relationship="Self.FK__Review__ArtworkI__68487DD7" FromRole="Artwork" ToRole="Review" />
-    <NavigationProperty Name="Status1" Relationship="Self.FK_Artwork_Status" FromRole="Artwork" ToRole="Status" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Artwork_Status" FromRole="Artwork" ToRole="Status" />
     <NavigationProperty Name="Purcher_order1" Relationship="Self.FK_Purcher_Order_Artwork" FromRole="Artwork" ToRole="Purcher_order" />
   </EntityType>
   <EntityType Name="Auction">
@@ -50,9 +50,9 @@
     <Property Name="StartDate" Type="DateTime" Precision="3" />
     <Property Name="AuctionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StatusCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Rel_Artwork_Auctions" Relationship="Self.FK__Rel_Artwo__Aucti__60A75C0F" FromRole="Auctions" ToRole="Rel_Artwork_Auctions" />
-    <NavigationProperty Name="Status1" Relationship="Self.FK_Auctions_Status" FromRole="Auctions" ToRole="Status" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Auctions_Status" FromRole="Auctions" ToRole="Status" />
     <NavigationProperty Name="Purcher_order" Relationship="Self.FK_Purcher_Order_Autions" FromRole="Auctions" ToRole="Purcher_order" />
   </EntityType>
   <EntityType Name="Category">
@@ -68,13 +68,11 @@
       <PropertyRef Name="ContactId" />
     </Key>
     <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CreateUser" Type="Int32" />
     <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="PhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="CreateDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Customer" Relationship="Self.FK__Contact__CreateU__76969D2E" FromRole="Contact" ToRole="Customer" />
-    <NavigationProperty Name="Employee" Relationship="Self.FK__Contact__CreateU__778AC167" FromRole="Contact" ToRole="Employee" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Customer">
     <Key>
@@ -91,11 +89,11 @@
     <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="FavoriteArtwork" Type="Int32" />
     <NavigationProperty Name="Artworks" Relationship="Self.FK__Artwork__Custome__59063A47" FromRole="Customer" ToRole="Artwork" />
-    <NavigationProperty Name="Contacts" Relationship="Self.FK__Contact__CreateU__76969D2E" FromRole="Customer" ToRole="Contact" />
     <NavigationProperty Name="Purcher_order" Relationship="Self.FK__Purcher_o__Custo__5EBF139D" FromRole="Customer" ToRole="Purcher_order" />
     <NavigationProperty Name="Rel_Customer_Artwork" Relationship="Self.FK__Rel_Custo__Custo__44CA3770" FromRole="Customer" ToRole="Rel_Customer_Artwork" />
     <NavigationProperty Name="Requests" Relationship="Self.FK__Request__StatusC__0A9D95DB" FromRole="Customer" ToRole="Request" />
     <NavigationProperty Name="Reviews" Relationship="Self.FK__Review__Customer__6754599E" FromRole="Customer" ToRole="Review" />
+    <NavigationProperty Name="Payment_gateways" Relationship="Self.FK_Payment_Customer" FromRole="Customer" ToRole="Payment_gateways" />
   </EntityType>
   <EntityType Name="Employee">
     <Key>
@@ -108,8 +106,8 @@
     <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="true" Unicode="false" />
     <Property Name="Age" Type="Int32" />
     <Property Name="Sex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="IsAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Artworks" Relationship="Self.FK__Artwork__Employe__5812160E" FromRole="Employee" ToRole="Artwork" />
-    <NavigationProperty Name="Contacts" Relationship="Self.FK__Contact__CreateU__778AC167" FromRole="Employee" ToRole="Contact" />
     <NavigationProperty Name="Groups" Relationship="Self.Rel_Employee_Group" FromRole="Employee" ToRole="Groups" />
   </EntityType>
   <EntityType Name="Function">
@@ -126,8 +124,8 @@
       <PropertyRef Name="GroupId" />
     </Key>
     <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="EmployeeId" Type="Int32" />
     <Property Name="FunctionId" Type="Int32" />
+    <Property Name="EmployeeEmail" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Employees" Relationship="Self.Rel_Employee_Group" FromRole="Groups" ToRole="Employee" />
     <NavigationProperty Name="Functions" Relationship="Self.Rel_Group_Function" FromRole="Groups" ToRole="Functions" />
   </EntityType>
@@ -149,10 +147,16 @@
     <Property Name="PaymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Amount" Type="Int32" />
     <Property Name="PaymentDate" Type="DateTime" Precision="3" />
-    <Property Name="EmployeeId" Type="Int32" />
     <Property Name="OrderId" Type="Int32" />
+    <Property Name="CustomerId" Type="Int32" />
+    <Property Name="StatusCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Payment_Customer" FromRole="Payment_gateways" ToRole="Customer" />
     <NavigationProperty Name="Purcher_order" Relationship="Self.FK__Payment_g__Order__5DCAEF64" FromRole="Payment_gateways" ToRole="Purcher_order" />
-    <NavigationProperty Name="Shippings" Relationship="Self.Rel_Shipping_Payment" FromRole="Payment_gateways" ToRole="Shipping" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Payment_Status" FromRole="Payment_gateways" ToRole="Status" />
+    <NavigationProperty Name="Shippings" Relationship="Self.FK_Shipping_Payment" FromRole="Payment_gateways" ToRole="Shipping" />
+    <NavigationProperty Name="Shippings1" Relationship="Self.Rel_Shipping_Payment" FromRole="Payment_gateways" ToRole="Shipping" />
   </EntityType>
   <EntityType Name="Purcher_order">
     <Key>
@@ -228,8 +232,13 @@
     <Property Name="ActualDeliveryDate" Type="DateTime" Precision="3" />
     <Property Name="EstimateDeliveryDate" Type="DateTime" Precision="3" />
     <Property Name="ShippingDate" Type="DateTime" Precision="3" />
+    <Property Name="StatusCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PaymentId" Type="Int32" />
-    <NavigationProperty Name="Payment_gateways" Relationship="Self.Rel_Shipping_Payment" FromRole="Shipping" ToRole="Payment_gateways" />
+    <Property Name="ShipperName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberShipper" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Payment_gateways" Relationship="Self.FK_Shipping_Payment" FromRole="Shipping" ToRole="Payment_gateways" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Shipping_Status" FromRole="Shipping" ToRole="Status" />
+    <NavigationProperty Name="Payment_gateways1" Relationship="Self.Rel_Shipping_Payment" FromRole="Shipping" ToRole="Payment_gateways" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
@@ -240,8 +249,10 @@
     <Property Name="StatusName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Artworks" Relationship="Self.FK_Artwork_Status" FromRole="Status" ToRole="Artwork" />
     <NavigationProperty Name="Auctions" Relationship="Self.FK_Auctions_Status" FromRole="Status" ToRole="Auctions" />
+    <NavigationProperty Name="Payment_gateways" Relationship="Self.FK_Payment_Status" FromRole="Status" ToRole="Payment_gateways" />
     <NavigationProperty Name="Purcher_order" Relationship="Self.FK_Purcher_Order_Status" FromRole="Status" ToRole="Purcher_order" />
     <NavigationProperty Name="Requests" Relationship="Self.FK__Request__StatusC__0B91BA14" FromRole="Status" ToRole="Request" />
+    <NavigationProperty Name="Shippings" Relationship="Self.FK_Shipping_Status" FromRole="Status" ToRole="Shipping" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -369,7 +380,7 @@
         <PropertyRef Name="StatusCode" />
       </Principal>
       <Dependent Role="Artwork">
-        <PropertyRef Name="Status" />
+        <PropertyRef Name="StatusCode" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -405,7 +416,7 @@
         <PropertyRef Name="StatusCode" />
       </Principal>
       <Dependent Role="Auctions">
-        <PropertyRef Name="Status" />
+        <PropertyRef Name="StatusCode" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -418,30 +429,6 @@
       </Principal>
       <Dependent Role="Purcher_order">
         <PropertyRef Name="AuctionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Contact__CreateU__76969D2E">
-    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
-    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Customer">
-        <PropertyRef Name="CustomerId" />
-      </Principal>
-      <Dependent Role="Contact">
-        <PropertyRef Name="CreateUser" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Contact__CreateU__778AC167">
-    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Employee">
-        <PropertyRef Name="EmployeeId" />
-      </Principal>
-      <Dependent Role="Contact">
-        <PropertyRef Name="CreateUser" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -493,6 +480,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Payment_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Payment_gateways" Type="Self.Payment_gateways" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Payment_gateways">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Payment_g__Order__5DCAEF64">
     <End Role="Purcher_order" Type="Self.Purcher_order" Multiplicity="0..1" />
     <End Role="Payment_gateways" Type="Self.Payment_gateways" Multiplicity="*" />
@@ -502,6 +501,30 @@
       </Principal>
       <Dependent Role="Payment_gateways">
         <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Payment_gateways" Type="Self.Payment_gateways" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusCode" />
+      </Principal>
+      <Dependent Role="Payment_gateways">
+        <PropertyRef Name="StatusCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shipping_Payment">
+    <End Role="Payment_gateways" Type="Self.Payment_gateways" Multiplicity="0..1" />
+    <End Role="Shipping" Type="Self.Shipping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payment_gateways">
+        <PropertyRef Name="PaymentId" />
+      </Principal>
+      <Dependent Role="Shipping">
+        <PropertyRef Name="PaymentId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -525,6 +548,18 @@
         <PropertyRef Name="StatusCode" />
       </Principal>
       <Dependent Role="Request">
+        <PropertyRef Name="StatusCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shipping_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Shipping" Type="Self.Shipping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusCode" />
+      </Principal>
+      <Dependent Role="Shipping">
         <PropertyRef Name="StatusCode" />
       </Dependent>
     </ReferentialConstraint>
@@ -617,14 +652,6 @@
       <End Role="Auctions" EntitySet="Auctions" />
       <End Role="Purcher_order" EntitySet="Purcher_order" />
     </AssociationSet>
-    <AssociationSet Name="FK__Contact__CreateU__76969D2E" Association="Self.FK__Contact__CreateU__76969D2E">
-      <End Role="Customer" EntitySet="Customers" />
-      <End Role="Contact" EntitySet="Contacts" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Contact__CreateU__778AC167" Association="Self.FK__Contact__CreateU__778AC167">
-      <End Role="Employee" EntitySet="Employees" />
-      <End Role="Contact" EntitySet="Contacts" />
-    </AssociationSet>
     <AssociationSet Name="FK__Purcher_o__Custo__5EBF139D" Association="Self.FK__Purcher_o__Custo__5EBF139D">
       <End Role="Customer" EntitySet="Customers" />
       <End Role="Purcher_order" EntitySet="Purcher_order" />
@@ -641,9 +668,21 @@
       <End Role="Customer" EntitySet="Customers" />
       <End Role="Review" EntitySet="Reviews" />
     </AssociationSet>
+    <AssociationSet Name="FK_Payment_Customer" Association="Self.FK_Payment_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Payment_gateways" EntitySet="Payment_gateways" />
+    </AssociationSet>
     <AssociationSet Name="FK__Payment_g__Order__5DCAEF64" Association="Self.FK__Payment_g__Order__5DCAEF64">
       <End Role="Purcher_order" EntitySet="Purcher_order" />
       <End Role="Payment_gateways" EntitySet="Payment_gateways" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Status" Association="Self.FK_Payment_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Payment_gateways" EntitySet="Payment_gateways" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shipping_Payment" Association="Self.FK_Shipping_Payment">
+      <End Role="Payment_gateways" EntitySet="Payment_gateways" />
+      <End Role="Shipping" EntitySet="Shippings" />
     </AssociationSet>
     <AssociationSet Name="FK_Purcher_Order_Status" Association="Self.FK_Purcher_Order_Status">
       <End Role="Status" EntitySet="Status" />
@@ -652,6 +691,10 @@
     <AssociationSet Name="FK__Request__StatusC__0B91BA14" Association="Self.FK__Request__StatusC__0B91BA14">
       <End Role="Status" EntitySet="Status" />
       <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shipping_Status" Association="Self.FK_Shipping_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Shipping" EntitySet="Shippings" />
     </AssociationSet>
     <AssociationSet Name="Rel_Employee_Group" Association="Self.Rel_Employee_Group">
       <End Role="Employee" EntitySet="Employees" />
