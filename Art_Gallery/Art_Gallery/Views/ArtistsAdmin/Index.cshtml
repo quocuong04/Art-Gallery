@@ -43,7 +43,7 @@
                                     @Html.DisplayFor(modelItem => item.Nationality)
                                 </td>
                                 <td>
-                                    <img width="200" src="~/Content/uploads/@Html.DisplayFor(modelItem => item.Image)" />
+                                    <img width="50" src="~/Content/uploads/@Html.DisplayFor(modelItem => item.Image)" />
                                 </td>
                                 <td>
                                     <a href="@Url.Action("Delete", "ArtistsAdmin", new { id = item.ArtistId })"><i class="fas fa-trash-alt"></i></a>

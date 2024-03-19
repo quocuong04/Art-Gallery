@@ -25,7 +25,7 @@ namespace Art_Gallery.Controllers
                                    Auction = au
                                })
                   .ToList()
-                  .Where(p => p.Auction.Status == "L")
+                  .Where(p => p.Auction.StatusCode == "L")
                   .GroupBy(p => p.Auction)
                   .Select(g => new ArtWork_AuctionModel
                   {

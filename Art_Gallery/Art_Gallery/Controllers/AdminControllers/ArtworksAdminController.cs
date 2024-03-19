@@ -38,8 +38,8 @@ namespace Art_Gallery.Controllers.AdminControllers
                     Price =a.Price,
                     Descriptions=a.Descriptions,
                     Image =a.Image,
-                    StatusName = db.Status.FirstOrDefault(s => s.StatusCode == a.Status) != null
-                        ? db.Status.FirstOrDefault(s => s.StatusCode == a.Status).StatusName
+                    StatusName = db.Status.FirstOrDefault(s => s.StatusCode == a.StatusCode) != null
+                        ? db.Status.FirstOrDefault(s => s.StatusCode == a.StatusCode).StatusName
                         : null,
                     Artist = a.Artist,
                     Category = a.Category,
@@ -66,7 +66,7 @@ namespace Art_Gallery.Controllers.AdminControllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CategoryId,Discount,Name,Price,ArtistId,ArtworkId, Image")] Artwork artwork, HttpPostedFileBase image)
+        public async Task<ActionResult> Create([Bind(Include = "CategoryId,Discount,Name,Price,ArtistId,Description,ArtworkId, Image")] Artwork artwork, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -121,7 +121,7 @@ namespace Art_Gallery.Controllers.AdminControllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CategoryId,Status,CountAuction,AuctionPrice,Discount,Name,CreateDate,Price,OrderId,EmployeeId,CustomerId,ArtistId,ArtworkId,Image")] Artwork artwork, HttpPostedFileBase image)
+        public async Task<ActionResult> Edit([Bind(Include = "CategoryId,Status,CountAuction,AuctionPrice,Discount,Name,CreateDate,Description,Price,OrderId,EmployeeId,CustomerId,ArtistId,ArtworkId,Image")] Artwork artwork, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -139,7 +139,9 @@ namespace Art_Gallery.Controllers.AdminControllers
                     Artwork existingArtwork = db.Artworks.AsNoTracking().FirstOrDefault(a => a.ArtworkId == artwork.ArtworkId);
                     artwork.Image = existingArtwork.Image;
                 }
-
+                var currentUserEmail = (string)Session["User"];
+                var employee = db.Employees.FirstOrDefault(e => e.Email == currentUserEmail);
+                artwork.EmployeeId = employee.EmployeeId;
                 db.Entry(artwork).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -170,6 +172,9 @@ namespace Art_Gallery.Controllers.AdminControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
+            var relArtworkAuctions = db.Rel_Customer_Artwork.Where(ra => ra.ArtworkId == id);
+            db.Rel_Customer_Artwork.RemoveRange(relArtworkAuctions);
+
             Artwork artwork = await db.Artworks.FindAsync(id);
             db.Artworks.Remove(artwork);
             await db.SaveChangesAsync();

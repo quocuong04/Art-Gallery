@@ -18,7 +18,7 @@ namespace Art_Gallery.Controllers
         // GET: Search
         public async Task<ActionResult> Index(string searchTerm)
         {
-            var artworks = db.Artworks.Include(a => a.Artist).Include(a => a.Category).Include(a => a.Customer).Include(a => a.Employee).Include(a => a.Purcher_order).Include(a => a.Status1)
+            var artworks = db.Artworks.Include(a => a.Artist).Include(a => a.Category).Include(a => a.Customer).Include(a => a.Employee).Include(a => a.Purcher_order).Include(a => a.Status)
                             .Where(a => a.Name.Contains(searchTerm));
             return View(await artworks.ToListAsync());
         }

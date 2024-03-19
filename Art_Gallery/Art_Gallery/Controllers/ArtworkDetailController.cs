@@ -20,7 +20,7 @@ namespace Art_Gallery.Controllers
                                 .Include(a => a.Customer)
                                 .Include(a => a.Employee)
                                 .Include(a => a.Purcher_order)
-                                .Include(a => a.Status1)
+                                .Include(a => a.Status)
                                 .FirstOrDefault(a => a.ArtworkId == id);
 
             if (artworkDetails == null)
@@ -35,7 +35,7 @@ namespace Art_Gallery.Controllers
                                 .Include(a => a.Customer)
                                 .Include(a => a.Employee)
                                 .Include(a => a.Purcher_order)
-                                .Include(a => a.Status1)
+                                .Include(a => a.Status)
                                 .Where(a => a.Discount >= 1)
                                 .ToList();
 

@@ -84,10 +84,11 @@
                                     @Html.DisplayFor(modelItem => item.Price)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Descriptions)
+                                    <div class="ellipsis-text">@Html.DisplayFor(modelItem => item.Descriptions)</div>
+                                    
                                 </td>
                                 <td>
-                                    <img width="200" src="~/Content/uploads/@Html.DisplayFor(modelItem => item.Image)" />
+                                    <img width="50" src="~/Content/uploads/@Html.DisplayFor(modelItem => item.Image)" />
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Artist.ArtistName)
