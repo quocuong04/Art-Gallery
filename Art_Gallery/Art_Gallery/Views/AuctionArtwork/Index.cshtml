@@ -38,7 +38,7 @@
                     <div class="col-lg-4 col-md-6 d-flex align-items-center">
                         <div class="aution-box">
                             <figure>
-                                <a href="@Url.Action("", "AuctionArtworkDetail")"><img src="~/Content/uploads/@item.Image" alt="Image" class="img"></a>
+                                <a href="@Url.Action("", "AuctionArtworkDetail",new { id = @item.ArtworkId })"><img src="~/Content/uploads/@item.Image" alt="Image" class="img"></a>
                             </figure>
                             <div class="content-box">
                                 <h4>
