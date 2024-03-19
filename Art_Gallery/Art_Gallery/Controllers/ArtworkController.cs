@@ -20,7 +20,7 @@ namespace Art_Gallery.Controllers
                                 .Include(a => a.Customer)
                                 .Include(a => a.Employee)
                                 .Include(a => a.Purcher_order)
-                                .Include(a => a.Status1).ToList();
+                                .Include(a => a.Status).ToList();
             return View(artworks);
         }
     }

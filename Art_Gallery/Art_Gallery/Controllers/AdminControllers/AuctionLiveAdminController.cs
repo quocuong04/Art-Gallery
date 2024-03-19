@@ -20,7 +20,7 @@ namespace Art_Gallery.Controllers.AdminControllers
         {
             var artworkAuctionLiveList = db.Artworks
                 .Include(a => a.Rel_Artwork_Auctions.Select(aa => aa.Auction))
-                .Where(a => a.Rel_Artwork_Auctions.Any(aa => aa.Auction.Status.Equals("L")))
+                .Where(a => a.Rel_Artwork_Auctions.Any(aa => aa.Auction.StatusCode.Equals("L")))
                 .Select(a => new
                 {
                     Artwork = a,
@@ -42,7 +42,7 @@ namespace Art_Gallery.Controllers.AdminControllers
             Auction aution = await db.Auctions.FindAsync(id);
             if (aution != null)
             {
-                aution.Status = "I";
+                aution.StatusCode = "I";
                 db.Entry(aution).State = EntityState.Modified;
 
                 var artworkIds = db.Rel_Artwork_Auctions
@@ -58,7 +58,7 @@ namespace Art_Gallery.Controllers.AdminControllers
                 {
                     if(artwork.AuctionPrice != null)
                     {
-                        artwork.Status = "I";
+                        artwork.StatusCode = "I";
                         db.Entry(artwork).State = EntityState.Modified;
 
                         if (artwork.CustomerId != null)
@@ -74,7 +74,7 @@ namespace Art_Gallery.Controllers.AdminControllers
                         }
                     } else
                     {
-                        artwork.Status = "A";
+                        artwork.StatusCode = "A";
                         db.Entry(artwork).State = EntityState.Modified;
                     }
                 }

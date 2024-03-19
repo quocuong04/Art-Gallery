@@ -104,7 +104,7 @@
                                     @item.Descriptions
                                 </p>
                                 <p class="price">$@item.Price</p>
-                                <p class="price">Status: @item.Status1.StatusName</p>
+                                <p class="price">Status: @if (@item.Status?.StatusName != null) {@item.Status.StatusName}</p>
                                 @using (Html.BeginForm("RemoveFavorite", "Personal"))
                                 {
                                 @Html.AntiForgeryToken()

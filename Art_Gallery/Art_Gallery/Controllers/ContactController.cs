@@ -18,30 +18,26 @@ namespace Art_Gallery.Controllers
 
         // POST: Contact
         [HttpPost]
-        public ActionResult Index(Contact contact)
+        public ActionResult Create(Contact contact)
         {
             if (ModelState.IsValid)
             {
-                // Save the contact information to the database
-                using (var dbContext = new Art_GalleryEntities()) // Replace "YourDbContext" with your actual DbContext class
+                using (var dbContext = new Art_GalleryEntities()) 
                 {
-                    contact.CreateDate = DateTime.Now; // Set the creation date to the current date and time
+                    contact.CreateDate = DateTime.Now; 
 
-                    // Assign the values from the form to the Contact object
                     contact.Email = contact.Email;
                     contact.PhoneNumber = contact.PhoneNumber;
                     contact.Message = contact.Message;
                     contact.Name = contact.Name;
 
-                    dbContext.Contacts.Add(contact); // Add the contact object to the Contacts DbSet
-                    dbContext.SaveChanges(); // Save changes to the database
+                    dbContext.Contacts.Add(contact); 
+                    dbContext.SaveChanges(); 
                 }
 
-                // Optionally, you can redirect to a success page or display a success message
-                return RedirectToAction("Success");
+                return RedirectToAction("Index");
             }
 
-            // If the model state is not valid, return the view with validation errors
             return View(contact);
         }
     }
