@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Art_Gallery.Models.Contact
+@{
     ViewBag.Title = "Contact Page";
 }
 @{
@@ -60,30 +61,40 @@
                 </div>
                 <!-- end col-5 -->
                 <div class="col-lg-5">
+                    @using (Html.BeginForm("Create", "Contact", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
                     <div class="contact-form">
-                        <div class="mb-3">
-                            <input type="text" name="name" placeholder="Complete Name">
+                        <div class="form-group w-100 mb-2">
+                            @Html.LabelFor(model => model.Name)
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name)
                         </div>
-                        <!-- end mb-3 -->
-                        <div class="mb-3">
-                            <input type="text" name="email "placeholder="E-mail Address">
+
+                        <div class="form-group w-100 mb-2">
+                            @Html.LabelFor(model => model.Email)
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Email)
                         </div>
-                        <!-- end mb-3 -->
-                        <div class="mb-3">
-                            <input type="text" name="phonenumber" placeholder="Phone Number">
+
+                        <div class="form-group w-100 mb-2">
+                            @Html.LabelFor(model => model.PhoneNumber)
+                            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PhoneNumber)
                         </div>
-                        <!-- end mb-3 -->
-                        <div class="mb-3">
-                            <textarea name="message" placeholder="Your Message"></textarea>
+
+                        <div class="form-group w-100 mb-2">
+                            @Html.LabelFor(model => model.Message)
+                            @Html.TextAreaFor(model => model.Message, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Message)
                         </div>
-                        <!-- end mb-3 -->
-                        <div class="mb-3">
-                            <input type="submit" name="btn_submit" value="Send Us">
+                        <div class="form-group w-100 mb-2">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                         </div>
-                        <!-- end mb-3 -->
+                        }
+                        <!-- end contact-form -->
                     </div>
-                    <!-- end contact-form -->
-                </div>
                 <!-- end col-5 -->
             </div>
             <!-- end row -->
