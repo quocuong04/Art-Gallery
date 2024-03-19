@@ -66,7 +66,7 @@ namespace Art_Gallery.Controllers.AdminControllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CategoryId,Discount,Name,Price,ArtistId,Description,ArtworkId, Image")] Artwork artwork, HttpPostedFileBase image)
+        public async Task<ActionResult> Create([Bind(Include = "CategoryId,Discount,Name,Price,ArtistId,Descriptions,ArtworkId, Image")] Artwork artwork, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -121,7 +121,7 @@ namespace Art_Gallery.Controllers.AdminControllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CategoryId,Status,CountAuction,AuctionPrice,Discount,Name,CreateDate,Description,Price,OrderId,EmployeeId,CustomerId,ArtistId,ArtworkId,Image")] Artwork artwork, HttpPostedFileBase image)
+        public async Task<ActionResult> Edit([Bind(Include = "CategoryId,Status,CountAuction,AuctionPrice,Discount,Name,CreateDate,Description,Price,OrderId,EmployeeId,CustomerId,ArtistId,ArtworkId,Image,Descriptions")] Artwork artwork, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
