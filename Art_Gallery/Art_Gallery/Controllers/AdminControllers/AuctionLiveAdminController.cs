@@ -18,25 +18,23 @@ namespace Art_Gallery.Controllers.AdminControllers
         // GET: AuctionLive
         public async Task<ActionResult> Index()
         {
-            var proposedAuction = from a in db.Artworks
-                                  join aa in db.Rel_Artwork_Auctions on a.ArtworkId equals aa.ArtworkId
-                                  join au in db.Auctions on aa.AuctionId equals au.AuctionId
-                                  where au.Status.Equals("L")
-                                  select new
-                                  {
-                                      Artwork = a,
-                                      Auction = au
-                                  };
+            var artworkAuctionLiveList = db.Artworks
+                .Include(a => a.Rel_Artwork_Auctions.Select(aa => aa.Auction))
+                .Where(a => a.Rel_Artwork_Auctions.Any(aa => aa.Auction.Status.Equals("L")))
+                .Select(a => new
+                {
+                    Artwork = a,
+                    Auction = a.Rel_Artwork_Auctions.Select(aa => aa.Auction).FirstOrDefault()
+                })
+                .GroupBy(p => p.Auction)
+                .Select(g => new ArtWork_AuctionModel
+                {
+                    Artworks = g.Select(p => p.Artwork).ToList(),
+                    Auction = g.Key
+                })
+                .FirstOrDefault();
 
-            var artworkAuctionLiveList = proposedAuction.GroupBy(p => p.Auction)
-                                        .Select(g => new ArtWork_AuctionModel
-                                        {
-                                            Artworks = g.Select(p => p.Artwork).ToList(),
-                                            Auction = g.Key
-                                        })
-                                        .ToList();
-
-            return View(artworkAuctionLiveList.FirstOrDefault());
+                return View(artworkAuctionLiveList);
         }
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Endding(int id)
