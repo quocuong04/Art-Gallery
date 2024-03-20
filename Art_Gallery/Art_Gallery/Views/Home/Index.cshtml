@@ -141,7 +141,7 @@
 
                 <div class="container pl-2 pr-2 border mb-5">
                     <div class="p-2">
-                        <h4 class="fm-cinzel"><a href="@Url.Action("", "AuctionArtwork")">@Html.DisplayFor(modelItem => modelItem.ProposedAuction.Auction.AuctionName)</a></h4>
+                        <h4 class="fm-cinzel"><a href="@Url.Action("", "AuctionArtwork", new {id=@Model.ProposedAuction.Auction.AuctionId})">@Html.DisplayFor(modelItem => modelItem.ProposedAuction.Auction.AuctionName)</a></h4>
                     </div>
                     <div class="d-flex justify-content-around p-2 border-top border-bottom">
                         <div class="text-center">
