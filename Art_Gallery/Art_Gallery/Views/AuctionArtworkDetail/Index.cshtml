@@ -60,7 +60,7 @@
                     @{
                         var minPrice = @Model.Artwork.AuctionPrice != null ? @Model.Artwork.AuctionPrice : @Model.Artwork.Price;
                     }
-                    @if (@Model.Auction != null && @Model.Auction.Status.Equals("L"))
+                    @if (@Model.Auction != null && @Model.Auction.StatusCode.Equals("L"))
                     {
                         <div class="side-icon-list mb-3">
                             <ul>

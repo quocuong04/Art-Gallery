@@ -15,7 +15,7 @@ namespace Art_Gallery.Controllers
             var proposedAuction = from a in db.Artworks
                                   join aa in db.Rel_Artwork_Auctions on a.ArtworkId equals aa.ArtworkId
                                   join au in db.Auctions on aa.AuctionId equals au.AuctionId
-                                  where au.AuctionId == id && au.Status.Equals("L")
+                                  where au.AuctionId == id && au.StatusCode.Equals("L")
                                   select new
                                   {
                                       Artwork = a,
