@@ -107,13 +107,21 @@
                                 <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 </div>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="@Url.Action("", "Personal")">Personal page</a></li>
+                                    @if (@ViewBag.isAdmin == false)
+                                    {
+                                        <li><a class="dropdown-item" href="@Url.Action("", "Personal")">Personal page</a></li>
+                                    }
+
                                     <li><a class="dropdown-item" href="@Url.Action("Logout", "Account")">Logout</a></li>
                                 </ul>
                             </div>
-                            <a href="@Url.Action("Index", "OrderCustomer")">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            </a>
+                            @if (@ViewBag.isAdmin == false)
+                            {
+                                <a href="@Url.Action("Index", "OrderCustomer")">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                </a>
+                            }
+
                         </div>
                     }
                     else

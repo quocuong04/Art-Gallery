@@ -1,4 +1,4 @@
-﻿@model Art_Gallery.Controllers.ArtWorkAuctionModel
+﻿@model Art_Gallery.Controllers.ArtWorkAuctionDetailModel
 @{
     ViewBag.Title = "Auction Artwork Detail Page";
 }
@@ -28,29 +28,29 @@
                 <div class="col-lg-6">
                     <div class="side-content left">
                         <h2>
-                            @Model.Artwork.Name
+                            @Model.ArworkAuction.Artwork.Name
                         </h2>
                         <p>
-                            @Model.Artwork.Descriptions
+                            @Model.ArworkAuction.Artwork.Descriptions
                         </p>
                         <table>
                             <tr>
                                 <td>START</td>
                                 <td>
-                                    : @Model.Auction.StartDate
+                                    : @Model.ArworkAuction.Auction.StartDate
                                 </td>
                             </tr>
                             <tr>
                                 <td>END </td>
-                                <td>: @Model.Auction.EndDate </td>
+                                <td>: @Model.ArworkAuction.Auction.EndDate </td>
                             </tr>
                             <tr>
                                 <td>EVENT CATEGORY </td>
-                                <td>: @Model.Category.CategoryName</td>
+                                <td>: @Model.ArworkAuction.Category.CategoryName</td>
                             </tr>
                             <tr>
                                 <td>AUTHOR NAME </td>
-                                <td>: @Model.Artist.ArtistName</td>
+                                <td>: @Model.ArworkAuction.Artist.ArtistName</td>
                             </tr>
                         </table>
                     </div>
@@ -58,9 +58,9 @@
                     <!-- Hiển thị khi vào sản phẩm đang đấu giá -->
 
                     @{
-                        var minPrice = @Model.Artwork.AuctionPrice != null ? @Model.Artwork.AuctionPrice : @Model.Artwork.Price;
+                        var minPrice = Model.ArworkAuction.Artwork.AuctionPrice != null ? Model.ArworkAuction.Artwork.AuctionPrice : Model.ArworkAuction.Artwork.Price;
                     }
-                    @if (@Model.Auction != null && @Model.Auction.StatusCode.Equals("L"))
+                    @if (Model.ArworkAuction.Auction != null && Model.ArworkAuction.Auction.StatusCode.Equals("L"))
                     {
                         <div class="side-icon-list mb-3">
                             <ul>
@@ -76,26 +76,26 @@
                             <table>
                                 <tr>
                                     <td>Start Price</td>
-                                    <td>: @Model.Artwork.Price</td>
+                                    <td>: @Model.ArworkAuction.Artwork.Price</td>
                                 </tr>
                                 <tr>
                                     <td>Current Price</td>
-                                    <td>: @Model.Artwork.AuctionPrice</td>
+                                    <td>: @Model.ArworkAuction.Artwork.AuctionPrice</td>
                                 </tr>
                                 <tr>
                                     <td>Current Count</td>
-                                    <td>: @Model.Artwork.CountAuction</td>
+                                    <td>: @Model.ArworkAuction.Artwork.CountAuction</td>
                                 </tr>
                             </table>
                         </div>
 
-                        if (userName != null)
+                        if ((userName != null) && @Model.Request == null && @ViewBag.isAdmin == false)
                         {
 
                             using (Html.BeginForm(Html.BeginForm("Create", "AuctionArtworkDetail", FormMethod.Post, new { enctype = "multipart/form-data" })))
                             {
                                 <label>Please enter your price</label>
-                                <input name="artworkId" value="@Model.Artwork.ArtworkId" hidden />
+                                <input name="artworkId" value="@Model.ArworkAuction.Artwork.ArtworkId" hidden />
                                 <input type="number" id="priceAuction" name="priceAuction" class="form-control" style="width: 200px" min="@minPrice" />
                                 <button type="submit" id="submitBtn" class="custom-button d-block border-0 mt-2" disabled>Auction</button>
                             }
@@ -109,7 +109,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="side-image right-half" data-scroll data-scroll-speed="1">
-                        <img src="~/Content/uploads/@Model.Artwork.Image" alt="Image">
+                        <img src="~/Content/uploads/@Model.ArworkAuction.Artwork.Image" alt="Image">
                     </div>
                 </div>
             </div>
@@ -118,8 +118,8 @@
     <script src="~/Content/webapp/js/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            var startTime = new Date('@Model.Auction.StartDate').getTime();
-            var endTime = new Date('@Model.Auction.EndDate').getTime();
+            var startTime = new Date('@Model.ArworkAuction.Auction.StartDate').getTime();
+            var endTime = new Date('@Model.ArworkAuction.Auction.EndDate').getTime();
 
             // Cập nhật đồng hồ đếm ngược mỗi giây
             var countdownInterval = setInterval(function () {
