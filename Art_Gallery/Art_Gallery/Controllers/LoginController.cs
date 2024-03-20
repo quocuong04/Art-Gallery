@@ -96,10 +96,18 @@ namespace Art_Gallery.Controllers
                     if (employee != null)
                     {
                         ViewBag.isMember = true;
+                        if(employee.IsAdmin.Contains('Y'))
+                        {
+                            ViewBag.isAdmin = true;
+                        } else
+                        {
+                            ViewBag.isAdmin = false;
+                        }
                     }
                     else
                     {
                         ViewBag.isMember = false;
+                        ViewBag.isAdmin = false;
                     }
                     if (IsMemberShipController(controllerName))
                     {
@@ -108,7 +116,9 @@ namespace Art_Gallery.Controllers
                 }
 
                 ViewBag.UserName = user;
-
+                if(IsLogin(controllerName) && ViewBag.isAdmin == true) {
+                    filterContext.Result = new RedirectResult("/Home");
+                }
             }
             else
             {

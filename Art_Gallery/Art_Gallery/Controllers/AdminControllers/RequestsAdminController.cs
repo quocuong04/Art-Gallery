@@ -58,6 +58,7 @@ namespace Art_Gallery.Controllers.AdminControllers
                         employee.PhoneNumber = customer.PhoneNumber;
                         employee.Sex = customer.Sex;
                         employee.Age = customer.Age;
+                        employee.IsAdmin = "N";
 
                         db.Employees.Add(employee);
 
