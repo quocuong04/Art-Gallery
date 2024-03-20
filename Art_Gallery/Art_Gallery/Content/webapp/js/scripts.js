@@ -172,24 +172,10 @@
       delay: 9500,
       disableOnInteraction: false,
     },
-    loop: true,
-    loopedSlides: 4,
+    loop: false,
+    initialSlide: 1,
     thumbs: {
       swiper: artslidercontent
-    },
-    breakpoints: {
-      1024: {
-        loopedSlides: 3,
-      },
-      768: {
-        loopedSlides: 2,
-      },
-      640: {
-        loopedSlides: 1
-      },
-      320: {
-        loopedSlides: 1
-      }
     }
   });
 
@@ -199,8 +185,7 @@
     spaceBetween: 30,
     direction: 'vertical',
     slidesPerView: 4,
-    loop: true,
-    loopedSlides: 4,
+    loop: false,
     initialSlide: 1,
     breakpoints: {
       1024: {
