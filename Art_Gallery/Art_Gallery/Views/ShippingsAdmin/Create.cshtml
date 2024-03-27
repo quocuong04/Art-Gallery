@@ -1,71 +1,75 @@
-﻿@model Art_Gallery.Models.Shipping
+﻿@model Art_Gallery.Models.Payment_gateways
 
 @{
-    Layout = null;
+    ViewBag.Title = "Create Shipping Page";
 }
+@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<main class="p-3">
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    
-    
-    @using (Html.BeginForm()) 
+    @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>Shipping</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.ActualDeliveryDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ActualDeliveryDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ActualDeliveryDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.EstimateDeliveryDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.EstimateDeliveryDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.EstimateDeliveryDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.ShippingDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ShippingDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ShippingDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.PaymentId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PaymentId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PaymentId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
+
+    <div class="form-horizontal">
+        <h4>Shipping</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ActualDeliveryDate">Artwork</label>
+            <div class="col-md-10">
+                <input class="form-control" type="text" value="@Model.Purcher_order.Artwork.Name" readonly />
+                <span class="text-danger"></span>
             </div>
         </div>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ActualDeliveryDate">Actual Delivery Date</label>
+            <div class="col-md-10">
+                <input class="form-control" type="date" id="ActualDeliveryDate" name="ActualDeliveryDate" required />
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="EstimateDeliveryDate">Actual Delivery Date</label>
+            <div class="col-md-10">
+                <input class="form-control" type="date" id="EstimateDeliveryDate" name="EstimateDeliveryDate" required />
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ShipperName">Shipper Name</label>
+            <div class="col-md-10">
+                <input class="form-control" type="text" id="ShipperName" name="ShipperName" required />
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="PhoneNumberShipper">Phone Number Shipper</label>
+            <div class="col-md-10">
+                <input class="form-control" type="text" id="PhoneNumberShipper" name="PhoneNumberShipper" required />
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="PaymentMethod">Payment Method</label>
+            <div class="col-md-10">
+                <input class="form-control" type="text" id="PaymentMethod" name="PaymentMethod" value="@Model.PaymentMethod" readonly />
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.PaymentId)
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
     </div>
-</body>
-</html>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index","PaymentsAdmin")
+    </div>
+</main>

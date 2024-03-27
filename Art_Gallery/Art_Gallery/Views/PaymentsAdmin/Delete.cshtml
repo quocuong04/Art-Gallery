@@ -13,6 +13,13 @@
         <hr />
         <dl class="dl-horizontal">
             <dt>
+                Artwork Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Purcher_order.Artwork.Name)
+            </dd>
+            <dt>
                 @Html.DisplayNameFor(model => model.PaymentMethod)
             </dt>
 
@@ -37,19 +44,32 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.EmployeeId)
+                @Html.DisplayNameFor(model => model.Customer.CustomerName)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.EmployeeId)
+                @Html.DisplayFor(model => model.Customer.CustomerName)
             </dd>
-
             <dt>
-                @Html.DisplayNameFor(model => model.Purcher_order.OrderId)
+                Address
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Purcher_order.OrderId)
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt>
+                Artwork Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+            <dt>
+                Artwork Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Status.StatusName)
             </dd>
 
         </dl>

@@ -37,11 +37,32 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.PaymentId)
+                Artwork Name
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.PaymentId)
+                @Html.DisplayFor(model => model.Payment_gateways.Purcher_order.Artwork.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ShipperName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ShipperName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumberShipper)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumberShipper)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Status.StatusName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Status.StatusName)
             </dd>
 
         </dl>

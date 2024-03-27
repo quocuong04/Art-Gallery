@@ -1,0 +1,78 @@
+﻿@model Art_Gallery.Models.Purcher_order
+
+@{
+    ViewBag.Title = "Payment Page";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .text-box {
+        margin-top: 15px;
+        width: 100% !important;
+    }
+</style>
+<main>
+    @using (Html.BeginForm("Create", "Payment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <section class="content-section" data-background="#fffbf7">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="section-title text-center">
+                            <figure><img src="~/Content/webapp/images/title-shape.png" alt="Image"></figure>
+                            <h2>Payment information</h2>
+                        </div>
+                    </div>
+                    @ViewBag.OrderId
+                    @ViewBag.UserId
+                <div class="col-lg-8">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <label for="address" class="control-label mt-3">Artwork Name</label>
+                        <input type="text" value="@ViewBag.ArtworkName" class="form-control w-100" readonly />
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="control-label mt-3">Total Amount</label>
+                        <input type="text" value="@ViewBag.TotalAmount" class="form-control w-100" readonly />
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="control-label mt-3">Your Address</label>
+                        <input type="text" id="address" name="Address" class="form-control w-100" required />
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneNumber" class="control-label mt-3">Your Phone Number</label>
+                        <input type="text" id="phoneNumber" name="PhoneNumber" class="form-control w-100" required />
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paymentMethod" class="control-label mt-3">Payment Method</label>
+                        <select id="paymentMethod" name="PaymentMethod" class="form-control">
+                            <option value="Cash">Cash</option>
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+                    @Html.HiddenFor(model => model.CustomerId)
+                    @Html.HiddenFor(model => model.OrderId)
+                    <div class="d-flex justify-content-center align-items-center mt-5 mb-3">
+                        <button class="custom-button border-0">Save</button>
+                    </div>
+                    <div>@Html.ActionLink("Back to List", "Index", "OrderCustomer")</div>
+                </div>
+
+                </div>
+            </div>
+        </section>
+
+    }
+</main>
