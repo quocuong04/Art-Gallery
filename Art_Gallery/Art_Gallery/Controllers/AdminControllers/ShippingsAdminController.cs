@@ -18,14 +18,21 @@ namespace Art_Gallery.Controllers.AdminControllers
         // GET: ShippingsAdmin
         public async Task<ActionResult> Index()
         {
-            return View(await db.Shippings.ToListAsync());
+            var payment = db.Shippings
+                .Include(a => a.Payment_gateways);
+            return View(await payment.ToListAsync());
         }
 
         
         // GET: ShippingsAdmin/Create
-        public ActionResult Create()
+        public ActionResult Create(int paymentId)
         {
-            return View();
+            var payment = db.Payment_gateways
+                .Include(a => a.Customer)
+                .Include(a => a.Purcher_order)
+                .Include(a => a.Purcher_order.Artwork)
+                .SingleOrDefault(a => a.PaymentId == paymentId);
+            return View(payment);
         }
 
         // POST: ShippingsAdmin/Create
@@ -33,10 +40,17 @@ namespace Art_Gallery.Controllers.AdminControllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ShippingId,ActualDeliveryDate,EstimateDeliveryDate,ShippingDate,PaymentId")] Shipping shipping)
+        public async Task<ActionResult> Create([Bind(Include = "ShippingId,ActualDeliveryDate,EstimateDeliveryDate,ShippingDate,PaymentId,ShipperName,PhoneNumberShipper")] Shipping shipping)
         {
             if (ModelState.IsValid)
             {
+                Payment_gateways payment = await db.Payment_gateways.FindAsync(shipping.PaymentId);
+                if (payment != null)
+                {
+                    payment.StatusCode = "I";
+                }
+                shipping.StatusCode = "A";
+                shipping.ShippingDate = DateTime.Now;
                 db.Shippings.Add(shipping);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -65,7 +79,7 @@ namespace Art_Gallery.Controllers.AdminControllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ShippingId,ActualDeliveryDate,EstimateDeliveryDate,ShippingDate,PaymentId")] Shipping shipping)
+        public async Task<ActionResult> Edit([Bind(Include = "ShippingId,ActualDeliveryDate,EstimateDeliveryDate,ShippingDate,PaymentId,ShipperName,PhoneNumberShipper,StatusCode")] Shipping shipping)
         {
             if (ModelState.IsValid)
             {
@@ -97,8 +111,26 @@ namespace Art_Gallery.Controllers.AdminControllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Shipping shipping = await db.Shippings.FindAsync(id);
+            Payment_gateways payment = await db.Payment_gateways.FindAsync(shipping.PaymentId);
+            if (payment != null)
+            {
+                payment.StatusCode = "A";
+            }
             db.Shippings.Remove(shipping);
             await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Endding(int id)
+        {
+            Shipping ship = await db.Shippings.FindAsync(id);
+            if (ship != null)
+            {
+
+                ship.StatusCode = "I";
+                await db.SaveChangesAsync();
+            }
             return RedirectToAction("Index");
         }
 

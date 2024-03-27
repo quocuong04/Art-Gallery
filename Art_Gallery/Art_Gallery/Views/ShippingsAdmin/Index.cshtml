@@ -27,10 +27,19 @@
                                 @Html.DisplayNameFor(model => model.EstimateDeliveryDate)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(model => model.ShipperName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PhoneNumberShipper)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.ShippingDate)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.PaymentId)
+                                @Html.DisplayNameFor(model => model.Payment_gateways.PaymentMethod)
+                            </th>
+                            <th>
+                                Status
                             </th>
                             <th></th>
                         </tr>
@@ -46,14 +55,31 @@
                                     @Html.DisplayFor(modelItem => item.EstimateDeliveryDate)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.ShipperName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PhoneNumberShipper)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.ShippingDate)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.PaymentId)
+                                    @Html.DisplayFor(modelItem => item.Payment_gateways.PaymentMethod)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status.StatusName)
                                 </td>
                                 <td>
                                     <a href="@Url.Action("Delete", "ShippingsAdmin", new { id = item.ShippingId })"><i class="fas fa-trash-alt"></i></a>
                                     <a href="@Url.Action("Edit", "ShippingsAdmin", new { id = item.ShippingId })"><i class="fas fa-edit"></i></a>
+                                    @if (item.StatusCode == "A")
+                                    {
+                                        using (Html.BeginForm("Endding", "ShippingsAdmin", new { id = item.ShippingId }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-danger ml-1">Finished</button>
+                                        }
+                                    }
                                 </td>
                             </tr>
                         }

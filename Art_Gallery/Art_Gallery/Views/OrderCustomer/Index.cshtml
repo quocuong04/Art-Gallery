@@ -38,7 +38,7 @@
                             <td>
                                 @if (item.StatusCode == "A")
                                 {
-                                    using (Html.BeginForm("Index", "CustomerPayment"))
+                                    using (Html.BeginForm("Index", "Payment", new { orderId = item.OrderId}))
                                     {
                                         @Html.AntiForgeryToken()
                                         @Html.Hidden("id", item.OrderId)
