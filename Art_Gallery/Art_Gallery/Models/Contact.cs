@@ -15,13 +15,10 @@ namespace Art_Gallery.Models
     public partial class Contact
     {
         public int ContactId { get; set; }
-        public Nullable<int> CreateUser { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Message { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
-    
-        public virtual Customer Customer { get; set; }
-        public virtual Employee Employee { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -17,16 +17,21 @@ namespace Art_Gallery.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Shipping()
         {
-            this.Payment_gateways = new HashSet<Payment_gateways>();
+            this.Payment_gateways1 = new HashSet<Payment_gateways>();
         }
     
         public int ShippingId { get; set; }
         public Nullable<System.DateTime> ActualDeliveryDate { get; set; }
         public Nullable<System.DateTime> EstimateDeliveryDate { get; set; }
         public Nullable<System.DateTime> ShippingDate { get; set; }
+        public string StatusCode { get; set; }
         public Nullable<int> PaymentId { get; set; }
+        public string ShipperName { get; set; }
+        public string PhoneNumberShipper { get; set; }
     
+        public virtual Payment_gateways Payment_gateways { get; set; }
+        public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payment_gateways> Payment_gateways { get; set; }
+        public virtual ICollection<Payment_gateways> Payment_gateways1 { get; set; }
     }
 }

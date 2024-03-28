@@ -18,17 +18,25 @@ namespace Art_Gallery.Models
         public Payment_gateways()
         {
             this.Shippings = new HashSet<Shipping>();
+            this.Shippings1 = new HashSet<Shipping>();
         }
     
         public int PaymentId { get; set; }
         public string PaymentMethod { get; set; }
         public Nullable<int> Amount { get; set; }
         public Nullable<System.DateTime> PaymentDate { get; set; }
-        public Nullable<int> EmployeeId { get; set; }
         public Nullable<int> OrderId { get; set; }
+        public Nullable<int> CustomerId { get; set; }
+        public string StatusCode { get; set; }
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
     
+        public virtual Customer Customer { get; set; }
         public virtual Purcher_order Purcher_order { get; set; }
+        public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Shipping> Shippings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Shipping> Shippings1 { get; set; }
     }
 }

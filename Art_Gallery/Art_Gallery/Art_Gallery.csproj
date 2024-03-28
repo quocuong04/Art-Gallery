@@ -157,6 +157,7 @@
     <Compile Include="Controllers\NewDetailController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\OrderCustomerController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PersonalController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -345,13 +346,10 @@
     <Content Include="Views\OrdersAdmin\Delete.cshtml" />
     <Content Include="Views\OrdersAdmin\Edit.cshtml" />
     <Content Include="Views\OrdersAdmin\Index.cshtml" />
-    <Content Include="Views\PaymentsAdmin\Create.cshtml" />
     <Content Include="Views\PaymentsAdmin\Delete.cshtml" />
-    <Content Include="Views\PaymentsAdmin\Edit.cshtml" />
     <Content Include="Views\PaymentsAdmin\Index.cshtml" />
     <Content Include="Views\ShippingsAdmin\Create.cshtml" />
     <Content Include="Views\ShippingsAdmin\Delete.cshtml" />
-    <Content Include="Views\ShippingsAdmin\Details.cshtml" />
     <Content Include="Views\ShippingsAdmin\Edit.cshtml" />
     <Content Include="Views\ShippingsAdmin\Index.cshtml" />
     <Content Include="Views\NewsAdmin\Create.cshtml" />
@@ -368,6 +366,7 @@
     <Content Include="Views\OrderCustomer\Index.cshtml" />
     <Content Include="Views\Personal\Edit.cshtml" />
     <Content Include="Views\Personal\Index.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

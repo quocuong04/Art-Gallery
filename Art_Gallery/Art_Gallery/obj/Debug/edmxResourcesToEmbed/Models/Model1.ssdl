@@ -14,7 +14,6 @@
       <PropertyRef Name="ArtworkId" />
     </Key>
     <Property Name="CategoryId" Type="int" />
-    <Property Name="Status" Type="nvarchar" MaxLength="50" />
     <Property Name="CountAuction" Type="int" />
     <Property Name="AuctionPrice" Type="float" />
     <Property Name="Discount" Type="float" />
@@ -28,6 +27,7 @@
     <Property Name="ArtworkId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Image" Type="nvarchar(max)" />
     <Property Name="Descriptions" Type="nvarchar(max)" />
+    <Property Name="StatusCode" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Auctions">
     <Key>
@@ -38,7 +38,7 @@
     <Property Name="StartDate" Type="datetime" />
     <Property Name="AuctionName" Type="nvarchar" MaxLength="50" />
     <Property Name="Image" Type="nvarchar(max)" />
-    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="StatusCode" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -52,11 +52,11 @@
       <PropertyRef Name="ContactId" />
     </Key>
     <Property Name="ContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CreateUser" Type="int" />
     <Property Name="Email" Type="nvarchar" MaxLength="100" />
     <Property Name="PhoneNumber" Type="nvarchar" MaxLength="100" />
     <Property Name="Message" Type="nvarchar" MaxLength="500" />
     <Property Name="CreateDate" Type="datetime" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Customer">
     <Key>
@@ -84,6 +84,7 @@
     <Property Name="PhoneNumber" Type="char" MaxLength="18" />
     <Property Name="Age" Type="int" />
     <Property Name="Sex" Type="nvarchar" MaxLength="10" />
+    <Property Name="IsAdmin" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Functions">
     <Key>
@@ -98,8 +99,8 @@
       <PropertyRef Name="GroupId" />
     </Key>
     <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="EmployeeId" Type="int" />
     <Property Name="FunctionId" Type="int" />
+    <Property Name="EmployeeEmail" Type="nvarchar" MaxLength="60" />
   </EntityType>
   <EntityType Name="New">
     <Key>
@@ -119,8 +120,11 @@
     <Property Name="PaymentMethod" Type="nvarchar" MaxLength="50" />
     <Property Name="Amount" Type="int" />
     <Property Name="PaymentDate" Type="datetime" />
-    <Property Name="EmployeeId" Type="int" />
     <Property Name="OrderId" Type="int" />
+    <Property Name="CustomerId" Type="int" />
+    <Property Name="StatusCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Purcher_order">
     <Key>
@@ -205,7 +209,10 @@
     <Property Name="ActualDeliveryDate" Type="datetime" />
     <Property Name="EstimateDeliveryDate" Type="datetime" />
     <Property Name="ShippingDate" Type="datetime" />
+    <Property Name="StatusCode" Type="nvarchar" MaxLength="50" />
     <Property Name="PaymentId" Type="int" />
+    <Property Name="ShipperName" Type="nvarchar" MaxLength="100" />
+    <Property Name="PhoneNumberShipper" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
@@ -282,30 +289,6 @@
       </Principal>
       <Dependent Role="Artwork">
         <PropertyRef Name="OrderId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Contact__CreateU__76969D2E">
-    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
-    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Customer">
-        <PropertyRef Name="CustomerId" />
-      </Principal>
-      <Dependent Role="Contact">
-        <PropertyRef Name="CreateUser" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Contact__CreateU__778AC167">
-    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Employee">
-        <PropertyRef Name="EmployeeId" />
-      </Principal>
-      <Dependent Role="Contact">
-        <PropertyRef Name="CreateUser" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -521,7 +504,7 @@
         <PropertyRef Name="StatusCode" />
       </Principal>
       <Dependent Role="Artwork">
-        <PropertyRef Name="Status" />
+        <PropertyRef Name="StatusCode" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -533,7 +516,31 @@
         <PropertyRef Name="StatusCode" />
       </Principal>
       <Dependent Role="Auctions">
-        <PropertyRef Name="Status" />
+        <PropertyRef Name="StatusCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Payment_gateways" Type="Self.Payment_gateways" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Payment_gateways">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Payment_gateways" Type="Self.Payment_gateways" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusCode" />
+      </Principal>
+      <Dependent Role="Payment_gateways">
+        <PropertyRef Name="StatusCode" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -569,6 +576,30 @@
         <PropertyRef Name="StatusCode" />
       </Principal>
       <Dependent Role="Purcher_order">
+        <PropertyRef Name="StatusCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shipping_Payment">
+    <End Role="Payment_gateways" Type="Self.Payment_gateways" Multiplicity="0..1" />
+    <End Role="Shipping" Type="Self.Shipping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payment_gateways">
+        <PropertyRef Name="PaymentId" />
+      </Principal>
+      <Dependent Role="Shipping">
+        <PropertyRef Name="PaymentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shipping_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Shipping" Type="Self.Shipping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusCode" />
+      </Principal>
+      <Dependent Role="Shipping">
         <PropertyRef Name="StatusCode" />
       </Dependent>
     </ReferentialConstraint>
@@ -615,14 +646,6 @@
     <AssociationSet Name="FK__Artwork__OrderId__5BE2A6F2" Association="Self.FK__Artwork__OrderId__5BE2A6F2">
       <End Role="Purcher_order" EntitySet="Purcher_order" />
       <End Role="Artwork" EntitySet="Artwork" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Contact__CreateU__76969D2E" Association="Self.FK__Contact__CreateU__76969D2E">
-      <End Role="Customer" EntitySet="Customer" />
-      <End Role="Contact" EntitySet="Contact" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Contact__CreateU__778AC167" Association="Self.FK__Contact__CreateU__778AC167">
-      <End Role="Employee" EntitySet="Employee" />
-      <End Role="Contact" EntitySet="Contact" />
     </AssociationSet>
     <AssociationSet Name="FK__Payment_g__Order__5DCAEF64" Association="Self.FK__Payment_g__Order__5DCAEF64">
       <End Role="Purcher_order" EntitySet="Purcher_order" />
@@ -700,6 +723,14 @@
       <End Role="Status" EntitySet="Status" />
       <End Role="Auctions" EntitySet="Auctions" />
     </AssociationSet>
+    <AssociationSet Name="FK_Payment_Customer" Association="Self.FK_Payment_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Payment_gateways" EntitySet="Payment_gateways" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Status" Association="Self.FK_Payment_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Payment_gateways" EntitySet="Payment_gateways" />
+    </AssociationSet>
     <AssociationSet Name="FK_Purcher_Order_Artwork" Association="Self.FK_Purcher_Order_Artwork">
       <End Role="Artwork" EntitySet="Artwork" />
       <End Role="Purcher_order" EntitySet="Purcher_order" />
@@ -711,6 +742,14 @@
     <AssociationSet Name="FK_Purcher_Order_Status" Association="Self.FK_Purcher_Order_Status">
       <End Role="Status" EntitySet="Status" />
       <End Role="Purcher_order" EntitySet="Purcher_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shipping_Payment" Association="Self.FK_Shipping_Payment">
+      <End Role="Payment_gateways" EntitySet="Payment_gateways" />
+      <End Role="Shipping" EntitySet="Shipping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shipping_Status" Association="Self.FK_Shipping_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Shipping" EntitySet="Shipping" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -25,7 +25,6 @@ namespace Art_Gallery.Models
         }
     
         public Nullable<int> CategoryId { get; set; }
-        public string Status { get; set; }
         public Nullable<int> CountAuction { get; set; }
         public Nullable<double> AuctionPrice { get; set; }
         public Nullable<double> Discount { get; set; }
@@ -39,6 +38,7 @@ namespace Art_Gallery.Models
         public int ArtworkId { get; set; }
         public string Image { get; set; }
         public string Descriptions { get; set; }
+        public string StatusCode { get; set; }
     
         public virtual Artist Artist { get; set; }
         public virtual Category Category { get; set; }
@@ -53,7 +53,7 @@ namespace Art_Gallery.Models
         public virtual ICollection<Request> Requests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
-        public virtual Status Status1 { get; set; }
+        public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Purcher_order> Purcher_order1 { get; set; }
     }
